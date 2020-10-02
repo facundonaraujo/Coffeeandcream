@@ -2,16 +2,19 @@
   font-family: 'Pacifico';
   src: url(/assets/fonts/Pacifico/Pacifico-Regular.ttf) format("truetype");
   font-weight:300;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Poppins';
   src: url(/assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
   font-weight:300;
+  font-display: swap;
 }
 /* vietnamese */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
+  font-display: swap;
   font-weight: 400;
   font-stretch: 100%;
   src: url(https://fonts.gstatic.com/s/inconsolata/v20/QlddNThLqRwH-OJ1UHjlKENVzkWGVkL3GZQmAwLyxq15Mjs.woff2) format('woff2');
@@ -21,6 +24,7 @@
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
+  font-display: swap;
   font-weight: 400;
   font-stretch: 100%;
   src: url(https://fonts.gstatic.com/s/inconsolata/v20/QlddNThLqRwH-OJ1UHjlKENVzkWGVkL3GZQmAwLyx615Mjs.woff2) format('woff2');
@@ -30,6 +34,7 @@
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
+  font-display: swap;
   font-weight: 400;
   font-stretch: 100%;
   src: url(https://fonts.gstatic.com/s/inconsolata/v20/QlddNThLqRwH-OJ1UHjlKENVzkWGVkL3GZQmAwLyya15.woff2) format('woff2');
@@ -39,6 +44,7 @@
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
+  font-display: swap;
   font-weight: 700;
   font-stretch: 100%;
   src: url(https://fonts.gstatic.com/s/inconsolata/v20/QlddNThLqRwH-OJ1UHjlKENVzkWGVkL3GZQmAwLyxq15Mjs.woff2) format('woff2');
@@ -48,6 +54,7 @@
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
+  font-display: swap;
   font-weight: 700;
   font-stretch: 100%;
   src: url(https://fonts.gstatic.com/s/inconsolata/v20/QlddNThLqRwH-OJ1UHjlKENVzkWGVkL3GZQmAwLyx615Mjs.woff2) format('woff2');
@@ -57,6 +64,7 @@
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
+  font-display: swap;
   font-weight: 700;
   font-stretch: 100%;
   src: url(https://fonts.gstatic.com/s/inconsolata/v20/QlddNThLqRwH-OJ1UHjlKENVzkWGVkL3GZQmAwLyya15.woff2) format('woff2');
@@ -373,12 +381,12 @@ h1,h2,h3,h4,h5,h6, p {
 .contacto_tittle{
 	margin-top: 10px;
 	padding-bottom: 10px;
-	color: #868E96;
+	color: #d2d6da;
 	text-transform: uppercase;
 	font-size: 16px;
 }
 .contacto_text{
-	color: #DEE2E6;
+	color: #ffffff;
 	font-size: 14px;
 }
 .direccion{

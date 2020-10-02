@@ -34,7 +34,7 @@
                                     <a class="nav-link menuText" [routerLink]="['/contact']" (click)="closeFunctions()" [routerLinkActive]="['actived']">Contacto</a>
                                 </li>
                                 <li class="nav-item dropdown" *ngIf="AdminOptions">
-                                  <a href="" class="nav-link menuText dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="closeFunctions()">
+                                  <a class="nav-link menuText dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="closeFunctions()">
                                     Administrar
                                   </a>
                                   <div class="dropdown-menu" aria-labelledby="menu-categorias">
@@ -52,9 +52,7 @@
                 <div class="col-xl-3 col-12 top-info-cart mt-xl-4">
                     <ul class="cart-inner-info text-center">
                         <li>
-                            <a>
-                                <button class="userButton userText" (click)="acount()"><fa-icon [icon]="faUser"></fa-icon> Mi Cuenta</button>
-                            </a>
+                            <button class="userButton userText" (click)="acount()"><fa-icon [icon]="faUser"></fa-icon> Mi Cuenta</button>
                         </li>
                         <li>
                             <span type="button" (click)="cart()"><fa-icon [icon]="faCartArrowDown"></fa-icon></span>
@@ -296,7 +294,7 @@
             </div>
             <div class="col-sm-12 col-md-6 col-xl-3">
                 <h3 class="contacto_tittle">Dirección</h3>
-				        <p class="contacto_text"><a href="https://cutt.ly/2fRr5lq" target="_blank" class="direccion">San Martin 1024 - Mendoza, Argentina</a></p>
+				        <p class="contacto_text"><a rel ="noreferrer" href="https://cutt.ly/2fRr5lq" target="_blank" class="direccion">San Martin 1024 - Mendoza, Argentina</a></p>
             </div>
             <div class="col-sm-12 col-md-6 col-xl-3">
                 <h3 class="contacto_tittle">Siguenos en</h3>
@@ -311,18 +309,18 @@
 		<div class="container-fluid ">
 			<div class="footer row justify-content-between">
 			     <div class="col col-md-4 d-none d-md-block">
-					 <h6 class="tittle-footer">Made by Facundo Araujo</h6>
+					 <h2 class="tittle-footer">Made by Facundo Araujo</h2>
 				 </div>
 			     <div class="col col-md-4 d-none d-md-block">
-					 <h6 class="tittle-footer text-right">Cofee&Cream&copy; - 2020</h6>
+					 <h2 class="tittle-footer text-right">Cofee&Cream&copy; - 2020</h2>
 				 </div>
 			</div>
 			<div class="footer row">
 			     <div class="col-12 d-block d-md-none">
-					 <h6 class="tittle-footer text-center">Made by Facundo Araujo</h6>
+					 <h2 class="tittle-footer text-center">Made by Facundo Araujo</h2>
 				 </div>
 			     <div class="col-12 d-block d-md-none">
-					 <h6 class="tittle-footer text-center">Cofee&Cream&copy; - 2020</h6>
+					 <h2 class="tittle-footer text-center">Cofee&Cream&copy; - 2020</h2>
 				 </div>
 			</div>
 		</div>

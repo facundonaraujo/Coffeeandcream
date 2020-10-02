@@ -2,6 +2,7 @@ import { ContactService } from './../services/contact.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { NgbModal, NgbModalRef, NgbAlert} from '@ng-bootstrap/ng-bootstrap';
+import { Meta, Title } from '@angular/platform-browser';
 // ICONOS
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 @Component({
@@ -20,6 +21,8 @@ export class ContactComponent implements OnInit {
     public fb: FormBuilder,
     private contactService: ContactService,
     public sendMessageModal: NgbModal,
+    private meta: Meta,
+    private titleService: Title
     ) {
     this.contactForm = this.fb.group({
       contactName: ['', [Validators.required]],
@@ -31,6 +34,15 @@ export class ContactComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.titleService.setTitle('CooffeAndCream - Contacto');
+    this.meta.addTag({
+      name: 'CooffeAndCream',
+      content: 'CooffeAndCream'
+    });
+    this.meta.updateTag({
+        name: 'description',
+        content: 'Ante caulquier duda contactenos y le respoderemos a la brevedad.'
+    });
   }
 
   public sendForm(form, confirmsend){
