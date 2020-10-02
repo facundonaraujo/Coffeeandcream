@@ -1,0 +1,293 @@
+/*-----------------------------------------------------------CART STYLES------------------------------------------------------------------------------------*/
+.cartContainer{
+  min-height: 600px;
+  margin-bottom: 20px;
+}
+.errorCartRow{
+  margin-top: 70px;
+}
+.crossIcon{
+  color: #db2929;
+  font-size: 110px;
+  padding-left: 500px;
+}
+.noItemsTxt{
+  color: #db2929;
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+  margin-top: 15px;
+  text-align: center;
+}
+.circle{
+  background: #424242;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding-top: 9px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  font-family: 'Inconsolata', monospace;
+}
+.firstTittle{
+  font-weight: 700;
+  padding-bottom: 15px;
+  font-size: 35px;
+  font-family: 'Inconsolata', monospace;
+}
+ul.mainListUl li {
+  list-style: none;
+}
+.mainListUl{
+  margin-bottom: 0px;
+}
+.rowMainCartList{
+  margin-top: 40px;
+}
+.mainListText{
+  font-weight: 600;
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 20px;
+  padding-bottom: 7px;
+}
+.mainListLi{
+  border-bottom: 1px solid #c1cdd4;
+}
+.cantTxt{
+  padding-left: 42px;
+}
+.trashIcon{
+  padding-left: 18px;
+  font-size: 20px;
+  color: #363636;
+}
+.trashIcon:hover {
+  color: #db2929;
+}
+.secondaryListText{
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 17px;
+  padding-bottom: 7px;
+  padding-top: 10px;
+}
+.secondaryListLi{
+  border-bottom: 1px solid #c1cdd4;
+}
+.contenedorList{
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.contenedorList::-webkit-scrollbar{
+  width: 5px;
+}
+.contenedorList::-webkit-scrollbar-thumb{
+  background: rgb(75, 75, 75);
+}
+.nextSection{
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+.totalPrice{
+  margin-top: 25px;
+  font-size: 24px;
+  font-weight: 600;
+}
+.arrowIconRigth{
+  color: #ffffff;
+  font-size: 20px;
+  position: absolute;
+  top: 3.5px;
+  padding-left: 5px;
+}
+.arrowIconLeft{
+  color: #ffffff;
+  font-size: 20px;
+  position: absolute;
+  top: 3.5px;
+  left: 104px;
+}
+.arrowIconLeft1{
+  color: #ffffff;
+  font-size: 20px;
+  position: absolute;
+  top: 3.5px;
+  left: 60px;
+}
+.arrowIconLeft0{
+  color: #ffffff;
+  font-size: 20px;
+  position: absolute;
+  top: 3.5px;
+  left: 205px;
+}
+.confirmIcon{
+  background: #29d16f;
+  color: #000000;
+  font-size: 25px;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 50%;
+}
+.confirmTittle{
+  margin-top: 50px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+.confirmSubtittle{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.mobilTxt{
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.btnReponsive{
+  margin-bottom: 15px;
+}
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 1200px){
+  .crossIcon{
+    color: #db2929;
+    font-size: 110px;
+    padding-left: 400px;
+  }
+  .arrowIconLeft0{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 38%;
+  }
+
+}
+@media (max-width: 992px){
+  .crossIcon{
+    color: #db2929;
+    font-size: 110px;
+    padding-left: 300px;
+  }
+  .arrowIconLeft1{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 25%;
+  }
+}
+@media (max-width: 768px){
+  .crossIcon{
+    color: #db2929;
+    font-size: 110px;
+    padding-left: 200px;
+  }
+  .arrowIconLeft0{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 190px;
+  }
+  .secondaryListLi{
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+  }
+  .arrowIconLeft1{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 16%;
+  }
+  .arrowIconLeft{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 35%;
+  }
+}
+@media (max-width: 575px){
+  .arrowIconLeft1{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 35%;
+  }
+  .arrowIconLeft{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 42%;
+  }
+}
+@media (max-width: 544px){
+  .crossIcon{
+    color: #db2929;
+    font-size: 110px;
+    padding-left: 36%;
+  }
+  .arrowIconLeft0{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 30%;
+  }
+  .cantTxt{
+    padding-left: 0px;
+  }
+  .secondaryListLi{
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+  }
+  .arrowIconLeft1{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 29%;
+  }
+}
+@media (max-width: 390px){
+  .crossIcon{
+    color: #db2929;
+    font-size: 110px;
+    padding-left: 30%;
+  }
+  .arrowIconLeft0{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 25%;
+  }
+  .secondaryListLi{
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+  }
+
+  .arrowIconLeft1{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 24%;
+  }
+  .arrowIconLeft{
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    top: 3.5px;
+    left: 38%;
+  }
+}

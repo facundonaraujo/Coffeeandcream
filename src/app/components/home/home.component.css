@@ -1,0 +1,219 @@
+
+/*-----------------------------------------------------------SLIDER STYLES---------------------------------------------------------------------------------------*/
+.homeTittleSlider{
+    font-family: 'Pacifico', cursive;
+    font-weight:700;
+    font-size: 80px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 250px;
+    margin-bottom: 250px;
+    text-shadow: 2px 2px 2px black;
+}
+/*-----------------------------------------------------------WELCOME STYLES---------------------------------------------------------------------------------------*/
+#TodayCoffe{
+    margin-bottom: 30px;
+}
+.welcome{
+    background-color: #363636;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    color: #ffffff;
+}
+.welcomeTittle{
+    font-family: 'Inconsolata', sans-serif;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+/*-----------------------------------------------------------TODAY COFFEE STYLES---------------------------------------------------------------------------------------*/
+.today-coffee-main-tittle{
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+.today-coffee-img {
+	margin: auto;
+  width: 150px;
+  height: 150px;
+}
+.coffeeCard:hover {
+    filter: brightness(90%);
+    border-radius: 10px;
+}
+.coffeeTittle{
+    font-family: 'Inconsolata', sans-serif;
+    font-weight: 600;
+}
+.coffeeTodayPrice{
+    color: rgb(136, 136, 136);
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+.coffeeOfferPrice{
+    color: black;
+    font-weight: bold;
+}
+.offert{
+  width: 100px;
+}
+/*-----------------------------------------------------------SHOW MORE PRODUCTS STYLES---------------------------------------------------------------------------------------*/
+.btnShowMoreProd{
+    margin: 0;
+    width: 200px;
+    height: 50px;
+    padding: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 30px;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 0 #ff4e00;
+    transition: ease-out 0.2s;
+    border: 2px solid #ffffff;
+    text-shadow: 2px 2px 2px black;
+
+}
+.btnShowMoreProd:hover{
+    box-shadow: inset 200px 0 0 0 #ff4e00;
+    outline: none;
+}
+.showMoreProdText{
+    font-family: 'Inconsolata', sans-serif;
+    font-weight:700;
+    font-size: 35px;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 2px black;
+}
+/*-----------------------------------------------------------HOME CONTACT STYLES---------------------------------------------------------------------------------------*/
+.homeContactBox {
+    margin-top: 35px;
+    display: block;
+    width: 100%;
+}
+.homeContactBox .blockInfo-home-contact {
+    max-width: 445px;
+    float: left;
+    height: 425px;
+    padding-right: 100px;
+    width: 100%;
+}
+.blockInfo-home-contact {
+    text-align: left;
+    padding: 60px 30px;
+}
+.blockInfo-home-contact .line {
+    display: inline-block;
+    height: 6px;
+    width: 50px;
+    margin-bottom: 30px;
+    background: rgb(255, 255, 255);
+}
+.blockInfo-home-contact .contactText {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+.blockInfo-home-contact .titleContact {
+    margin-bottom: 30px;
+    color: #fff;
+    font-family: 'Inconsolata', monospace;
+    text-transform: uppercase;
+    text-decoration: underline #ffffff;
+    font-weight:700;
+    font-size: 42px;
+}
+.homeContactBox .blockInfo-home-contact .titleContact {
+    height: 110px;
+}
+.titleContact:focus{
+    outline: none;
+}
+/*-----------------------------------------------------------HORARY STYLES---------------------------------------------------------------------------------------*/
+.horary{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.horaryOpenText{
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 28px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-top: 100px;
+}
+.horaryDays{
+    margin-top: 30px;
+    margin-bottom: 5px;
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 25px;
+    color: black;
+    text-transform: uppercase;
+}
+.horaryHours{
+    margin-bottom: 30px;
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 22px;
+    color: #ff4e00;
+    text-transform: uppercase;
+}
+.dividerBar{
+    margin-top: 10px;
+    display: inline-block;
+    height: 100px;
+    width: 2px;
+    background: rgb(184, 184, 184);
+
+}
+.divisorTop{
+    margin-top: 45px;
+    border-top: 4px solid rgb(184, 184, 184);
+    border-top-style: dotted;
+    border-bottom: 4px solid rgb(184, 184, 184);
+    border-bottom-style: dotted;
+}
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 575px){
+  .homeTittleSlider{
+    font-family: 'Pacifico', cursive;
+    font-weight:700;
+    font-size: 50px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 250px;
+    margin-bottom: 250px;
+    text-shadow: 2px 2px 2px black;
+  }
+  .horaryHours{
+    margin-bottom: 0px;
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 22px;
+    color: #ff4e00;
+  }
+  .horaryDays{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 25px;
+    color: black;
+    text-transform: uppercase;
+  }
+}
+@media (max-width: 1000px){
+  .dividerBar{
+    margin-top: 10px;
+    display: inline-block;
+    height: 130px;
+    width: 2px;
+    background: rgb(184, 184, 184);
+
+  }
+}

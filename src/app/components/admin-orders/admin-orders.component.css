@@ -1,0 +1,138 @@
+/*-----------------------------------------------------------ADMIN PRODUCTS STYLES------------------------------------------------------------------------------------*/
+.containerPedidos{
+  min-height: 650px;
+}
+.mainRowADMP{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.mainTittleADMP{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+}
+.mainListRow{
+  background-color: #ffffff;
+  border: 1px solid #aebcc0;
+}
+.mainListText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 10px;
+}
+ul.mainListUl li {
+  list-style: none;
+}
+.mainListUl{
+  padding-inline-start: 10px;
+}
+.pedidosList{
+  max-height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.pedidosList::-webkit-scrollbar{
+  width: 7px;
+}
+.pedidosList::-webkit-scrollbar-thumb{
+  background: rgb(99, 99, 99);
+}
+.secondaryListRow{
+  margin-bottom: 15px;
+}
+.secondaryListText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+.clientName{
+  padding-left: 10px;
+}
+.pedidoId{
+  font-size: 14px;
+}
+.pedidoTotal{
+  padding-left: 10px;
+}
+.pedidoTel{
+  padding-left: 6px;
+}
+.totalText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.lineaSup{
+  border-top: 1px solid #d2e4e9;
+}
+.pedidoDeTxt{
+  padding-left: 25px;
+}
+.pedidoDeTxt2{
+  padding-left: 75px;
+}
+.pedidoDeTxt3{
+  padding-left: 55px;
+}
+.pedidosTitle{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color:#000000;
+}
+.noOrder{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+}
+.mobilTxt{
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 1200px){
+  .secondaryListText{
+    font-family: 'Inconsolata', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px){
+  .liResponsive{
+    margin-bottom: 55px;
+  }
+  .btn-responsive{
+    margin-top: 10px;
+  }
+  .pedidoDeTxt{
+    padding-left: 0px;
+  }
+  .pedidoDeTxt2{
+    padding-left: 0px;
+  }
+  .pedidoDeTxt3{
+    padding-left: 0px;
+  }
+  .pedidosTitle{
+    font-family: 'Inconsolata', monospace;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color:#000000;
+    font-size: 24px;
+  }
+  .btn-responsive2{
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 465px){
+  .pedidosTitle{
+    font-family: 'Inconsolata', monospace;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color:#000000;
+    font-size: 20px;
+  }
+}

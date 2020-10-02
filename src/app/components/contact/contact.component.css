@@ -1,0 +1,88 @@
+/*-----------------------------------------------------------CONTACT STYLES------------------------------------------------------------------------------------*/
+.contactTittle{
+    margin-top: 250px;
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 80px;
+    color: #ffffff;
+    text-decoration: underline #ffffff;
+    text-shadow: 2px 2px 2px black;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.contactSubTittle{
+    margin-bottom: 218px;
+    font-family: 'Inconsolata', monospace;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px black;
+    font-weight:600;
+    font-size: 15px;
+}
+.formText{
+    font-weight: bold;
+}
+.btnSubmit{
+    float: right;
+    font-weight: bold;
+}
+.asideTittle{
+    margin-bottom: 15px;
+    color: #000000;
+    font-family: 'Inconsolata', monospace;
+    text-transform: uppercase;
+    font-weight:700;
+    font-size: 28px;
+}
+.asideTittle2{
+    margin-bottom: 15px;
+    color: #000000;
+    font-family: 'Inconsolata', sans-serif;
+    text-transform: uppercase;
+    font-weight:700;
+    font-size: 25px;
+}
+.asideSubTittle{
+    margin-bottom: 30px;
+    color: #000000;
+    font-family: 'Inconsolata', sans-serif;
+    font-weight:600;
+    font-size: 15px;
+}
+.checkIcon{
+  background: #29d16f;
+  color: #ffffff;
+  font-size: 55px;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 50%;
+}
+.colIcon{
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.colTitle{
+  margin-bottom: 40px;
+}
+.checkTitle{
+  font-family: 'Inconsolata', monospace;
+  font-weight:600;
+}
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 575px){
+  .contactTittle{
+    margin-top: 250px;
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 60px;
+    color: #ffffff;
+    text-decoration: underline #ffffff;
+    text-shadow: 2px 2px 2px black;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+ }
+}

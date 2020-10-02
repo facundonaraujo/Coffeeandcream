@@ -1,0 +1,29 @@
+<!-------------------------------------------------------- START PRODUCTS ------------------------------------------------------------------->
+<section id="Products">
+	<div class="productsMain">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h3 class="productsTittle">Productos</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+			<div class="row mt-3">
+				<div class="col-xs-12 col-sm-6 col-md-3 mb-4" *ngFor="let product of products" (click)="productDetail(product.id)">
+					<div class="card coffeeCard" type="button" >
+            <span class="badge badge-pill badge-warning offert" *ngIf="product.data.isCoffeeDay === true">¡EN OFERTA!</span>
+						<img [src]="product.data.productImg" class="card-image-top coffee-Img img-fluid" alt="">
+						<div class="card-body">
+							<h5 class="card-title coffeeTittle text-center">{{product.data.productName}}</h5>
+							<p class="card-text text-center">
+							<span class="coffeeTodayPrice" *ngIf="product.data.isCoffeeDay === true">${{product.data.coffeeDayPrice}}</span>
+							<span class="coffeePrice">${{product.data.productPrice}}</span>
+							</p>
+						</div>
+					</div>
+				</div>
+      </div>
+		</div>
+</section>

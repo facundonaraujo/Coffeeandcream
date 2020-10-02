@@ -1,0 +1,189 @@
+<!-------------------------------------------------------- START ADMIN PRODUCTS ------------------------------------------------------------------->
+<div class="container containerProd">
+  <div class="row mainRowADMP justify-content-between">
+    <div class="col-xl-5 col-9">
+      <h2 class="mainTittleADMP">Listado de Productos</h2>
+    </div>
+    <div class="col-xl-2 col-3 text-right">
+      <button class="btn btn-primary" (click)="openNewProductModal(contenido)"><fa-icon class="newProdIcon" [icon]="faPlus"></fa-icon>Nuevo</button>
+    </div>
+  </div>
+  <div class="row mainListRow">
+    <div class="col-12">
+      <ul class="mainListUl">
+        <li>
+          <div class="row">
+            <div class="col-2 d-none d-sm-block mainListText"><p>Código</p></div>
+            <div class="col-3 d-none d-sm-block mainListText"><p>Nombre</p></div>
+            <div class="col-3 d-none d-sm-block mainListText"><p>Precio</p></div>
+          </div>
+        </li>
+      </ul>
+      <div class="productList">
+        <ul class="mainListUl">
+          <li class="liResponsive" *ngFor="let product of products">
+            <div class="row align-items-center secondaryListRow">
+              <div class="col-sm-2 d-block d-sm-none secondaryListText"><span class="mobilTxt">Código</span></div>
+              <div class="col-sm-2 secondaryListText"><span>{{product.data.productCode}}</span></div>
+              <div class="col-sm-3 d-block d-sm-none secondaryListText"><span class="mobilTxt">Nombre</span></div>
+              <div class="col-sm-3 secondaryListText"><span>{{product.data.productName}}</span></div>
+              <div class="col-sm-3 d-block d-sm-none secondaryListText"><span class="mobilTxt">Precio</span></div>
+              <div class="col-sm-3 secondaryListText"><span>${{product.data.productPrice}}</span></div>
+              <div class="col-1 secondaryListText"><fa-icon class="editIcon" type="button" [icon]="faEdit" (click)="openEditProductModal(edit, product.id)"></fa-icon></div>
+              <div class="col-1 secondaryListText"><fa-icon class="deleteIcon" type="button" [icon]="faTrash" (click)="openDeleteProductModal(deleteproduct, product.id)"></fa-icon></div>
+              <div class="col-1 secondaryListText"><fa-icon class="addCoffeDayIcon" type="button" [icon]="faMugHot" (click)="addCoffeeDay(product.id)"></fa-icon></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<!-------------------------------------------------------- START ADMIN COOFEE OF DAY ------------------------------------------------------------------->
+  <div class="row mainRowADMP mt-5 justify-content-between">
+    <div class="col-xl-5 col-12">
+      <h2 class="mainTittleADMP">Cafés del día</h2>
+    </div>
+  </div>
+  <div class="row mainListRow">
+    <div class="col-12">
+      <ul class="mainListUl">
+        <li>
+          <div class="row">
+            <div class="col-2 d-none d-sm-block mainListText"><p>Código</p></div>
+            <div class="col-3 d-none d-sm-block mainListText"><p>Nombre</p></div>
+            <div class="col-2 d-none d-sm-block mainListText"><p>Precio</p></div>
+          </div>
+        </li>
+      </ul>
+      <div class="productList">
+        <ul class="mainListUl">
+          <li class="liResponsive" *ngFor="let coffee of coffeesDay">
+            <div class="row align-items-center secondaryListRow">
+              <div class="col-sm-2 d-block d-sm-none secondaryListText"><span class="mobilTxt">Código</span></div>
+              <div class="col-sm-2 secondaryListText"><span>{{coffee.data.productCode}}</span></div>
+              <div class="col-sm-3 d-block d-sm-none secondaryListText"><span class="mobilTxt">Nombre</span></div>
+              <div class="col-sm-3 secondaryListText"><span>{{coffee.data.productName}}</span></div>
+              <div class="col-sm-3 d-block d-sm-none secondaryListText"><span class="mobilTxt">Precio</span></div>
+              <div class="col-sm-3 secondaryListText"><span>${{coffee.data.productPrice}}</span></div>
+              <div class="col-1 secondaryListText"><fa-icon class="deleteIcon" type="button" [icon]="faTrash" (click)="deleteCoffeeDay(coffee.id, coffee.data.productId)"></fa-icon></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #contenido let-modal>
+  <form [formGroup]="newProductForm" (ngSubmit)="newProduct(newProductForm.value)">
+  <div class="modal-header">
+    <h4 class="modal-title-custom">Añadir Producto</h4>
+    <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modale-body">
+    <div class="container">
+    <div class="row">
+      <div class="col">
+        <div>
+          <p class="formNewProductText">Ingrese el nombre del producto</p>
+          <input class="inputNewProduct custom-input" type="text" placeholder=" Nombre del producto" name="productName" id="productName" formControlName="productName"  required>
+        </div>
+        <div>
+          <p class="formNewProductText">Ingrese el codigo del producto</p>
+          <input class="inputNewProduct custom-input" type="text" placeholder=" Codigo del producto" name="productCode" id="productCode" formControlName="productCode"  required>
+        </div>
+        <div>
+          <p class="formNewProductText">Ingrese la descripción del producto</p>
+          <textarea class="textAreaInput" name="productDescription" id="productDescription" placeholder=" Descripción del producto" rows="2" cols="40" formControlName="productDescription"  required></textarea>
+        </div>
+        <div>
+          <p class="formNewProductText">Ingrese el precio del producto</p>
+          <input class="inputNewProduct custom-input" type="number" placeholder=" Precio del producto" name="productPrice" id="productPrice" formControlName="productPrice"  required>
+        </div>
+        <div>
+          <p class="formNewProductText">Adjunte una imagen del producto</p>
+          <input class="custom-file" type="file" accept=".png, .jpg, .jpeg" name="productImg" id="productImg" formControlName="productImg" (change)="handleImage($event)" required>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="newProductForm.invalid">Añadir Producto</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</form>
+</ng-template>
+<ng-template #edit let-modal>
+  <form [formGroup]="editProductForm" (ngSubmit)="editProduct(editProductForm.value)">
+  <div class="modal-header">
+    <h4 class="modal-title-custom">Editar Producto</h4>
+    <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modale-body">
+    <div class="container">
+    <div class="row">
+      <div class="col">
+        <div>
+          <p class="formNewProductText">Ingrese el nombre del producto</p>
+          <input class="inputNewProduct custom-input" type="text" placeholder=" Nombre del producto" name="productName" id="productName" formControlName="productName"  required>
+        </div>
+        <div>
+          <p class="formNewProductText">Ingrese el codigo del producto</p>
+          <input class="inputNewProduct custom-input" type="text" placeholder=" Codigo del producto" name="productCode" id="productCode" formControlName="productCode"  required>
+        </div>
+        <div>
+          <p class="formNewProductText">Ingrese la descripción del producto</p>
+          <textarea class="textAreaInput" name="productDescription" id="productDescription" placeholder=" Descripción del producto" rows="2" cols="40" formControlName="productDescription"  required></textarea>
+        </div>
+        <div>
+          <p class="formNewProductText">Ingrese el precio del producto</p>
+          <p class="formNewProductText">Si esta editando un producto para agregarlo a la sección Cafés del Día, el precio actual(precio antes de confirmar guardar cambios) se añadira como un precio en oferta con el formato de precio anterior</p>
+          <input class="inputNewProduct custom-input" type="number" placeholder=" Precio del producto" name="productPrice" id="productPrice" formControlName="productPrice"  required>
+        </div>
+        <div>
+          <p class="formNewProductText">Imagen actual del producto</p>
+          <img class="img-fluid" [src]="productImgActual">
+        </div>
+        <div>
+          <p class="formNewProductText">Si desea cambiar la imagen del producto adjunte una nueva imagen del producto. Si no desea cambiar la imagen <strong>NO ADJUNTE NINGUNA IMAGEN.</strong> </p>
+          <p class="formNewProductText">Adjunte una nueva imagen del producto</p>
+          <input class="custom-file" type="file" accept=".png, .jpg, .jpeg" name="productImg" id="productImg" formControlName="productImg" (change)="editIamge($event)">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="editProductForm.invalid">Editar Producto</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</form>
+</ng-template>
+
+<ng-template #deleteproduct let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title-custom">Borrar Producto</h4>
+    <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modale-body">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center deleteProduct">
+          <h2>¿Esta seguro que quiere eliminar el producto?</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="deleteProduct()">Eliminar Producto</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</ng-template>

@@ -1,0 +1,53 @@
+/*-----------------------------------------------------------PRODUCTS STYLES------------------------------------------------------------------------------------*/
+.productsTittle{
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 80px;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline #ffffff;
+    text-shadow: 2px 2px 2px black;
+    margin-top: 250px;
+    margin-bottom: 250px;
+}
+.coffee-Img {
+	margin: auto;
+  width: 150px;
+  height: 150px;
+}
+.coffeeCard:hover {
+    filter: brightness(90%);
+    border-radius: 10px;
+}
+.coffeeTittle{
+    font-family: 'Inconsolata', sans-serif;
+    font-weight: 600;
+}
+.coffeePrice{
+    color: black;
+    font-weight: bold;
+}
+.coffeeTodayPrice{
+  color: rgb(136, 136, 136);
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+.offert{
+  width: 100px;
+}
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 575px){
+  .productsTittle{
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 60px;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline #ffffff;
+    text-shadow: 2px 2px 2px black;
+    margin-top: 250px;
+    margin-bottom: 250px;
+  }
+}

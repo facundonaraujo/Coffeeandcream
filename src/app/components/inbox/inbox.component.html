@@ -1,0 +1,77 @@
+<!-------------------------------------------------------- START ADMIN INBOX------------------------------------------------------------------->
+<div class="container containerInbox" *ngIf="noTieneMensajes">
+  <div class="row">
+    <div class="col text-center">
+      <h1 class="noInbox">No tiene ningun mensaje todavia.</h1>
+    </div>
+  </div>
+</div>
+<div *ngIf="!noTieneMensajes">
+  <div class="container containerInbox" *ngIf="showInbox">
+    <div class="row mainRowADMi justify-content-between">
+      <div class="col-12">
+        <h2 class="mainTittleADMI">Bandeja de Entrada</h2>
+      </div>
+    </div>
+    <div class="mainListRow">
+        <ul class="mainListUl">
+          <li>
+            <div class="row">
+              <div class="col-2 d-none d-lg-block mainListText"><p>Remitente</p></div>
+              <div class="col-3 d-none d-lg-block mainListText"><p>Correo</p></div>
+              <div class="col-3 d-none d-lg-block mainListText"><p>Asunto</p></div>
+              <div class="col-2 d-none d-lg-block mainListText"><p>Télefono</p></div>
+              <div class="col-2 d-none d-lg-block mainListText"><p>Mensaje</p></div>
+            </div>
+          </li>
+        </ul>
+        <div class="inboxList">
+          <ul class="mainListUl">
+            <li class="liResponsive" *ngFor="let correo of inbox">
+              <div class="row align-items-center secondaryListRow">
+                <div class="col-12 d-block d-lg-none secondaryListText"><span class="mobilTxt">Remitente</span></div>
+                <div class="col-lg-2 secondaryListText"><span class="">{{correo.data.contactName}}</span></div>
+                <div class="col-12 d-block d-lg-none secondaryListText"><span class="mobilTxt">Correo</span></div>
+                <div class="col-lg-3 secondaryListText"><span class="">{{correo.data.contactEmail}}</span></div>
+                <div class="col-12 d-block d-lg-none secondaryListText"><span class="mobilTxt">Asunto</span></div>
+                <div class="col-lg-3 secondaryListText"><span>{{correo.data.contactAffair}}</span></div>
+                <div class="col-12 d-block d-lg-none secondaryListText"><span class="mobilTxt">Télefono</span></div>
+                <div class="col-lg-2 secondaryListText"><span class="">{{correo.data.contactPhone}}</span></div>
+                <div class="col-lg-2 secondaryListText"><button class="btn btn-outline-dark btn-responsive" (click)="showMesagge(correo.id)">Ver Mensaje</button></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+  <div class="container containerInbox" *ngIf="showInboxD" >
+    <div *ngFor="let message of inboxMesage">
+      <div class="contenedor">
+        <div class="firstContenedor">
+          <h3 class="messageTittle text-center">Mensaje</h3>
+        </div>
+        <div class="secondContenedor">
+          <h5 class="destinatarioTitle">De:<span class="destinatarioTitle2">{{message.data.contactName}}</span></h5>
+        </div>
+        <div class="secondContenedor">
+          <h5 class="destinatarioTitle">Correo:<span class="destinatarioTitle2">{{message.data.contactEmail}}</span></h5>
+        </div>
+        <div class="secondContenedorAffair">
+          <h5 class="destinatarioTitle">Asunto:<span class="destinatarioTitle2">{{message.data.contactAffair}}</span></h5>
+        </div>
+        <div class="secondContenedor">
+          <h5 class="destinatarioTitle">Télefono:<span class="destinatarioTitle2">{{message.data.contactPhone}}</span></h5>
+        </div>
+        <div class="thirdContenedor">
+          <p class="messageText">{{message.data.contactMessage}}</p>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-4">
+          <button class="btn btn-outline-dark btn-block" (click)="hideMessage()">Atras</button>
+        </div>
+      </div>
+  </div>
+</div>
+</div>

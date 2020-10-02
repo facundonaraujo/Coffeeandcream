@@ -1,0 +1,98 @@
+<!-------------------------------------------------------- START ADMIN ORDERS ------------------------------------------------------------------->
+<div class="container containerPedidos" *ngIf="noTienePedidos">
+  <div class="row">
+    <div class="col text-center">
+      <h1 class="noOrder">No se ha hecho ningún pedido todavía.</h1>
+    </div>
+  </div>
+</div>
+<div *ngIf="!noTienePedidos">
+  <div class="container containerPedidos" *ngIf="showOrders">
+    <div class="row mainRowADMP justify-content-between">
+      <div class="col-12">
+        <h2 class="mainTittleADMP">Listado de Pedidos</h2>
+      </div>
+    </div>
+    <div class="mainListRow">
+        <ul class="mainListUl">
+          <li>
+            <div class="row">
+              <div class="col-2 d-none d-md-block col-md-3 col-xl-2 mainListText"><p>Código</p></div>
+              <div class="col-2 d-none d-md-block mainListText"><p>Cliente</p></div>
+              <div class="col-3 d-none d-md-block col-md-2 col-xl-3 mainListText"><p>Dirección</p></div>
+              <div class="col-2 d-none d-md-block mainListText"><p>Télefono</p></div>
+              <div class="col-1 d-none d-md-block mainListText"><p>Total</p></div>
+              <div class="col-2 d-none d-md-block mainListText"><p>Detalle</p></div>
+            </div>
+          </li>
+        </ul>
+        <div class="pedidosList">
+          <ul class="mainListUl">
+            <li class="liResponsive" *ngFor="let pedido of pedidos">
+              <div class="row align-items-center secondaryListRow">
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Código</span></div>
+                <div class="col-md-3 col-12 col-xl-2 secondaryListText"><span class="pedidoId">{{pedido.id}}</span></div>
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Cliente</span></div>
+                <div class="col-md-2 secondaryListText"><span class="clientName">{{pedido.data.clientName}}</span></div>
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Dirección</span></div>
+                <div class="col-md-2 col-xl-3 secondaryListText"><span>{{pedido.data.clientDirection}}, {{pedido.data.clientLocalidad}}, {{pedido.data.clientProvincia}}</span></div>
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Télefono</span></div>
+                <div class="col-md-2 secondaryListText"><span class="pedidoTel">{{pedido.data.clientTelefono}}</span></div>
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Total</span></div>
+                <div class="col-md-1 secondaryListText"><span class="pedidoTotal">${{pedido.data.total}}</span></div>
+                <div class="col-md-2 secondaryListText"><button class="btn btn-outline-dark btn-responsive" (click)="showOrderDetail(pedido.id)">Ver detalle</button></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+  <div class="container containerPedidos" *ngIf="showOrderD">
+    <div class="row" >
+      <div class="col">
+          <h2 class="pedidosTitle">Pedido: {{this.pedidoId}}</h2>
+      </div>
+    </div>
+    <div class="row mainListRow">
+      <div class="col-12">
+        <ul class="mainListUl">
+          <li>
+            <div class="row">
+              <div class="col-3 d-none d-md-block mainListText"><p>Producto</p></div>
+              <div class="col-3 d-none d-md-block mainListText"><p>Id</p></div>
+              <div class="col-2 d-none d-md-block mainListText"><p>Codigo</p></div>
+              <div class="col-2 d-none d-md-block mainListText"><p>Cantidad Pedida</p></div>
+              <div class="col-2 d-none d-md-block mainListText"><p>Precio Unitario</p></div>
+            </div>
+          </li>
+        </ul>
+        <div class="pedidoList">
+          <ul class="mainListUl">
+            <li class="liResponsive" *ngFor="let pedidoDe of pedidoDetalle">
+              <div class="row align-items-center secondaryListRow">
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Producto</span></div>
+                <div class="col-md-3 secondaryListText"><span>{{pedidoDe.data.productName}}</span></div>
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Id</span></div>
+                <div class="col-md-3 secondaryListText"><span>{{pedidoDe.id}}</span></div>
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Código</span></div>
+                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt">{{pedidoDe.data.productCode}}</span></div>
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Cantidad Pedida</span></div>
+                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt2">{{pedidoDe.data.productCant}}</span></div>
+                <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Precio Unitario</span></div>
+                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt3">${{pedidoDe.data.productPrice}}</span></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 lineaSup" *ngFor="let ped of pedido">
+        <h4 class="totalText">Total: ${{ped.data.total}}</h4>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-4">
+        <button class="btn btn-outline-dark btn-block btn-responsive2" (click)="hideOrderDetail()">Atras</button>
+      </div>
+    </div>
+</div>
+</div>

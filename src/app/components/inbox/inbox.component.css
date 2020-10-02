@@ -1,0 +1,165 @@
+/*-----------------------------------------------------------ADMIN PRODUCTS STYLES------------------------------------------------------------------------------------*/
+.containerInbox{
+  min-height: 650px;
+}
+.mainRowADMI{
+  margin-top: 10px;
+}
+.mainTittleADMI{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+  padding-bottom: 15px;
+}
+.mainListRow{
+  background-color: #ffffff;
+  border: 1px solid #aebcc0;
+}
+.mainListText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 10px;
+}
+ul.mainListUl li {
+  list-style: none;
+}
+.mainListUl{
+  padding-inline-start: 15px;
+  padding-inline-end: 15px;
+}
+.inboxList{
+  max-height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.inboxList::-webkit-scrollbar{
+  width: 7px;
+}
+.inboxList::-webkit-scrollbar-thumb{
+  background: rgb(99, 99, 99);
+}
+.secondaryListRow{
+  margin-bottom: 15px;
+}
+.secondaryListText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.messageTittle {
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color:#ffffff;
+}
+.noInbox{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+}
+.contenedor{
+  max-height: 460px;
+  width: auto;
+  border: 1px solid #858585;
+  border-radius: 8px;
+}
+.firstContenedor{
+  height: 40px;
+  width: auto;
+  background-color: #353535;
+  border-top: 1px solid transparent;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.secondContenedor{
+  height: 40px;
+  width: auto;
+  background-color: #ffffff;
+  border-bottom: 1px solid #b4b4b4;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.secondContenedorAffair{
+  height: auto;
+  width: auto;
+  background-color: #ffffff;
+  border-bottom: 1px solid #b4b4b4;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 5px;
+}
+.destinatarioTitle{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 600;
+  color:#808080;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+.destinatarioTitle2{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 600;
+  color:#363636;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.messageText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 600;
+  color:#363636;
+  padding-left: 15px;
+  padding-top: 10px;
+  font-size: 18px;
+}
+.thirdContenedor{
+  height: 155px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 5px;
+}
+.thirdContenedor::-webkit-scrollbar{
+  width: 5px;
+}
+.thirdContenedor::-webkit-scrollbar-thumb{
+  background: rgb(99, 99, 99);
+}
+.mobilTxt{
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 992px){
+  .btn-responsive{
+    margin-top: 10px;
+  }
+  .liResponsive{
+    margin-bottom: 55px;
+  }
+}
+@media (max-width: 768px){
+  .destinatarioTitle{
+    font-family: 'Inconsolata', monospace;
+    font-weight: 600;
+    color:#808080;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: 15px;
+  }
+  .destinatarioTitle2{
+    font-family: 'Inconsolata', monospace;
+    font-weight: 600;
+    color:#363636;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 15px;
+  }
+  .messageText{
+    font-family: 'Inconsolata', sans-serif;
+    font-weight: 600;
+    color:#363636;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: 15px;
+  }
+}

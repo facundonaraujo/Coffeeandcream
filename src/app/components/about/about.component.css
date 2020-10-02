@@ -1,0 +1,118 @@
+/*-----------------------------------------------------------ABOUT STYLES------------------------------------------------------------------------------------*/
+.aboutTittle{
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 80px;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline #ffffff;
+    text-shadow: 2px 2px 2px black;
+    margin-top: 250px;
+    margin-bottom: 250px;
+}
+.aboutText{
+    font-family: 'Inconsolata', sans-serif;
+    font-weight:500;
+    text-align: justify;
+    font-size: 20px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+/*-----------------------------------------------------------MISSION AND VISION STYLES------------------------------------------------------------------------------------*/
+            /*------------------------------MISSION SYLES----------------------------*/
+            .missionBox {
+                display: block;
+                width: 100%;
+            }
+            .missionBox .blockInfo-about-mission {
+                background:#ff4e00;
+                max-width: 445px;
+                float: left;
+                height: 425px;
+                padding-right: 100px;
+                width: 100%;
+            }
+            .blockInfo-about-mission {
+                text-align: left;
+                padding: 60px 30px;
+            }
+            .blockInfo-about-mission .line {
+                display: inline-block;
+                height: 6px;
+                width: 50px;
+                margin-bottom: 30px;
+                background: rgb(255, 255, 255);
+            }
+            .blockInfo-about-mission .missionText {
+                color: rgb(255, 255, 255);
+                font-size: 16px;
+            }
+            .blockInfo-about-mission .title {
+                margin-bottom: 30px;
+                color: #fff;
+                text-transform: uppercase;
+                font-family: 'Inconsolata', monospace;
+                font-weight:700;
+                font-size: 42px;
+            }
+            .missionBox .blockInfo-about-mission .title {
+                height: 110px;
+            }
+            /*------------------------------VISION SYLES----------------------------*/
+            .visionBox {
+                display: block;
+                width: 100%;
+                margin-top: 50px;
+            }
+            .visionBox .blockInfo-about-vision {
+                background:#ff4e00;
+                max-width: 445px;
+                float: right;
+                height: 400px;
+                padding-right: 100px;
+                width: 100%;
+            }
+            .blockInfo-about-vision {
+                text-align: left;
+                padding: 60px 30px;
+            }
+            .blockInfo-about-vision .line {
+                display: inline-block;
+                height: 6px;
+                width: 50px;
+                margin-bottom: 30px;
+                background: rgb(255, 255, 255);
+            }
+            .blockInfo-about-vision .visionText {
+                color: rgb(255, 255, 255);
+                font-size: 16px;
+            }
+            .blockInfo-about-vision .title {
+                margin-bottom: 30px;
+                text-transform: uppercase;
+                color: #fff;
+                font-family: 'Inconsolata', monospace;
+                font-weight:700;
+                font-size: 42px;
+            }
+            .visionBox .blockInfo-about-vision .title {
+                height: 110px;
+            }
+
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 575px){
+  .aboutTittle{
+    font-family: 'Inconsolata', monospace;
+    font-weight:700;
+    font-size: 60px;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline #ffffff;
+    text-shadow: 2px 2px 2px black;
+    margin-top: 250px;
+    margin-bottom: 250px;
+  }
+}
+

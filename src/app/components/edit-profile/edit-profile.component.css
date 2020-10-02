@@ -1,0 +1,112 @@
+/*-----------------------------------------------------------EDIT PROFILE STYLES------------------------------------------------------------------------------------*/
+.mainProfileTittle{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+  color:#5a5a5a;
+  margin-bottom: 50px;
+}
+.accountMenu{
+  min-height: 950px;
+  max-height: 1050px;
+}
+.links{
+  color: #3A92C1;
+}
+.pedidosTitle{
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color:#5a5a5a;
+}
+.changePasswordButton, .changeNameButton{
+  float: left;
+  margin-bottom: 10px;
+}
+.subtittleAccount{
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.list-group-item.active {
+  background: #2d3338;
+  border-color: #343A40;
+}
+.alert-dismissible .close {
+  color: black;
+}
+.mainListRow{
+  background-color: #ffffff;
+  border: 1px solid #d2e4e9;
+  margin-bottom: 40px;
+}
+.mainListText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 10px;
+}
+ul.mainListUl li {
+  list-style: none;
+}
+.pedidoList{
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.pedidoList::-webkit-scrollbar{
+  width: 7px;
+}
+.pedidoList::-webkit-scrollbar-thumb{
+  background: rgb(99, 99, 99);
+}
+.secondaryListRow{
+  margin-bottom: 15px;
+}
+.secondaryListText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+.totalText{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.lineaSup{
+  border-top: 1px solid #d2e4e9;
+}
+.pedidoDeTxt{
+  padding-left: 25px;
+}
+.mobilTxt{
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.showDBtn{
+  margin-top: 10px;
+}
+.btnBack{
+  margin-bottom: 30px;
+}
+.mainListUl{}
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 768px){
+  .accountMenu{
+    min-height: 500px;
+    max-height: 1300px;
+  }
+  .pedidoDeTxt{
+    padding-left: 0px;
+  }
+  .pedidosTitle{
+    font-family: 'Inconsolata', monospace;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color:#5a5a5a;
+  }
+}

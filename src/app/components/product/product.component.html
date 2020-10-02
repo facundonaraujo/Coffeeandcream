@@ -1,0 +1,60 @@
+<!-------------------------------------------------------- START PRODUCT ------------------------------------------------------------------->
+<div class="container productContainer">
+  <div class="row mainRowProduct" *ngFor="let p of product">
+    <div class="col-xl-6">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-6 ">
+            <img [src]="p.data.productImg" class="img-fluid productImg">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6"  >
+     <div class="container">
+       <div class="row">
+         <div class="col">
+          <h2 class="productTitle">{{p.data.productName}}</h2>
+         </div>
+       </div>
+       <div class="row priceRow">
+         <div class="col-12">
+          <span class="coffeeTodayPrice" *ngIf="p.data.isCoffeeDay === true">${{p.data.coffeeDayPrice}}</span>
+          <span class="productPrice">${{p.data.productPrice}}</span>
+         </div>
+         <div class="col-12">
+          <span class="badge badge-pill badge-warning offert" *ngIf="p.data.isCoffeeDay === true">¡OFERTA DEL DÍA!</span>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-9">
+          <p class="productDescription">{{p.data.productDescription}}</p>
+         </div>
+       </div>
+       <div class="row productAddCheck" *ngIf="productAddCheck">
+         <div class="col">
+           <p class="productAddText"><fa-icon class="productAddIcon" [icon]="faCheck"></fa-icon> Su producto se encuentra en el carrito.</p>
+         </div>
+       </div>
+       <div class="row">
+          <form [formGroup]="addCantCartForm" (ngSubmit)="agregarAlCarrito(addCantCartForm.value)">
+            <div class="col-12" *ngIf="!productAddCheck">
+               <input class="inputCantProduct" type="number" min="1" pattern="^[0-9]+" name="productCant" id="productCant" formControlName="productCant" >
+               <button class="btnProduct btnAddCart" type="submit">Agregar al carrito</button>
+            </div>
+          </form>
+       </div>
+       <div class="row" *ngIf="productAddCheck">
+         <div class="col">
+          <button class="btnProduct btnRemoveCart" type="button" (click)="quitarDelCarrito()">Quitar del carrito</button>
+         </div>
+       </div>
+       <div class="row rowKeepBuying">
+         <div class="col-12 col-sm-9 ">
+          <button class="btnProduct btnKeepBuying btn-block" [routerLink]="['/products']">Seguir Comprando</button>
+         </div>
+       </div>
+     </div>
+    </div>
+  </div>
+</div>

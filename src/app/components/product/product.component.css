@@ -1,0 +1,170 @@
+/*-----------------------------------------------------------PRODUCT STYLES------------------------------------------------------------------------------------*/
+.productContainer{
+  min-height: 600px;
+}
+.productImg{
+  height: 260px;
+}
+.mainRowProduct{
+  margin-top: 60px;
+}
+.productTitle{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 700;
+  font-size: 45px;
+  color: #454546;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.productPrice{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 500;
+  font-size: 38px;
+  color:#353535;
+}
+.coffeeTodayPrice{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 500;
+  font-size: 38px;
+  color: rgb(136, 136, 136);
+  text-decoration: line-through;
+  margin-right: 20px;
+}
+.priceRow{
+  margin-bottom: 30px;
+}
+.offert{
+  width: 150px;
+  height: 25px;
+  text-align: center;
+  padding-top: 6px;
+}
+.productDescription{
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  margin-bottom: 60px;
+}
+.borderImg{
+  border: 1px solid #bfc8ca;
+  border-radius: 8px;
+}
+.btnProduct{
+  background-color: transparent;
+  padding: 5px 15px;
+  border: 2.5px solid black;
+  border-radius: 4px;
+}
+.btnProduct:hover{
+  background-color: #343A40;
+  color: #ffffff;
+  border: 2.5px solid transparent;
+  border-radius: 4px;
+}
+.btnProduct:focus{
+  outline: none;
+}
+.inputCantProduct{
+  margin-left: 2px;
+  width: 45px;
+  height: 38px;
+  border: 2px solid;
+  border-radius: 4px;
+}
+.btnAddCart{
+  margin-left: 10px;
+  width: 317px;
+}
+.btnRemoveCart{
+  width: 376px;
+}
+.btnKeepBuying{
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.productAddText{
+  font-size: 18px;
+  font-weight: 600;
+}
+.productAddIcon{
+  background: #63ffe0;
+  color: #000000;
+  font-size: 20px;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 50%;
+}
+.productAddCheck{
+  margin-bottom: 10px;
+}
+/*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
+@media (max-width: 1200px){
+  .btnAddCart{
+    margin-left: 10px;
+    width: 610px;
+  }
+  .btnRemoveCart{
+    width: 670px;
+  }
+}
+@media (max-width: 992px){
+  .btnAddCart{
+    margin-left: 10px;
+    width: 430px;
+  }
+  .btnRemoveCart{
+    width: 485px;
+  }
+}
+@media (max-width: 770px){
+  .btnAddCart{
+    margin-left: 10px;
+    width: 295px;
+  }
+  .btnRemoveCart{
+    width: 350px;
+  }
+}
+@media (max-width: 574px){
+  .btnKeepBuying{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 350px;
+  }
+}
+@media (max-width: 415px){
+  .btnKeepBuying{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 270px;
+  }
+  .btnAddCart{
+    margin-left: 10px;
+    width: 215px;
+  }
+  .btnRemoveCart{
+    width: 270px;
+  }
+}
+@media (max-width: 330px){
+  .btnKeepBuying{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 240px;
+  }
+  .btnAddCart{
+    margin-left: 10px;
+    width: 180px;
+  }
+  .btnRemoveCart{
+    width: 240px;
+  }
+}
+@media (max-width: 400px){
+  .productImg{
+    height: 200px;
+  }
+}
