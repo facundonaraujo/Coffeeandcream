@@ -72,7 +72,7 @@ Es el encargado de administrar la plataforma. Puede crear/editar/eliminar produc
 
 # **Definiciones técnicas**
 
-- La aplicación fue realizada en angular 11 para el frontend. Para el backend se utilizo NodeJs y Express. El front fue subido a firebase y el back a heroku. También se utilizo firebase para la autentificación.
+La aplicación fue realizada en angular 11 para el frontend. Para el backend se utilizo NodeJs y Express. El front fue subido a firebase y el back a heroku. También se utilizo firebase para la autentificación.
 
 # Anexo
 
