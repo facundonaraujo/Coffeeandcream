@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { routing, appRoutingProviders } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SatPopoverModule } from '@ncstate/sat-popover';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFireModule } from '@angular/fire';
@@ -32,7 +30,26 @@ import { AdminProductsComponent } from './components/admin-products/admin-produc
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { ProductComponent } from './components/product/product.component';
 import { InboxComponent } from './components/inbox/inbox.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducers } from './app.reducer';
+import { RouterModule, Routes } from '@angular/router';
 
+const appRoutes: Routes = [
+  /* {path: '/', component: HomeComponent}, */
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'products', component: ProductsComponent},
+  {path: 'contact', component: ContactComponent},
+  {path: 'cart', component: CartComponent},
+  {path: 'product/:id', component: ProductComponent},
+  {path: 'Admin-Products', component: AdminProductsComponent, canActivate: [CanAdminGuard]},
+  {path: 'Admin-Orders', component: AdminOrdersComponent, canActivate: [CanAdminGuard]},
+  {path: 'inbox', component: InboxComponent, canActivate: [CanAdminGuard]},
+  {path: 'edit_profile', component: EditProfileComponent, canActivate: [CanEditGuard]},
+  {path: '**', component: ErrorComponent},
+];
 
 @NgModule({
   declarations: [
@@ -51,10 +68,9 @@ import { InboxComponent } from './components/inbox/inbox.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    routing,
-    FontAwesomeModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes),
+    FontAwesomeModule,
     SatPopoverModule,
     FormsModule,
     HttpClientModule,
@@ -62,9 +78,21 @@ import { InboxComponent } from './components/inbox/inbox.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     NgbPaginationModule,
-    NgbAlertModule
+    NgbAlertModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+        maxAge: 25, // Retains last 25 states
+        logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
-  providers: [appRoutingProviders, AuthService, CanEditGuard, CanAdminGuard, CartService, DataSharingService, ContactService],
+  providers: [
+    AuthService, 
+    CanEditGuard, 
+    CanAdminGuard, 
+    CartService, 
+    DataSharingService, 
+    ContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
