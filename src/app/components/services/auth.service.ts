@@ -38,6 +38,10 @@ export class AuthService extends RoleValidator{
     );
   }
 
+  async sendVerificationEmail(): Promise<void>{
+    return (await this.afAuth.currentUser).sendEmailVerification();
+  }
+
   async resetPassword(email: string): Promise<void>{
     try{
       return this.afAuth.sendPasswordResetEmail(email);
@@ -61,6 +65,7 @@ export class AuthService extends RoleValidator{
     try{
     const {user} = await this.afAuth.createUserWithEmailAndPassword(email, password);
     this.updateUserData(user);
+    this.sendVerificationEmail();
     return user;
     }
     catch (error){
