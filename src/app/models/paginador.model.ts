@@ -1,5 +1,4 @@
-export class PaginadorTabla
-{
+export class PaginadorTabla{
     constructor(
         public numeroPorPagina : number = 10 ,
         public desde : number = 0,
@@ -9,8 +8,8 @@ export class PaginadorTabla
         public size : number = 10 ,
         ){}
 }
- export class PaginadorBusquedaTabla implements PaginadorTabla
- {
+
+export class PaginadorBusquedaTabla implements PaginadorTabla{
     constructor(
         public numeroPorPagina : number = 10 ,
         public desde : number = 0,
@@ -19,8 +18,5 @@ export class PaginadorTabla
         public pageNumber : number = 0,
         public size : number = 10 ,
         public busqueda ?: string,
-        public categoria ?: any,
-        public subCategoria ?: any,
-        public empresas ?: string []
         ){}
  }

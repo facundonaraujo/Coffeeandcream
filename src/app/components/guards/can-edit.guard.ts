@@ -10,15 +10,16 @@ import { AuthService } from '../services/auth.service';
 export class CanEditGuard implements CanActivate {
   constructor(private authSvc: AuthService, private router: Router){}
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authSvc.user$.pipe(
-      take(1),
-      map((user) => user && this.authSvc.isNomalUser(user)),
-      tap((canEdit) => {
-        if (!canEdit){
-          this.router.navigate(['/home']);
-          /* window.alert('Has ingreado con una cuenta de Administrador no puedes editar tu perfil.'); */
-        }
-      })
-    );
+    // return this.authSvc.user$.pipe(
+    //   take(1),
+    //   map((user) => user && this.authSvc.isNomalUser(user)),
+    //   tap((canEdit) => {
+    //     if (!canEdit){
+    //       this.router.navigate(['/home']);
+    //       /* window.alert('Has ingreado con una cuenta de Administrador no puedes editar tu perfil.'); */
+    //     }
+    //   })
+    // );
+    return true;
   }
 }

@@ -1,7 +1,7 @@
-import { ContactService } from './../services/contact.service';
+import { MailService } from '../services/mail.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { NgbModal, NgbModalRef, NgbAlert} from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { Meta, Title } from '@angular/platform-browser';
 // ICONOS
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +19,7 @@ export class ContactComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    private contactService: ContactService,
+    private maiñService: MailService,
     public sendMessageModal: NgbModal,
     private meta: Meta,
     private titleService: Title
@@ -53,7 +53,7 @@ export class ContactComponent implements OnInit {
       contactAffair: form.contactAffair,
       contactMessage: form.contactMessage
     };
-    this.contactService.sendMessage(data);
+    this.maiñService.sendMessage(data);
     this.contactForm.reset();
     this.openConfirmSendModal(confirmsend);
   }

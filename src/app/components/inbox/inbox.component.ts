@@ -1,4 +1,4 @@
-import { ContactService } from './../services/contact.service';
+import { MailService } from './../services/mail.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,37 +14,20 @@ export class InboxComponent implements OnInit {
   public inbox = [];
   public inboxMesage = [];
 
-  constructor(private contactService: ContactService) { }
+  constructor(private mailService: MailService) { }
 
-  async ngOnInit() {
-    await this.contactService.getMessages().subscribe((inboxSnapshot) => {
-      this.inbox = [];
-      inboxSnapshot.forEach((inboxData: any) => {
-        this.inbox.push({
-          id: inboxData.payload.doc.id,
-          data: inboxData.payload.doc.data()
-        });
-      });
-      if (typeof this.inbox !== undefined && this.inbox.length > 0){
-        this.noTieneMensajes = false;
-        this.showInbox = true;
-        this.showInboxD = false;
-        }else{
-          this.noTieneMensajes = true;
-        }
-      }).unsubscribe;
-  }
+  ngOnInit() {}
 
-  async showMesagge(correoId){
-    this.showInbox = false;
-    this.showInboxD = true;
-    await this.contactService.getIndividualMessage(correoId).subscribe((messageSnapshot) => {
-      this.inboxMesage = [];
-      this.inboxMesage.push({
-          id: messageSnapshot.payload.id,
-          data: messageSnapshot.payload.data()
-        });
-    }).unsubscribe;
+  showMesagge(correoId){
+    // this.showInbox = false;
+    // this.showInboxD = true;
+    // await this.contactService.getIndividualMessage(correoId).subscribe((messageSnapshot) => {
+    //   this.inboxMesage = [];
+    //   this.inboxMesage.push({
+    //       id: messageSnapshot.payload.id,
+    //       data: messageSnapshot.payload.data()
+    //     });
+    // }).unsubscribe;
   }
 
   hideMessage(){

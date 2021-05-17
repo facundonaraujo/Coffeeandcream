@@ -1,7 +1,7 @@
 
 import { ActionReducerMap } from '@ngrx/store';
 import { Aplicacion } from './models/aplicacion.model';
-import * as fromApp from './reducers/aplicacion/aplicacion.reducer';
+import * as fromApp from './reducers/aplicacion.reducer';
 
 export interface AppState{
     app : Aplicacion,

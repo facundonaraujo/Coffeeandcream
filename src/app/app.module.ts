@@ -12,9 +12,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthService } from './components/services/auth.service';
-import { CartService } from './components/services/cart.service';
-import { ContactService } from './components/services/contact.service';
-import { DataSharingService } from './components/services/data-sharing.service';
+import { PedidosService } from './components/services/pedidos.service';
+import { ProductoService } from './components/services/producto.service';
+import { MailService } from './components/services/mail.service';
+import { UsuariosService } from './components/services/usuarios.service';
 import { CanAdminGuard } from './components/guards/can-admin.guard';
 import { CanEditGuard } from './components/guards/can-edit.guard';
 
@@ -36,7 +37,6 @@ import { appReducers } from './app.reducer';
 import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
-  /* {path: '/', component: HomeComponent}, */
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
@@ -86,12 +86,13 @@ const appRoutes: Routes = [
     }),
   ],
   providers: [
-    AuthService, 
-    CanEditGuard, 
-    CanAdminGuard, 
-    CartService, 
-    DataSharingService, 
-    ContactService
+    AuthService,
+    CanEditGuard,
+    CanAdminGuard,
+    PedidosService,
+    MailService,
+    ProductoService,
+    UsuariosService
   ],
   bootstrap: [AppComponent]
 })

@@ -9,7 +9,7 @@
                   <div class="container">
                     <div class="row justify-content-center">
                         <div class="col logoText">
-                            <a class="navbar-brand" [routerLink]="['/home']" (click)="closeFunctions()">Coffe&Cream</a>
+                            <a class="navbar-brand" [routerLink]="['/home']" (click)="closeCart()">Coffe&Cream</a>
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -22,26 +22,16 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav text-center">
                                 <li class="nav-item active">
-                                    <a class="nav-link menuText" [routerLink]="['/home']" (click)="closeFunctions()" [routerLinkActive]="['actived']">Inicio</a>
+                                    <a class="nav-link menuText" [routerLink]="['/home']" (click)="closeCart()" [routerLinkActive]="['actived']">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link menuText" [routerLink]="['/about']" (click)="closeFunctions()" [routerLinkActive]="['actived']">Nosotros</a>
+                                    <a class="nav-link menuText" [routerLink]="['/about']" (click)="closeCart()" [routerLinkActive]="['actived']">Nosotros</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link menuText" [routerLink]="['/products']" (click)="closeFunctions()" [routerLinkActive]="['actived']">Productos</a>
+                                    <a class="nav-link menuText" [routerLink]="['/products']" (click)="closeCart()" [routerLinkActive]="['actived']">Productos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link menuText" [routerLink]="['/contact']" (click)="closeFunctions()" [routerLinkActive]="['actived']">Contacto</a>
-                                </li>
-                                <li class="nav-item dropdown" *ngIf="AdminOptions">
-                                  <a class="nav-link menuText dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="closeFunctions()">
-                                    Administrar
-                                  </a>
-                                  <div class="dropdown-menu" aria-labelledby="menu-categorias">
-                                    <a class="dropdown-item menuDropdownText" [routerLink]="['/Admin-Products']">Administrar Productos</a>
-                                    <a class="dropdown-item menuDropdownText" [routerLink]="['/Admin-Orders']">Administrar Pedidos</a>
-                                    <a class="dropdown-item menuDropdownText" [routerLink]="['/inbox']">Bandeja De Entrada</a>
-                                  </div>
+                                    <a class="nav-link menuText" [routerLink]="['/contact']" (click)="closeCart()" [routerLinkActive]="['actived']">Contacto</a>
                                 </li>
                                 </ul>
                             </div>
@@ -99,7 +89,6 @@
                                     </div>
                                     <div class="col-12">
                                       <div class="row subtotalBuyText">
-                                        <!-- <div class="col-8 text-left Subtotal"><span>Subtotal: ${{this.subtotal}}</span></div> -->
                                         <div class="col-8 text-left Subtotal"><span>Subtotal: {{total() | currency}}</span></div>
                                         <div class="col-4"><span type="button" (click)="comprar()" class="btnbuy text-danger font-weight-bold">COMPRAR</span></div>
                                       </div>
@@ -108,172 +97,6 @@
                             </div>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="showAccount">
-                        <div *ngIf="user$ | async as user; else loginTemplate">
-                            <div class="popoverAcount" *ngIf="user">
-                                <div class="container">
-                                    <div class="row justify-content-end">
-                                        <div class="col-2">
-                                          <span type="button" ><fa-icon class="closeUserLogin btnbuy" [icon]="faTimes" (click)="closeAccount()"></fa-icon></span>
-                                        </div>
-                                    </div>
-                                    <div class="row" *ngIf="!AdminOptions">
-                                        <div class="col text-center mb-2 mt-1">
-                                            <span [routerLink]="['/edit_profile']" type="button" class="btnEditProfile" (click)="closeAccount()">Editar Perfil</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col text-center">
-                                            <span type="button" class="btnCloseSession" (click)="onLogout()">Cerrar Sesión</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <ng-template #loginTemplate>
-                            <div class="popoverAcount">
-                                <div class="container">
-                                    <div class="row justify-content-end">
-                                        <div class="col-2">
-                                            <span type="button" ><fa-icon class="closeUserLogin btnbuy" [icon]="faTimes" (click)="closeAccount()"></fa-icon></span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col text-center mb-2 mt-1">
-                                            <span type="button" class="btnLogin" (click)="openModalLogin(login)">Ingresar</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col text-center">
-                                            <span type="button" class="btnSignup" (click)="openModalSignup(signup)">Crear Cuenta</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ng-container>
-                    <ng-template #login let-modal>
-                        <div *ngIf="loginContainer">
-                            <div class="modal-header">
-                                <h4 class="modal-title">INICIAR SESIÓN</h4>
-                                <span type="button" ><fa-icon class="closeModalLogin btnbuy" [icon]="faTimes" (click)="modal.dismiss()"></fa-icon></span>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
-                                            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-                                                <div class="form-group inner-addon right-addon">
-                                                    <fa-icon [icon]="faEnvelope" class="iconLogin glyphicon glyphicon-user"></fa-icon>
-                                                    <input type="email" class="form-control" placeholder="E-mail" name="loginEmail" id="loginEmail" formControlName="loginEmail"  required>
-                                                </div>
-                                                <div class="form-group inner-addon right-addon">
-                                                    <fa-icon type="button"  [icon]="faEyeSlash" [class.hideIconPassword]="passwordTypeInput == 'text'" class="iconLogin glyphicon glyphicon-user" (click)="showPassword()"></fa-icon>
-                                                    <fa-icon type="button"  [icon]="faEye" [class.hideIconPassword]="passwordTypeInput == 'password'" class="iconLogin glyphicon glyphicon-user" (click)="showPassword()"></fa-icon>
-                                                    <input #passwordEyeRegister [type]="passwordTypeInput" class="form-control" placeholder="Contraseña" name="loginPassword" id="loginPassword" formControlName="loginPassword"  required>
-                                                    <button type="submit" class="btn btn-dark loginButton" [disabled]="loginForm.invalid">Iniciar Sesión</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="forgotPasswordButton" (click)="forgotPassword()">¿Olvidaste tu contraseña?</button>
-                            </div>
-                        </div>
-                        <div *ngIf="forgotPasswordContainer">
-                            <div class="modal-header">
-                              <h4 class="modal-title">RECUPERAR CONTRASEÑA</h4>
-                              <span type="button" ><fa-icon class="closeModalLogin btnbuy" [icon]="faTimes" (click)="modal.dismiss()"></fa-icon></span>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="row mb-2">
-                                        <div class="col text-center">
-                                            <h4>Ingrese su correo electronico</h4>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-2">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" [formControl]="userEmailForgotPass" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col text-center">
-                                            <button class="btn btn-dark btn-block" (click)="onReset()">Solicitar restablecimiento de contraseña</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                        <div *ngIf="sendEmailForgotPasswordContainer">
-                          <div class="modal-header">
-                            <h4 class="modal-title"></h4>
-                            <span type="button" ><fa-icon class="closeModalLogin btnbuy" [icon]="faTimes" (click)="modal.dismiss()"></fa-icon></span>
-                          </div>
-                          <div class="modal-body">
-                              <div class="container">
-                                  <div class="row">
-                                      <div class="col">
-                                        <h1 class="text-center">¡Correo enviado, revisa tu bandeja de entrada!</h1>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                          </div>
-                      </div>
-                    </ng-template>
-                    <ng-template #signup let-modal>
-                      <div *ngIf="registerContainer">
-                        <div class="modal-header">
-                            <h4 class="modal-title">REGISTRARSE</h4>
-                            <span type="button" ><fa-icon class="closeModalLogin btnbuy" [icon]="faTimes" (click)="modal.dismiss()"></fa-icon></span>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-                                            <div class="form-group inner-addon right-addon">
-                                                <fa-icon [icon]="faEnvelope" class="iconLogin glyphicon glyphicon-user"></fa-icon>
-                                                <input type="email" class="form-control" placeholder="E-mail" name="signupEmail" id="signupEmail" formControlName="signupEmail" required>
-                                            </div>
-                                            <div class="form-group inner-addon right-addon">
-                                                <fa-icon type="button"  [icon]="faEyeSlash" [class.hideIconPassword]="passwordTypeInput == 'text'" class="iconLogin glyphicon glyphicon-user" (click)="showPassword()"></fa-icon>
-                                                <fa-icon type="button"  [icon]="faEye" [class.hideIconPassword]="passwordTypeInput == 'password'" class="iconLogin glyphicon glyphicon-user" (click)="showPassword()"></fa-icon>
-                                                <input #passwordEyeRegister [type]="passwordTypeInput" class="form-control" placeholder="Contraseña" name="signupPassword" id="signupPassword" formControlName="signupPassword" required>
-                                                <button type="submit" class="btn btn-dark registerButton" [disabled]="registerForm.invalid">Registrarse</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                      <div *ngIf="confirmRegisterContainer">
-                          <div class="modal-header">
-                            <h4 class="modal-title"></h4>
-                            <span type="button" ><fa-icon class="closeModalLogin btnbuy" [icon]="faTimes" (click)="modal.dismiss()"></fa-icon></span>
-                          </div>
-                          <div class="modal-body">
-                              <div class="container">
-                                  <div class="row">
-                                      <div class="col">
-                                        <h1 class="text-center">¡Gracias Por Registrarse!</h1>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                          </div>
-                      </div>
-                    </ng-template>
                 </div>
             </div>
         </div>

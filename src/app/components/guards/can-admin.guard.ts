@@ -10,15 +10,16 @@ import { AuthService } from '../services/auth.service';
 export class CanAdminGuard implements CanActivate {
   constructor(private authSvc: AuthService, private router: Router){}
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authSvc.user$.pipe(
-      take(1),
-      map((user) => user && this.authSvc.isAdmin(user)),
-      tap((canAdmin) => {
-        if (!canAdmin){
-          this.router.navigate(['/home']);
-          /* window.alert('Acceso denegado. Debe tener permiso para administrar el contenido.'); */
-        }
-      })
-    );
+    // return this.authSvc.user$.pipe(
+    //   take(1),
+    //   map((user) => user && this.authSvc.isAdmin(user)),
+    //   tap((canAdmin) => {
+    //     if (!canAdmin){
+    //       this.router.navigate(['/home']);
+    //       /* window.alert('Acceso denegado. Debe tener permiso para administrar el contenido.'); */
+    //     }
+    //   })
+    // );
+    return true;
   }
 }
