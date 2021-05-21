@@ -70,14 +70,14 @@
     color: #ffffff;
     font-size: 18px;
     border-radius: 4px;
-    box-shadow: inset 0 0 0 0 #ff4e00;
+    box-shadow: inset 0 0 0 0 #FA9D33;
     transition: ease-out 0.2s;
     border: 2px solid #ffffff;
     text-shadow: 2px 2px 2px black;
 
 }
 .btnShowMoreProd:hover{
-    box-shadow: inset 200px 0 0 0 #ff4e00;
+    box-shadow: inset 200px 0 0 0 #FA9D33;
     outline: none;
 }
 .showMoreProdText{
@@ -160,7 +160,7 @@
     font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 22px;
-    color: #ff4e00;
+    color: black;
     text-transform: uppercase;
 }
 .dividerBar{
@@ -169,7 +169,6 @@
     height: 100px;
     width: 2px;
     background: rgb(184, 184, 184);
-
 }
 .divisorTop{
     margin-top: 45px;
@@ -195,7 +194,7 @@
     font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 22px;
-    color: #ff4e00;
+    color: #FA9D33;
   }
   .horaryDays{
     margin-top: 10px;

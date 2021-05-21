@@ -91,6 +91,17 @@ h1,h2,h3,h4,h5,h6, p {
 	letter-spacing: 1px;
 }
 
+body::-webkit-scrollbar{
+  width: 10px;
+  background-color: #1b1d1d;
+}
+
+body::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  border:2px solid #1b1d1d;
+  background-color: #FA9D33;
+}
+
 /*-----------------------------------------------------------HEADER STYLES------------------------------------------------------------------------------------*/
 .main-header {
 	margin-bottom: 30px;
@@ -125,8 +136,8 @@ h1,h2,h3,h4,h5,h6, p {
 				   margin-left: 13px;
 			   }
 			   .actived, .menuText:hover{
-				   color: #ff4e00;
-				   border-bottom: 1px solid #ff4e00;
+				   color: #FA9D33;
+				   border-bottom: 1px solid #FA9D33;
          }
          .menuDropdownText{
           font-family: 'Inconsolata', monospace;
@@ -137,7 +148,7 @@ h1,h2,h3,h4,h5,h6, p {
          }
          .menuDropdownText:hover, .menuDropdownText:focus{
            background-color: transparent;
-          color: #ff4e00;
+          color: #FA9D33;
          }
 
 			   .navbar-brand:hover{
@@ -287,7 +298,7 @@ h1,h2,h3,h4,h5,h6, p {
 					font-size: 18px;
 				}
 				.btnLogin:hover, .btnSignup:hover{
-					color: #ff4e00;
+					color: #FA9D33;
 					outline: none;
 				}
 				.btnEditProfile, .btnCloseSession{
@@ -297,7 +308,7 @@ h1,h2,h3,h4,h5,h6, p {
 					font-size: 18px;
 				}
 				.btnEditProfile:hover, .btnCloseSession:hover{
-					color: #ff4e00;
+					color: #FA9D33;
 					outline: none;
 				}
 				.inner-addon {
@@ -368,7 +379,7 @@ h1,h2,h3,h4,h5,h6, p {
           margin-bottom: 15px;
         }
         .forgotPasswordButton:hover , .forgotPasswordButton:focus{
-          color: #ff4e00;
+          color: #FA9D33;
           outline: none;
         }
 /*-----------------------------------------------------------FOOTER STYLES------------------------------------------------------------------------------------*/
@@ -393,14 +404,14 @@ h1,h2,h3,h4,h5,h6, p {
 	color: #DEE2E6;
 }
 .direccion:hover{
-	color:#ff4e00;
+	color:#FA9D33;
 }
 .socialMediaIcons{
 	color: #fff;
 	font-size: 30px;
 }
 .socialMediaIcons:hover{
-	color: #ff4e00;
+	color: #FA9D33;
 }
 .main-footer{
 	background: #212529;
@@ -486,7 +497,6 @@ h1,h2,h3,h4,h5,h6, p {
 								background-position: center;
 								background-repeat: no-repeat;
 								display: block;
-								width: 100%;
 								height: 240px;
 							}
 							.productsMain{
@@ -827,3 +837,6 @@ h1,h2,h3,h4,h5,h6, p {
     font-size: 25px;
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

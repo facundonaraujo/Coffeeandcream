@@ -37,18 +37,67 @@ import { appReducers } from './app.reducer';
 import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'about', component: AboutComponent},
-  {path: 'products', component: ProductsComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'product/:id', component: ProductComponent},
-  {path: 'Admin-Products', component: AdminProductsComponent, canActivate: [CanAdminGuard]},
-  {path: 'Admin-Orders', component: AdminOrdersComponent, canActivate: [CanAdminGuard]},
-  {path: 'inbox', component: InboxComponent, canActivate: [CanAdminGuard]},
-  {path: 'edit_profile', component: EditProfileComponent, canActivate: [CanEditGuard]},
-  {path: '**', component: ErrorComponent},
+  {
+    path: '', 
+    redirectTo: 'home', 
+    pathMatch: 'full'
+  },
+  {
+    path: 'home', 
+    component: HomeComponent
+  },
+  {
+    path: 'about', 
+    component: AboutComponent
+  },
+  {
+    path: 'products', 
+    component: ProductsComponent
+  },
+  {
+    path: 'contact', 
+    component: ContactComponent
+  },
+  {
+    path: 'cart', 
+    component: CartComponent
+  },
+  {
+    path: 'login', 
+    loadChildren: () => import('./components/auth/login/login.module').then(m => m.LoginModule),
+  },
+  {
+    path: 'register', 
+    loadChildren: () => import('./components/auth/register/register.module').then(m => m.RegisterModule),
+  },
+  {
+    path: 'product/:id', 
+    component: ProductComponent
+  },
+  {
+    path: 'Admin-Products', 
+    component: AdminProductsComponent, 
+    canActivate: [CanAdminGuard]
+  },
+  {
+    path: 'Admin-Orders', 
+    component: AdminOrdersComponent, 
+    canActivate: [CanAdminGuard]
+  },
+  {
+    path: 'inbox', 
+    component: InboxComponent, 
+    canActivate: [CanAdminGuard]
+  },
+  {
+    path: 'edit-profile', 
+    component: EditProfileComponent, 
+    canActivate: [CanEditGuard]
+  },
+  {
+    path: '**', 
+    component: ErrorComponent
+  },
 ];
 
 @NgModule({

@@ -17,6 +17,7 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -37,9 +38,11 @@ export class AppComponent implements OnInit{
   faEnvelope = faEnvelope;
   faEye = faEye;
   faEyeSlash = faEyeSlash;
+
   faFacebookF = faFacebookF;
   faInstagram = faInstagram;
   faTwitter = faTwitter;
+  faLinkedinIn = faLinkedinIn;
 
   // MODAL LOGIN/SIGNUP
   public userRegisterConfirm = false;
@@ -116,7 +119,7 @@ export class AppComponent implements OnInit{
   }
 
   acount(): void {
-    // this.showAccount = !this.showAccount;
+    this.router.navigate(['/login']);
   }
 
   public async comprar(){

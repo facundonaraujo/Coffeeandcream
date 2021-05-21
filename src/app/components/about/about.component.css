@@ -26,7 +26,7 @@
                 width: 100%;
             }
             .missionBox .blockInfo-about-mission {
-                background:#ff4e00;
+                background:#FA9D33;
                 max-width: 445px;
                 float: left;
                 height: 425px;
@@ -66,7 +66,7 @@
                 margin-top: 50px;
             }
             .visionBox .blockInfo-about-vision {
-                background:#ff4e00;
+                background:#FA9D33;
                 max-width: 445px;
                 float: right;
                 height: 400px;

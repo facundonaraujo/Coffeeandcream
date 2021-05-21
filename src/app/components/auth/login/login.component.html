@@ -1,0 +1,35 @@
+  <!-- main -->
+  <main class="W3Layouts-header-index">
+    <section class="login-page pt-3 pb-4">
+        <!-- login -->
+        <div class="signupform" fxLayout="row" fxLayoutAlign="center">
+            <div class="w3l_info">
+                <div class="w3llogin_info">
+                    <h2 class="pb-5">Ingresa a tu cuenta</h2>
+                    <form name="loginForm" [formGroup]="loginForm">
+                      <div fxLayout="row" fxLayoutAlign="center">
+                        <mat-form-field appearance="outline"  fxFlex="100%" >
+                            <mat-label>Correo electrónico</mat-label>
+                            <input matInput formControlName="email" required>
+                            <mat-error>Correo electrónico is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="center">
+                        <mat-form-field appearance="outline"  fxFlex="100%" >
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput type="password" formControlName="password" required>
+                            <mat-error>Contraseña is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="center">
+                        <button class="w3l-btn-login btn-block" (click)="login()" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+                      </div>
+                    </form>
+                    <p class="w3l-account1">¿No tienes una cuenta? <a [routerLink]="['/register']">Registrate</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //login -->
+</main>
+<!-- //main -->

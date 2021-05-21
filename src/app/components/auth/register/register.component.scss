@@ -1,0 +1,76 @@
+
+.login-page{
+    margin-bottom: 50px;
+}
+
+.w3l_info{
+    width: 450px;
+}
+
+.w3l_info h2 {
+    display: inline-block;
+    font-size: 26px;
+    margin-bottom: 3px;
+    color: #FA9D33;
+    font-weight: 700;
+}
+
+.w3l_info h4 {
+    display: inline-block;
+    font-size: 15px;
+    padding: 8px 0px;
+    color: #444;
+    text-transform: capitalize;
+}
+
+.w3l_info form label {
+    font-weight: 700;
+}
+
+.w3l_info .w3l-login-check label {
+    font-size: 13px;
+    color: #000;
+    font-weight: 500;
+}
+
+.w3l_info p {
+    padding-bottom: 30px;
+}
+
+.w3l-btn-login {
+    width: 100%;
+    background: #FA9D33;
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    padding: 12px 40px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 2rem;
+    border-radius: 5px;
+}
+
+.w3l-btn-login:hover {
+    background: #000000;
+    color: #fff;
+}
+
+p.w3l-account,
+p.w3l-account1 {
+    padding-top: 20px;
+    padding-bottom: 0px;
+    line-height: 1.5em;
+    font-size: 14px;
+}
+
+p.w3l-account a,
+p.w3l-account1 a {
+    color: #FA9D33;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+p.w3l-account a:hover,
+p.w3l-account1 a:hover {
+    text-decoration: none;
+}

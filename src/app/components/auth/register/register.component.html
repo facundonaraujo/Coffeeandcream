@@ -1,0 +1,49 @@
+
+  <main class="W3Layouts-header-index">
+    <section class="login-page pt-3 pb-4">
+        <!-- login -->
+        <div class="signupform" fxLayout="row" fxLayoutAlign="center">
+            <div class="w3l_info">
+                <div class="w3llogin_info">
+                    <h2 class="pb-5">Crea tu cuenta</h2>
+                    <form name="registerForm" [formGroup]="registerForm">
+                      <div fxLayout="row" fxLayoutAlign="center">
+                        <mat-form-field appearance="outline"  fxFlex="100%" >
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="nombre" required>
+                            <mat-error>Nombre is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="center">
+                        <mat-form-field appearance="outline"  fxFlex="100%" >
+                            <mat-label>Correo electrónico</mat-label>
+                            <input matInput type="email" formControlName="email" required>
+                            <mat-error>Correo electrónico is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="center">
+                        <mat-form-field appearance="outline"  fxFlex="100%" >
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput type="password" formControlName="password" required>
+                            <mat-error>Contraseña is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="center">
+                        <mat-form-field appearance="outline"  fxFlex="100%" >
+                            <mat-label>Confirmar Contraseña</mat-label>
+                            <input matInput type="password" formControlName="confirmPassword" required>
+                            <mat-error>Confirmar Contraseña is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="center">
+                        <button class="w3l-btn-login btn-block" (click)="register()" [disabled]="registerForm.invalid">Registrarse</button>
+                      </div>
+                    </form>
+                    <p class="w3l-account1">¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //login -->
+</main>
+<!-- //main -->
