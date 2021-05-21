@@ -1,7 +1,9 @@
 import { Usuario } from './../../../models/usuario.model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private authService: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -22,8 +25,8 @@ export class LoginComponent implements OnInit {
 
   initializeform(){
     this.loginForm = this._formBuilder.group({
-      email: [''],
-      password: [''],
+      email: ['', [Validators.required , Validators.email]],
+      password: ['', [Validators.required ,Validators.minLength(6)]],
     });
   }
 
@@ -34,11 +37,19 @@ export class LoginComponent implements OnInit {
       password: valores.password
     };
     this.authService.login(usuario).then(
-      (resp: any) => {
-        console.log('resp :>> ', resp);
+      (resp: Usuario) => {
+        if (resp.role === 'ADMIN_ROLE') {
+          this.router.navigate(['/admin-panel'])
+        } else {
+          this.router.navigate(['/edit-profile'])
+        }
       },
       (err) => {
-        console.log('err :>> ', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.error.msg,
+        })
       }
     );
   }

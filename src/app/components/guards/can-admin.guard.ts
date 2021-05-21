@@ -1,25 +1,36 @@
+import { Usuario } from './../../models/usuario.model';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
+import { AppService } from '../services/app.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CanAdminGuard implements CanActivate {
-  constructor(private authSvc: AuthService, private router: Router){}
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // return this.authSvc.user$.pipe(
-    //   take(1),
-    //   map((user) => user && this.authSvc.isAdmin(user)),
-    //   tap((canAdmin) => {
-    //     if (!canAdmin){
-    //       this.router.navigate(['/home']);
-    //       /* window.alert('Acceso denegado. Debe tener permiso para administrar el contenido.'); */
-    //     }
-    //   })
-    // );
-    return true;
-  }
+export class IsAdminGuard implements CanActivate {
+    usuario: Usuario;
+
+    constructor(
+        private router: Router,
+    ){}
+
+    canActivate(): boolean {
+        if (localStorage.getItem('usuario')) {
+            this.usuario = JSON.parse(localStorage.getItem('usuario'));
+            if (this.usuario !== null && this.usuario !== undefined) {
+                if (this.usuario?.role === 'ADMIN_ROLE') {
+                    return true;
+                } else {
+                    this.router.navigate(['/home']);
+                    return false;
+                }
+            } else {
+                this.router.navigate(['/home']);
+                return false;
+            }
+        } else{
+            this.router.navigate(['/home']);
+            return false;
+        }
+
+    }
 }

@@ -16,8 +16,9 @@ import { PedidosService } from './components/services/pedidos.service';
 import { ProductoService } from './components/services/producto.service';
 import { MailService } from './components/services/mail.service';
 import { UsuariosService } from './components/services/usuarios.service';
-import { CanAdminGuard } from './components/guards/can-admin.guard';
-import { CanEditGuard } from './components/guards/can-edit.guard';
+import { IsAdminGuard } from './components/guards/can-admin.guard';
+import { IsUserGuard } from './components/guards/can-edit.guard';
+import { IsLoggedGuard } from './components/guards/isLogged.guard';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -31,6 +32,8 @@ import { AdminProductsComponent } from './components/admin-products/admin-produc
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { ProductComponent } from './components/product/product.component';
 import { InboxComponent } from './components/inbox/inbox.component';
+import { AdminPanelComponent } from './components/adminPanel/adminPanel.component';
+
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './app.reducer';
@@ -65,34 +68,41 @@ const appRoutes: Routes = [
   {
     path: 'login', 
     loadChildren: () => import('./components/auth/login/login.module').then(m => m.LoginModule),
+    canActivate: [IsLoggedGuard]
   },
   {
     path: 'register', 
     loadChildren: () => import('./components/auth/register/register.module').then(m => m.RegisterModule),
+    canActivate: [IsLoggedGuard]
   },
   {
     path: 'product/:id', 
     component: ProductComponent
   },
-  {
-    path: 'Admin-Products', 
-    component: AdminProductsComponent, 
-    canActivate: [CanAdminGuard]
-  },
-  {
-    path: 'Admin-Orders', 
-    component: AdminOrdersComponent, 
-    canActivate: [CanAdminGuard]
-  },
-  {
-    path: 'inbox', 
-    component: InboxComponent, 
-    canActivate: [CanAdminGuard]
-  },
+  // {
+  //   path: 'admin-products', 
+  //   component: AdminProductsComponent, 
+  //   canActivate: [CanAdminGuard]
+  // },
+  // {
+  //   path: 'admin-orders', 
+  //   component: AdminOrdersComponent, 
+  //   canActivate: [CanAdminGuard]
+  // },
+  // {
+  //   path: 'inbox', 
+  //   component: InboxComponent, 
+  //   canActivate: [CanAdminGuard]
+  // },
   {
     path: 'edit-profile', 
     component: EditProfileComponent, 
-    canActivate: [CanEditGuard]
+    canActivate: [IsUserGuard]
+  },
+  {
+    path: 'admin-panel', 
+    component: AdminPanelComponent, 
+    canActivate: [IsAdminGuard]
   },
   {
     path: '**', 
@@ -113,7 +123,8 @@ const appRoutes: Routes = [
     AdminProductsComponent,
     AdminOrdersComponent,
     ProductComponent,
-    InboxComponent
+    InboxComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -136,12 +147,13 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
-    CanEditGuard,
-    CanAdminGuard,
+    IsUserGuard,
+    IsAdminGuard,
     PedidosService,
     MailService,
     ProductoService,
-    UsuariosService
+    UsuariosService,
+    IsLoggedGuard
   ],
   bootstrap: [AppComponent]
 })

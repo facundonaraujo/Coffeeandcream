@@ -1,4 +1,3 @@
-import { AuthService } from './../services/auth.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
@@ -6,11 +5,11 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  selector: 'app-adminPanel',
+  templateUrl: './adminPanel.component.html',
+  styleUrls: ['./adminPanel.component.css']
 })
-export class EditProfileComponent implements OnInit {
+export class AdminPanelComponent implements OnInit {
   public name: any;
  
   public changeNameAlert = false;
@@ -46,7 +45,6 @@ export class EditProfileComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
   ) { }
 
   ngOnInit() {}
@@ -60,8 +58,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   async onLogout(): Promise<void>{
-    this.authService.logOut();
-    this.router.navigate(['/home']);
+
   }
 
   async onChangeName(): Promise<void> {

@@ -1,3 +1,5 @@
+import { Aplicacion } from './models/aplicacion.model';
+import { AppService } from './components/services/app.service';
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from './components/services/auth.service';
@@ -90,7 +92,10 @@ export class AppComponent implements OnInit{
   constructor(
     private authSvc: AuthService,
     private router: Router,
-  ){}
+    private appService: AppService,
+  ){
+    this.appService.cargarStorage();
+  }
 
   ngOnInit() {}
 
@@ -119,7 +124,23 @@ export class AppComponent implements OnInit{
   }
 
   acount(): void {
-    this.router.navigate(['/login']);
+    this.appService.crearSubcriber().subscribe(
+      (data: Aplicacion) =>{
+        if (data.usuario !== null && data.usuario !== undefined) {
+          if (data.usuario?._id !== null && data.usuario?._id !== undefined && data.usuario?._id !== '') {
+            if (data.usuario?.role === 'ADMIN_ROLE') {
+              this.router.navigate(['/admin-panel']);
+            } else {
+              this.router.navigate(['/edit-profile']);
+            }
+          } else {
+            this.router.navigate(['/login']);
+          }
+        } else {
+          this.router.navigate(['/login']);
+        }
+      },
+    )
   }
 
   public async comprar(){

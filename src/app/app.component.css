@@ -134,6 +134,9 @@ ul.w3layouts-icons li a {
 
 /*--//footer--*/
 
+.cart-inner-info fa-icon:hover{
+    color: #FA9D33;
+}
 
 @media(max-width:991px) {
     .footer-grid_section_w3layouts {

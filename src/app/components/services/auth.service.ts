@@ -12,18 +12,24 @@ import { AppService } from './app.service';
 })
 export class AuthService{
   usuario: Usuario = new Usuario();
-
+  token: string = '';
   constructor(
     public http: HttpClient,
     public store:Store<AppState>,
-    public router: Router,
     public appService: AppService,
   ) {}
+
+  estaLogueado() {
+    if (localStorage.getItem('token')) {
+      this.token = localStorage.getItem('token');
+    }
+
+    return (this.token?.length > 5) ? true : false;
+  }
 
   logOut() {
     this.usuario = null;
     this.appService.quitarUsuario(this.usuario);
-    this.router.navigate(['/login']);
   }
 
   login(usuario: Usuario): Promise<any> {
@@ -32,6 +38,7 @@ export class AuthService{
         .subscribe({
           next: (response: any) => {
             this.usuario = response.usuario;
+            this.usuario.token = response.token;
             this.appService.cambiarUsuario(response.usuario);
             localStorage.setItem('token', response.token);
             resolve(this.usuario);
