@@ -6,7 +6,6 @@
   margin-top: 10px;
 }
 .mainTittleADMI{
-  font-family: 'Inconsolata', monospace;
   font-weight: 700;
   padding-bottom: 15px;
 }
@@ -15,7 +14,6 @@
   border: 1px solid #aebcc0;
 }
 .mainListText{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 700;
   font-size: 18px;
   margin-top: 10px;
@@ -42,19 +40,16 @@ ul.mainListUl li {
   margin-bottom: 15px;
 }
 .secondaryListText{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 500;
   font-size: 16px;
 }
 
 .messageTittle {
-  font-family: 'Inconsolata', monospace;
   font-weight: 700;
   margin-bottom: 15px;
   color:#ffffff;
 }
 .noInbox{
-  font-family: 'Inconsolata', monospace;
   font-weight: 700;
 }
 .contenedor{
@@ -89,21 +84,18 @@ ul.mainListUl li {
   padding-bottom: 5px;
 }
 .destinatarioTitle{
-  font-family: 'Inconsolata', monospace;
   font-weight: 600;
   color:#808080;
   padding-left: 15px;
   padding-top: 10px;
 }
 .destinatarioTitle2{
-  font-family: 'Inconsolata', monospace;
   font-weight: 600;
   color:#363636;
   padding-left: 10px;
   padding-top: 10px;
 }
 .messageText{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 600;
   color:#363636;
   padding-left: 15px;
@@ -139,7 +131,7 @@ ul.mainListUl li {
 }
 @media (max-width: 768px){
   .destinatarioTitle{
-    font-family: 'Inconsolata', monospace;
+
     font-weight: 600;
     color:#808080;
     padding-left: 15px;
@@ -147,7 +139,7 @@ ul.mainListUl li {
     font-size: 15px;
   }
   .destinatarioTitle2{
-    font-family: 'Inconsolata', monospace;
+
     font-weight: 600;
     color:#363636;
     padding-left: 10px;
@@ -155,7 +147,7 @@ ul.mainListUl li {
     font-size: 15px;
   }
   .messageText{
-    font-family: 'Inconsolata', sans-serif;
+
     font-weight: 600;
     color:#363636;
     padding-left: 15px;

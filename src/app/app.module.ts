@@ -5,7 +5,7 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,6 +21,7 @@ import { IsUserGuard } from './components/guards/can-edit.guard';
 import { IsLoggedGuard } from './components/guards/isLogged.guard';
 
 import { HomeComponent } from './components/home/home.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -33,11 +34,15 @@ import { AdminOrdersComponent } from './components/admin-orders/admin-orders.com
 import { ProductComponent } from './components/product/product.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { AdminPanelComponent } from './components/adminPanel/adminPanel.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './app.reducer';
 import { RouterModule, Routes } from '@angular/router';
+import { MaterialModule } from './common/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const appRoutes: Routes = [
   {
@@ -67,12 +72,12 @@ const appRoutes: Routes = [
   },
   {
     path: 'login', 
-    loadChildren: () => import('./components/auth/login/login.module').then(m => m.LoginModule),
+    component: LoginComponent, 
     canActivate: [IsLoggedGuard]
   },
   {
     path: 'register', 
-    loadChildren: () => import('./components/auth/register/register.module').then(m => m.RegisterModule),
+    component: RegisterComponent, 
     canActivate: [IsLoggedGuard]
   },
   {
@@ -124,7 +129,10 @@ const appRoutes: Routes = [
     AdminOrdersComponent,
     ProductComponent,
     InboxComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    MenuComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -144,6 +152,9 @@ const appRoutes: Routes = [
         maxAge: 25, // Retains last 25 states
         logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    NgbModule,
+    MaterialModule,
+    FlexLayoutModule,
   ],
   providers: [
     AuthService,

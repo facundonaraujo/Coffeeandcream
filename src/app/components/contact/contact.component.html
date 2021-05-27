@@ -1,97 +1,81 @@
-<!-------------------------------------------------------- START CONTACT ------------------------------------------------------------------->
-<section id="Contact">
-<div class="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <h1 class="contactTittle">Contacto</h1>
-                <p class="contactSubTittle">¡Escribinos y con gusto te responderemos!</p>
+<div class="main-banner inner">
+	<!-- header -->
+	<app-menu></app-menu>
+	<!-- //header -->
+</div>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a [routerLink]="['/home']">Home</a>
+	</li>
+	<li class="breadcrumb-item active">Contacto</li>
+</ol>
+
+<section class="ab-info-main pb-md-5 pb-4 pt-md-3 pt-2">
+    <div class="container pb-md-5 pb-4 pt-md-3 pt-2">
+        <h3 class="tittle text-center mb-lg-5 mb-3"><span class="sub-tittle">Encuéntranos</span>Contactenos</h3>
+        <div class="row contact-main-info mt-5">
+            <div class="col-md-7 contact-right">
+                <form name="contactForm" [formGroup]="contactForm">
+                  <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-form-field appearance="outline"  fxFlex="100%" >
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" required>
+                        <mat-error *ngIf="contactForm.get('name').hasError('required')">El nombre es obligatorio</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-form-field appearance="outline"  fxFlex="100%" >
+                        <mat-label>Correo electrónico</mat-label>
+                        <input matInput formControlName="email" required>
+                        <mat-error *ngIf="contactForm.get('email').hasError('required')">El correo electrónico es obligatorio</mat-error>
+                        <mat-error *ngIf="contactForm.get('email').hasError('email')">El correo electrónico ingresado no es valido</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-form-field appearance="outline"  fxFlex="100%" >
+                        <mat-label>Teléfono</mat-label>
+                        <input matInput formControlName="phone" required>
+                        <mat-error *ngIf="contactForm.get('phone').hasError('required')">El teléfono es obligatorio</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-form-field appearance="outline"  fxFlex="100%" >
+                        <mat-label>Asunto</mat-label>
+                        <input matInput formControlName="affair" required>
+                        <mat-error *ngIf="contactForm.get('affair').hasError('required')">El Asunto es obligatorio</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-form-field appearance="outline"  fxFlex="100%" >
+                        <mat-label>Mensaje</mat-label>
+                        <textarea matInput formControlName="message" required></textarea>
+                        <mat-error *ngIf="contactForm.get('message').hasError('required')">El Mensaje es obligatorio</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="end center">
+                    <div class="read mt-3">
+                      <button type="submit" class="btn-style2" [disabled]="contactForm.invalid">Enviar</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            <div class="col-md-5 contact-left">
+                <div class="address">
+                    <h5>Dirección:</h5>
+                    <p><span class="fa fa-home"></span>Mendoza, Argentina
+                </div>
+                <div class="address address-mdl">
+                    <h5>Teléfonos:</h5>
+                    <p><span class="fa fa-phone"></span>+11 1111 1111</p>
+                    <p><span class="fa fa-mobile"></span>+11 1111 1111</p>
+                </div>
+                <div class="address">
+                    <h5>Correo electrónico:</h5>
+                    <p><span class="fa fa-envelope"></span> <a href="mailto:info@coffeeandcream.com">info@coffeeandcream.com</a></p>
+                </div>
             </div>
         </div>
+  
+  
     </div>
-</div>
-<div class="container">
-   <div class="row">
-       <div class="col-12 col-md-8">
-        <form class="formText" [formGroup]="contactForm" (ngSubmit)="sendForm(contactForm.value, confirmsend)">
-            <div class="row mt-3">
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" class="form-control" aria-required="true" aria-invalid="true" name="name" id="name" formControlName="contactName" required>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" aria-required="true" aria-invalid="true" name="email" id="email" formControlName="contactEmail" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="phone">Teléfono</label>
-                        <input type="text" class="form-control" name="phone" id="phone" formControlName="contactPhone" required>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="affair">Asunto</label>
-                        <input type="text" class="form-control" aria-required="true" aria-invalid="true" name="affair" id="affair" formControlName="contactAffair" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="message">Mensaje</label>
-						<textarea name="message" id="message" aria-required="true" aria-invalid="true" rows="7" class="form-control" formControlName="contactMessage" required></textarea>
-                    </div>
-                </div>
-
-            </div>
-            <button class="col-5 col-lg-4 col-xl-3 btn btn-dark btnSubmit btn-block mb-5 mt-3" type="submit" [disabled]="contactForm.invalid">Enviar</button>
-        </form>
-       </div>
-       <div class="col 12 col-md-4">
-           <div class="row">
-               <div class="col">
-                   <h2 class="asideTittle">ATENCIÓN TELEFÓNICA</h2>
-                   <h5 class="asideSubTittle">DE LUNES A SÁBADOS DE 10 A 18 HS</h5>
-               </div>
-           </div>
-           <div class="row">
-               <div class="col">
-                   <h2 class="asideTittle2">Teléfono de contacto</h2>
-                   <h5 class="asideSubTittle">+54 999-999-999</h5>
-               </div>
-           </div>
-       </div>
-   </div>
-</div>
 </section>
-
-<ng-template #confirmsend let-modal>
-  <div class="modal-header">
-    <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modale-body">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center colIcon">
-          <fa-icon class="checkIcon" [icon]="faCheck" ></fa-icon>
-        </div>
-        <div class="col-12 text-center colTitle">
-          <h1 class="checkTitle">Formulario enviado Correctamente</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-dark" (click)="modal.close()">Cerrar</button>
-  </div>
-</ng-template>
-

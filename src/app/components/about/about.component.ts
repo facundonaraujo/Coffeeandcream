@@ -13,10 +13,10 @@ export class AboutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('CooffeAndCream - Nosotros');
+    this.titleService.setTitle('Coffee&Cream - Nosotros');
     this.meta.addTag({
-      name: 'CooffeAndCream',
-      content: 'CooffeAndCream'
+      name: 'Coffee&Cream',
+      content: 'Coffee&Cream'
     });
     this.meta.updateTag({
         name: 'description',

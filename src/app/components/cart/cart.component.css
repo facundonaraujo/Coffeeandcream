@@ -13,7 +13,6 @@
 }
 .noItemsTxt{
   color: #db2929;
-  font-family: 'Inconsolata', monospace;
   font-weight: 700;
   margin-top: 15px;
   text-align: center;
@@ -29,13 +28,11 @@
   height: 50px;
   text-align: center;
   border-radius: 50%;
-  font-family: 'Inconsolata', monospace;
 }
 .firstTittle{
   font-weight: 700;
   padding-bottom: 15px;
   font-size: 35px;
-  font-family: 'Inconsolata', monospace;
 }
 ul.mainListUl li {
   list-style: none;
@@ -48,7 +45,6 @@ ul.mainListUl li {
 }
 .mainListText{
   font-weight: 600;
-  font-family: 'Inconsolata', sans-serif;
   font-size: 20px;
   padding-bottom: 7px;
 }
@@ -67,7 +63,6 @@ ul.mainListUl li {
   color: #db2929;
 }
 .secondaryListText{
-  font-family: 'Inconsolata', sans-serif;
   font-size: 17px;
   padding-bottom: 7px;
   padding-top: 10px;

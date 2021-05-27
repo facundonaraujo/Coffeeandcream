@@ -7,7 +7,6 @@
   margin-bottom: 20px;
 }
 .mainTittleADMP{
-  font-family: 'Inconsolata', monospace;
   font-weight: 700;
 }
 .mainListRow{
@@ -15,7 +14,6 @@
   border: 1px solid #aebcc0;
 }
 .mainListText{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 700;
   font-size: 18px;
   margin-top: 10px;
@@ -41,7 +39,6 @@ ul.mainListUl li {
   margin-bottom: 15px;
 }
 .secondaryListText{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 500;
   font-size: 16px;
 }
@@ -58,7 +55,6 @@ ul.mainListUl li {
   padding-left: 6px;
 }
 .totalText{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 700;
   font-size: 24px;
   padding-bottom: 10px;
@@ -77,13 +73,11 @@ ul.mainListUl li {
   padding-left: 55px;
 }
 .pedidosTitle{
-  font-family: 'Inconsolata', monospace;
   font-weight: 700;
   margin-bottom: 15px;
   color:#000000;
 }
 .noOrder{
-  font-family: 'Inconsolata', monospace;
   font-weight: 700;
 }
 .mobilTxt{
@@ -95,7 +89,7 @@ ul.mainListUl li {
 /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
 @media (max-width: 1200px){
   .secondaryListText{
-    font-family: 'Inconsolata', sans-serif;
+
     font-weight: 500;
     font-size: 12px;
   }
@@ -117,7 +111,7 @@ ul.mainListUl li {
     padding-left: 0px;
   }
   .pedidosTitle{
-    font-family: 'Inconsolata', monospace;
+
     font-weight: 700;
     margin-bottom: 15px;
     color:#000000;
@@ -129,7 +123,7 @@ ul.mainListUl li {
 }
 @media (max-width: 465px){
   .pedidosTitle{
-    font-family: 'Inconsolata', monospace;
+
     font-weight: 700;
     margin-bottom: 15px;
     color:#000000;

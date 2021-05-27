@@ -1,6 +1,5 @@
 /*-----------------------------------------------------------PRODUCTS STYLES------------------------------------------------------------------------------------*/
 .productsTittle{
-    font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 80px;
     color: #ffffff;
@@ -21,7 +20,6 @@
     border-radius: 10px;
 }
 .coffeeTittle{
-    font-family: 'Inconsolata', sans-serif;
     font-weight: 600;
 }
 .coffeePrice{
@@ -39,7 +37,6 @@
 /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
 @media (max-width: 575px){
   .productsTittle{
-    font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 60px;
     color: #ffffff;

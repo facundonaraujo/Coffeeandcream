@@ -1,6 +1,5 @@
 /*-----------------------------------------------------------EDIT PROFILE STYLES------------------------------------------------------------------------------------*/
 .mainProfileTittle{
-    font-family: 'Inconsolata', monospace;
     font-weight: 700;
     color:#5a5a5a;
     margin-bottom: 50px;
@@ -13,7 +12,6 @@
     color: #3A92C1;
   }
   .pedidosTitle{
-    font-family: 'Inconsolata', monospace;
     font-weight: 700;
     margin-bottom: 15px;
     color:#5a5a5a;
@@ -40,7 +38,6 @@
     margin-bottom: 40px;
   }
   .mainListText{
-    font-family: 'Inconsolata', sans-serif;
     font-weight: 700;
     font-size: 18px;
     margin-top: 10px;
@@ -63,12 +60,10 @@
     margin-bottom: 15px;
   }
   .secondaryListText{
-    font-family: 'Inconsolata', sans-serif;
     font-weight: 500;
     font-size: 16px;
   }
   .totalText{
-    font-family: 'Inconsolata', sans-serif;
     font-weight: 700;
     font-size: 24px;
     padding-bottom: 10px;
@@ -103,7 +98,7 @@
       padding-left: 0px;
     }
     .pedidosTitle{
-      font-family: 'Inconsolata', monospace;
+
       font-weight: 700;
       margin-bottom: 15px;
       font-size: 20px;

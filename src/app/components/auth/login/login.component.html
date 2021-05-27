@@ -1,11 +1,22 @@
+<div class="main-banner inner">
+	<!-- header -->
+	<app-menu></app-menu>
+	<!-- //header -->
+</div>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a [routerLink]="['/home']">Home</a>
+	</li>
+	<li class="breadcrumb-item active">Login</li>
+</ol>
   <!-- main -->
-  <main class="W3Layouts-header-index">
-    <section class="login-page pt-3 pb-4">
+  <main class="W3Layouts-header-index pt-1">
+    <section class="login-page pt-5 pb-4">
         <!-- login -->
         <div class="signupform" fxLayout="row" fxLayoutAlign="center">
             <div class="w3l_info">
                 <div class="w3llogin_info">
-                    <h2 class="pb-5">Ingresa a tu cuenta</h2>
+                    <h1 class="pb-5">Ingresa a tu cuenta</h1>
                     <form name="loginForm" [formGroup]="loginForm">
                       <div fxLayout="row" fxLayoutAlign="center">
                         <mat-form-field appearance="outline"  fxFlex="100%" >
@@ -27,7 +38,7 @@
                         <button class="w3l-btn-login btn-block" (click)="login()" [disabled]="loginForm.invalid">Iniciar Sesión</button>
                       </div>
                     </form>
-                    <p class="w3l-account1">¿No tienes una cuenta? <a [routerLink]="['/register']">Registrate</a></p>
+                    <p class="w3l-account1">¿No tienes una cuenta? <a (click)="goTo('register')">Registrate</a></p>
                 </div>
             </div>
         </div>

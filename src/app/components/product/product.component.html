@@ -1,3 +1,14 @@
+<div class="main-banner inner">
+	<!-- header -->
+	<app-menu></app-menu>
+	<!-- //header -->
+</div>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a [routerLink]="['/home']">Home</a>
+	</li>
+	<li class="breadcrumb-item active">Producto</li>  <!-- CAMBIAR -->
+</ol>
 <!-------------------------------------------------------- START PRODUCT ------------------------------------------------------------------->
 <div class="container productContainer">
   <div class="row mainRowProduct" *ngFor="let p of product">

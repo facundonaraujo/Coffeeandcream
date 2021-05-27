@@ -22,10 +22,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('CooffeAndCream - Bienvenidos');
+    this.titleService.setTitle('Coffee&Cream - Bienvenidos');
     this.meta.addTag({
-      name: 'CooffeAndCream',
-      content: 'CooffeAndCream'
+      name: 'Coffee&Cream',
+      content: 'Coffee&Cream'
     });
     this.meta.updateTag({
         name: 'description',

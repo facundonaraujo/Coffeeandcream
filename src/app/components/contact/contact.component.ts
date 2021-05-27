@@ -25,19 +25,19 @@ export class ContactComponent implements OnInit {
     private titleService: Title
     ) {
     this.contactForm = this.fb.group({
-      contactName: ['', [Validators.required]],
-      contactEmail: ['', [Validators.required]],
-      contactPhone: ['', [Validators.required]],
-      contactAffair: ['', [Validators.required]],
-      contactMessage: ['', [Validators.required]]
-      });
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      affair: ['', [Validators.required]],
+      message: ['', [Validators.required]]
+    });
    }
 
   ngOnInit(): void {
-    this.titleService.setTitle('CooffeAndCream - Contacto');
+    this.titleService.setTitle('Coffee&Cream - Contacto');
     this.meta.addTag({
-      name: 'CooffeAndCream',
-      content: 'CooffeAndCream'
+      name: 'Coffee&Cream',
+      content: 'Coffee&Cream'
     });
     this.meta.updateTag({
         name: 'description',

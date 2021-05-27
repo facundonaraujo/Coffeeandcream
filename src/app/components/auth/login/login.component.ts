@@ -54,4 +54,13 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  goTo(ruta: string){
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+    this.router.navigate(['/'+ ruta]);
+  }
+
 }

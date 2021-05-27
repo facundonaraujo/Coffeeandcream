@@ -12,7 +12,6 @@
   padding-right: 7px;
 }
 .mainTittleADMP{
-  font-family: 'Inconsolata', monospace;
   font-weight: 700;
 }
 .mainListRow{
@@ -20,7 +19,6 @@
   border: 1px solid #aebcc0;
 }
 .mainListText{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 700;
   font-size: 18px;
   margin-top: 10px;
@@ -43,7 +41,6 @@ ul.mainListUl li {
   margin-bottom: 15px;
 }
 .secondaryListText{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 500;
   font-size: 16px;
 }
@@ -122,7 +119,6 @@ ul.mainListUl li {
   height: 90px;
 }
 .modal-title-custom{
-  font-family: 'Inconsolata', sans-serif;
   font-weight: 700;
   font-size: 26px;
 }

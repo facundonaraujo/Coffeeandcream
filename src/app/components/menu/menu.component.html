@@ -1,0 +1,35 @@
+<header class="header">
+  <div class="container-fluid px-lg-5">
+      <!-- nav -->
+      <nav class="py-4">
+          <div class="logo" id="logo">
+              <!-- <h1> <a [routerLink]="['/home']">Coffee&Cream</a></h1> -->
+              <span class="logoText" [routerLink]="['/home']" >Coffee&Cream</span>
+              <!-- <img src="../assets/images/11.png" alt=""> -->
+          </div>
+          <label for="drop" class="toggle">Menu</label>
+          <input type="checkbox" id="drop" />
+          <ul class="menu">
+            <li class="">
+              <a class="menuText" [routerLink]="['/home']" [routerLinkActive]="['active']">Inicio</a>
+            </li>
+            <li class="">
+              <a class="menuText" [routerLink]="['/about']" [routerLinkActive]="['active']">Nosotros</a>
+            </li>
+            <li class="">
+              <a class="menuText" [routerLink]="['/products']" [routerLinkActive]="['active']">Productos</a>
+            </li>
+            <li class="">
+              <a class="menuText" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contacto</a>
+            </li>
+            <li>
+              <a type="button" class="menuText" (click)="cart()" ><fa-icon [icon]="faShoppingBag"></fa-icon></a>
+            </li>
+            <li>
+              <a type="button" class="menuText" (click)="acount()" ><fa-icon [icon]="faUser"></fa-icon></a>
+            </li>
+          </ul>
+      </nav>
+      <!-- //nav -->
+  </div>
+</header>

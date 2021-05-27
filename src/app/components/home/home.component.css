@@ -22,7 +22,6 @@
     color: #ffffff;
 }
 .welcomeTittle{
-    font-family: 'Inconsolata', sans-serif;
     font-weight: 600;
     letter-spacing: 4px;
 }
@@ -42,7 +41,6 @@
     border-radius: 10px;
 }
 .coffeeTittle{
-    font-family: 'Inconsolata', sans-serif;
     font-weight: 600;
 }
 .coffeeTodayPrice{
@@ -81,7 +79,6 @@
     outline: none;
 }
 .showMoreProdText{
-    font-family: 'Inconsolata', sans-serif;
     font-weight:700;
     font-size: 35px;
     color: #ffffff;
@@ -121,7 +118,6 @@
 .blockInfo-home-contact .titleContact {
     margin-bottom: 30px;
     color: #fff;
-    font-family: 'Inconsolata', monospace;
     text-transform: uppercase;
     text-decoration: underline #ffffff;
     font-weight:700;
@@ -139,7 +135,6 @@
     margin-bottom: 40px;
 }
 .horaryOpenText{
-    font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 28px;
     color: #ffffff;
@@ -149,7 +144,6 @@
 .horaryDays{
     margin-top: 30px;
     margin-bottom: 5px;
-    font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 25px;
     color: black;
@@ -157,7 +151,6 @@
 }
 .horaryHours{
     margin-bottom: 30px;
-    font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 22px;
     color: black;
@@ -191,7 +184,6 @@
   }
   .horaryHours{
     margin-bottom: 0px;
-    font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 22px;
     color: #FA9D33;
@@ -199,7 +191,6 @@
   .horaryDays{
     margin-top: 10px;
     margin-bottom: 10px;
-    font-family: 'Inconsolata', monospace;
     font-weight:700;
     font-size: 25px;
     color: black;

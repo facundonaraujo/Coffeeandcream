@@ -20,10 +20,10 @@ export class ProductsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('CooffeAndCream - Productos');
+    this.titleService.setTitle('Coffee&Cream - Productos');
     this.meta.addTag({
-      name: 'CooffeAndCream',
-      content: 'CooffeAndCream'
+      name: 'Coffee&Cream',
+      content: 'Coffee&Cream'
     });
     this.meta.updateTag({
         name: 'description',

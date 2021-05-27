@@ -1,5 +1,5 @@
 <!-------------------------------------------------------- START MENU ------------------------------------------------------------------->
-<section id="Menu" >
+<!-- <section id="Menu" >
 	<header class="main-header">
        <div class="container-fluid">
             <div class="row justify-content-center">
@@ -48,60 +48,11 @@
                             <span type="button" (click)="cart()" ><fa-icon [icon]="faCartArrowDown"></fa-icon></span>
                         </li>
                     </ul>
-                    <ng-container *ngIf="showCart" >
-                        <div class="popoverCart popoverCartFix">
-                            <div class="container">
-                                <div class="row">
-                                  <div class="col-1 offset-11">
-                                    <span type="button" ><fa-icon class="popoverClose btnbuy" [icon]="faTimes" (click)="closeCart()"></fa-icon></span>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12" *ngIf="carritoVacio">
-                                      <p class="text-danger cartEmpty text-center">Su carrito de compra esta vacio</p>
-                                    </div>
-                                </div>
-                                <div class="row" *ngIf="carritoLleno">
-                                    <div class="col-12">
-                                        <ul class="cartProducts">
-                                          <div class="productList">
-                                            <li class="cart-item text-left" *ngFor="let pcart of carrito">
-                                              <div class="container-fluid con">
-                                                <div class="row">
-                                                  <div class="col-6 col-sm-7">
-                                                    <span class="cartProdName">{{pcart.data.productName}}</span>
-                                                  </div>
-                                                  <div class="col-1 mr-1">
-                                                    <!-- <input type="number" class="cartCantProd text-center" [value]="pcart.data.productCant"> -->
-                                                    <span class="cartCant">{{pcart.data.productCant}}</span>
-                                                  </div>
-                                                  <div class="col-1">
-                                                    <fa-icon type="button" class="cartRemoveProd" [icon]="faMinusSquare" (click)="removerItemCarrito(pcart.id)"></fa-icon>
-                                                  </div>
-                                                  <div class="col-1">
-                                                    <span class="cartPrecio">${{pcart.data.productPrice}}</span>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </li>
-                                          </div>
-                                        </ul>
-                                    </div>
-                                    <div class="col-12">
-                                      <div class="row subtotalBuyText">
-                                        <div class="col-8 text-left Subtotal"><span>Subtotal: {{total() | currency}}</span></div>
-                                        <div class="col-4"><span type="button" (click)="comprar()" class="btnbuy text-danger font-weight-bold">COMPRAR</span></div>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-container>
                 </div>
             </div>
         </div>
-</header>
-</section>
+  </header>
+</section> -->
 <router-outlet></router-outlet>
 <!-------------------------------------------------------- START FOOTER ------------------------------------------------------------------->
 <!-- footer -->
@@ -109,21 +60,21 @@
   <div class="container py-xl-4">
     <div class="row footer-top">
       <div class="col-lg-4 footer-grid_section_w3layouts my-md-0 my-5">
-        <h2 class="logo-2 mb-lg-4 mb-3">
-          <a [routerLink]="['/home']">Coffee&Cream</a>
+        <h2 class="logoText mb-lg-4 mb-3" [routerLink]="['/home']">
+            Coffee&Cream
         </h2>
           <ul class="list-unstyled w3layouts-icons">
               <li>
-                  <a [routerLink]="['/home']">Inicio</a>
+                  <a (click)="goTo('home')">Inicio</a>
               </li>
               <li class="mt-3">
-                  <a [routerLink]="['/about']">Nosotros</a>
+                  <a (click)="goTo('about')">Nosotros</a>
               </li>
               <li class="mt-3">
-                  <a [routerLink]="['/products']">Productos</a>
+                  <a (click)="goTo('products')">Productos</a>
               </li>
               <li class="mt-3">
-                  <a [routerLink]="['/contact']">Contacto</a>
+                  <a (click)="goTo('contact')">Contacto</a>
               </li>
           </ul>
       </div>
@@ -136,7 +87,7 @@
                 </div>
                 <div class="footer-address-inf my-4">
                     <h4 class="ad-info mb-2">Email </h4>
-                    <p><a href="mailto:info@coffeandcream.com" class="mailInfo">info@coffeandcream.com</a></p>
+                    <p><a href="mailto:info@coffeeandcream.com" class="mailInfo">info@coffeeandcream.com</a></p>
                 </div>
                 <div class="footer-address-inf">
                     <h4 class="ad-info mb-2">Ubicación</h4>
@@ -149,24 +100,23 @@
             <div class="agileinfo_social_icons">
                 <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3">Redes Sociales</h3>
                 <p>Siguenos en nuestras redes sociales. Si tienes alguna duda ¡Contactanos!</p>
-                <h4 class="sub-con-fo ad-info my-4">Seguinos en nuestras redes</h4>
                 <ul class="w3layouts_social_list list-unstyled">
                     <li>
-                        <a href="https://www.facebook.com/" class="w3pvt_facebook">
+                        <a href="https://www.facebook.com/" target="_blank" class="w3pvt_facebook">
                           <span>
                             <fa-icon [icon]="faFacebookF"></fa-icon>
                           </span>
                         </a>
                     </li>
                     <li class="mx-2">
-                        <a href="http://twitter.com/" class="w3pvt_twitter">
+                        <a href="http://twitter.com/" target="_blank" class="w3pvt_twitter">
                           <span>
                             <fa-icon [icon]="faTwitter"></fa-icon>
                           </span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/" class="w3pvt_dribble">
+                        <a href="https://www.instagram.com/" target="_blank" class="w3pvt_dribble">
                           <span>
                             <fa-icon [icon]="faInstagram"></fa-icon>
                           </span>
@@ -184,7 +134,7 @@
 <div class="cpy-right-sec-w3ls">
   <div class="container">
       <div class="cpy-right text-center py-3 pb-4 row">
-          <p class="col-12">Made by Facundo Araujo</p>
+          <p class="col-12">Made by <a href="https://www.linkedin.com/in/facundonaraujo/" target="_blank">Facundo Araujo</a></p>
       </div>
   </div>
 </div>

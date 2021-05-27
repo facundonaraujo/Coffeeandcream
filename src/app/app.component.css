@@ -26,6 +26,9 @@ h2.logo-2 a {
 h2.logo-2 a:hover {
     color: #FA9D33 !important;
 }
+.list-unstyled a{
+    cursor: pointer;
+}
 
 .list-unstyled a:hover{
     color: #FA9D33 !important;
@@ -115,18 +118,18 @@ ul.w3layouts-icons li a {
     background: #1c1d21;
 }
 
-.cpy-right p {
+.cpy-right p, a {
     letter-spacing: 2px;
     font-size: 14px;
     margin-bottom: 0;
     margin-top: 0.9em;
 }
 
-.cpy-right p {
+.cpy-right p, a {
     color: #eee;
 }
 
-.cpy-right p:hover {
+.cpy-right a:hover, .cpy-right a:active {
     color: #FA9D33;
 }
 

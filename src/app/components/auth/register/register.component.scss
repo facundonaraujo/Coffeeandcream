@@ -7,9 +7,8 @@
     width: 450px;
 }
 
-.w3l_info h2 {
+.w3l_info h1 {
     display: inline-block;
-    font-size: 26px;
     margin-bottom: 3px;
     color: #FA9D33;
     font-weight: 700;
@@ -55,6 +54,10 @@
     color: #fff;
 }
 
+.w3l-btn-login:disabled{
+    cursor: not-allowed;
+}
+
 p.w3l-account,
 p.w3l-account1 {
     padding-top: 20px;
@@ -68,6 +71,7 @@ p.w3l-account1 a {
     color: #FA9D33;
     font-size: 14px;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 p.w3l-account a:hover,
