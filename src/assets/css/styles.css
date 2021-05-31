@@ -491,12 +491,12 @@ color: #1e272e !important;
 
 .banner-info {
   padding: 16em 0 0em 3em;
-  width: 55%;
+  width: 53%;
 }
 
 .banner-info h3 {
-  font-size: 5.2em;
-  letter-spacing: 2px;
+  font-size: 6.4em;
+  letter-spacing: 4px;
   color: #fff;
   text-transform: uppercase;
 }
@@ -565,43 +565,6 @@ a.btn.active {
 
 /*-- //banner --*/
 
-.homeSlider{
-  padding: 0;
-  background-image: url("../img/home-slider.jpg");
-  z-index: 3;
-  top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  filter: brightness(95%);
-  display: block;
-  width: 100%;
-}
-.homeContact {
-  padding: 0;
-  background-image: url("../img/home-contact.jpg");
-  z-index: 3;
-  top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  display: block;
-  width: 100%;
-}
-.aboutMain{
-  padding: 0;
-  background-image: url("../img/about-main.jpg");
-  z-index: 3;
-  top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  display: block;
-  width: 100%;
-}
 .aboutMissionVision {
   padding: 0;
   background: url("../img/about-mission-vision.jpg");
@@ -614,53 +577,6 @@ a.btn.active {
   display: block;
   width: 100%;
 }
-.showMoreProd{
-  background-image: url("../img/show-more-prod.jpg");
-  z-index: 3;
-  top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(98%);
-  display: block;
-  width: auto;
-}
-.open{
-  background-image: url("../img/openImg.png");
-  z-index: 3;
-  top: 0;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: block;
-  height: 240px;
-}
-.productsMain{
-  padding: 0;
-  background: url("../img/products-main.jpg");
-  z-index: 2;
-  top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  display: block;
-  width: 100%;
-  margin-bottom: 60px;
-}
-.contact{
-  padding: 0;
-  background: url("../img/contact-Img.jpg");
-  z-index: 2;
-  top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  display: block;
-  width: 100%;
-  margin-bottom: 60px;
-}
 .errorContainer{
   padding: 0;
   background: url("../img/bg1.jpg");
@@ -670,6 +586,17 @@ a.btn.active {
   background-position: top;
   background-repeat: no-repeat;
   display: block;
-                                                  width: 100%;
-                                                  height: 750px;
+  width: 100%;
+  height: 750px;
+}
+.banerHomeContainer{
+  background: url("../img/bannerHome.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: block;
+  width: 100%;
+  padding: 60px 20px 60px 20px;
+  height: 450px;
 }

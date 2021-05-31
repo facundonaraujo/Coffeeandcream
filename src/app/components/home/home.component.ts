@@ -31,18 +31,18 @@ export class HomeComponent implements OnInit {
         name: 'description',
         content: 'Coffee&Cream es una empresa especializada en la obtención y preparación de los mejores cafés de Mendoza, Argentina.'
     });
-    // this.firestoreService.getCoffeesDay().subscribe((coffeesSnapshot) => {
-    //   this.coffeesDay = [];
-    //   coffeesSnapshot.forEach((coffeeData: any) => {
-    //     this.coffeesDay.push({
-    //       id: coffeeData.payload.doc.id,
-    //       data: coffeeData.payload.doc.data()
-    //     });
-    //   });
-    // });
   }
 
-  productDetail(productId): void{
-    this.router.navigate(['/product', productId]);
+  // productDetail(productId): void{
+  //   this.router.navigate(['/product', productId]);
+  // }
+
+  goTo(ruta: string){
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+    this.router.navigate(['/'+ ruta]);
   }
 }

@@ -1,98 +1,60 @@
 <div class="main-banner" id="home">
-	<!-- header -->
 	<app-menu></app-menu>
-	<!-- //header -->
-	<!--banner-->
 	<div class="banner-info">
 		<h3>El café es amor, el café es vida</h3>
 	</div>
-	<!--// banner-inner -->
 </div>
-<!-------------------------------------------------------- START WELCOME ------------------------------------------------------------------->
-<section id="Welcome">
-	<div class="container welcome">
-		<div class="row">
-			<div class="col text-center">
-				<h2 class="welcomeTittle">Bienvenido a su cafetería</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col text-center">
-				<p class="">La vida es demasiado corta como para no probar nuestro delicioso café</p>
-			</div>
+<!-------------------------------------------------------- WELCOME ------------------------------------------------------------------->
+
+<div class="container welcome">
+	<div class="row">
+		<div class="col text-center">
+			<h2 class="welcomeTittle caps">Bienvenido a su cafetería</h2>
 		</div>
 	</div>
-</section>
-<!-------------------------------------------------------- START TODAY COFFEE ------------------------------------------------------------------->
-<section id="TodayCoffe">
-	<div class="container" *ngIf="coffeesDay.length > 0">
-    	<h2 class="today-coffee-main-tittle text-center">Cafés del Día</h2>
-		<div class="row mt-3">
-			<div class="col-xs-12 col-sm-6 col-md-3 mb-4" *ngFor="let coffee of coffeesDay" (click)="productDetail(coffee.data.productId)">
-        <div class="card coffeeCard" type="button">
-          <span class="badge badge-pill badge-warning offert">¡EN OFERTA!</span>
-					<img [src]="coffee.data.productImg" class="card-image-top today-coffee-img img-fluid" alt="">
-					<div class="card-body">
-						<h5 class="card-title coffeeTittle text-center">{{coffee.data.productName}}</h5>
-						<p class="card-text coffeePrice text-center">
-							<span class="coffeeTodayPrice">${{coffee.data.coffeeDayPrice}}</span>
-							<span class="coffeeOfferPrice">${{coffee.data.productPrice}}</span>
-						</p>
-					</div>
-				</div>
-			</div>
+	<div class="row">
+		<div class="col-6 text-center welcomeSubtittle mx-auto">
+			<blockquote class="">
+				“La vida es demasiado corta como para no probar nuestro delicioso café. ”
+			</blockquote>
 		</div>
 	</div>
-<!-------------------------------------------------------- SHOW MORE PRODUCTS ------------------------------------------------------------------->
-	<div class="container">
-		<div class="row showMoreProd">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<h2 class="showMoreProdText">Prueba nuestra amplia variedad de cafés</h2>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-				<button [routerLink]="['/products']" class="btnShowMoreProd">Ver más productos</button>
-			</div>
-		</div>
-	</div>
-</section>
-<!-------------------------------------------------------- CONTACT ------------------------------------------------------------------->
-<section id="HomeContact">
-	<div class="homeContact">
+</div>
+
+<!-------------------------------------------------------- TODAY COFFEE ------------------------------------------------------------------->
+<!-- <section id="TodayCoffe">
+
+</section> -->
+<!-------------------------------------------------------- BANNER ------------------------------------------------------------------->
+<section id="Banner">
+	<div class="banerHomeContainer">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="homeContactBox" >
-						<div class="blockInfo-home-contact">
-							<h3 class="titleContact" type="button" [routerLink]="['/contact']">Contactanos</h3>
-							<span class="line"></span>
-							<p class="contactText">Ante cualquier duda contactenos y le responderemos a la brevedad</p>
-						</div>
-					</div>
+				<div class="col-6 text-center mx-auto">
+					<h2 class="banerTittle">
+						El café de tus sueños a un click de distancia
+						<br><span style="font-weight:800;">¿Qué estas esperando para probarlo?</span>
+					</h2>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<!-------------------------------------------------------- HORARY ------------------------------------------------------------------->
-<section id="Horary">
-	<div class="container horary">
-		<div class="row justify-content-center">
-			<div class="d-none d-md-block col-md-3 col-lg-2 open">
-				<h3 class="text-center horaryOpenText">¡Abierto!</h3>
+<!-------------------------------------------------------- SHOW PRODS ------------------------------------------------------------------->
+<section id="ShowProds">
+	<div class="container showProds">
+		<div class="row justify-content-between">
+			<div class="col-4">
+				<h2 class="showmoreprodtitle">
+					No te pierdas la <br><span style="font-weight:800;">oportunidad de probar nuestros cafés</span>
+				</h2>
+				<p> <img src="../../../assets/img/arrow.svg" class="arrow" alt=""> Los mejores granos de café del pais.</p>
+				<p> <img src="../../../assets/img/arrow.svg" class="arrow" alt=""> Amplia variedad de cafés.</p>
+				<p> <img src="../../../assets/img/arrow.svg" class="arrow" alt=""> Sabores únicos e inigualables.</p>
+				<button type="submit" class="btn-style2 align-self-end" (click)="goTo('products')">Ver Productos</button>
 			</div>
-			<div class="col-12 col-md-7 col-lg-8 ">
-				<div class="row divisorTop justify-content-center">
-					<div class="col-sm-5 col-12 text-center">
-						<h3 class="horaryDays">Lunes a Viernes</h3>
-						<h3 class="horaryHours">10 a 18hs</h3>
-					</div>
-					<div class="col-1 d-sm-block d-none">
-						<span class="dividerBar"></span>
-					</div>
-					<div class="col-sm-6 col-12 text-center">
-						<h3 class="horaryDays">¡Esperamos tu pedido!</h3>
-					</div>
-				</div>
+			<div class="col-6">
+				<img class="img-fluid showprodimg" src="../../../assets/img/showProducts.jpg" alt="">
 			</div>
 		</div>
 	</div>

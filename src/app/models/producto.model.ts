@@ -6,7 +6,7 @@ export class Producto{
       public descripcion?: string,
       public img?: string,
       public precio?: number,
-      public precioOferta?: number,
+      public precioAnterior?: number,
       public isInOferta?: boolean,
   ){}
 }
