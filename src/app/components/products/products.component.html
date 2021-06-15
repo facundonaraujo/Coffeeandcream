@@ -10,31 +10,40 @@
 	<li class="breadcrumb-item active">Productos</li>
 </ol>
 <!-------------------------------------------------------- START PRODUCTS ------------------------------------------------------------------->
-<section id="Products">
-	<!-- <div class="productsMain">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<h3 class="productsTittle">Productos</h3>
-				</div>
+<section id="Products" class="pb-md-5 pb-4 pt-md-3 pt-2">
+	<div class="container pb-md-5 pb-4 pt-md-3 pt-2">
+		<div class="row">
+			<div class="col text-center">
+				<h3 class="tittle text-center mb-lg-5 mb-3"><span class="sub-tittle">Nuestros</span>Productos</h3>
 			</div>
 		</div>
-	</div> -->
-	<div class="container">
-			<div class="row mt-3">
-				<div class="col-xs-12 col-sm-6 col-md-3 mb-4" *ngFor="let product of products" (click)="productDetail(product.id)">
-					<div class="card coffeeCard" type="button" >
-            <span class="badge badge-pill badge-warning offert" *ngIf="product.data.isCoffeeDay === true">¡EN OFERTA!</span>
-						<img [src]="product.data.productImg" class="card-image-top coffee-Img img-fluid" alt="">
-						<div class="card-body">
-							<h5 class="card-title coffeeTittle text-center">{{product.data.productName}}</h5>
-							<p class="card-text text-center">
-							<span class="coffeeTodayPrice" *ngIf="product.data.isCoffeeDay === true">${{product.data.coffeeDayPrice}}</span>
-							<span class="coffeePrice">${{product.data.productPrice}}</span>
-							</p>
+		<div class="row justify-content-start">
+			<div class="col-4" *ngFor="let coffee of products | paginate: { itemsPerPage: 9, currentPage: (this.productosPaginador.pageNumber + 1), totalItems: this.productosPaginador.totalElements }">
+				<div class="product-card">
+					<div class="badge" *ngIf="coffee.isInOferta">
+						<p class="badge-title">SALE</p>
+					</div>
+					<div class="product-tumb">
+						<img [src]="coffee.img" alt="">
+					</div>
+					<div class="product-details">
+						<h3 style="letter-spacing: 1px; ">{{coffee.nombre}}</h3>
+						<div class="product-bottom-details">
+							<div class="product-price"><small *ngIf="coffee.isInOferta">${{coffee.precioAnterior}}</small>${{coffee.precio}}</div>
 						</div>
 					</div>
 				</div>
-      </div>
+			</div>
 		</div>
+		<div class="row justify-content-end">
+			<div class="col-3" style="text-align: right;">
+				<pagination-controls 
+				(pageChange)="setPage($event)"
+				responsive="true"
+				previousLabel=""
+				nextLabel=""
+				></pagination-controls>
+			</div>
+		</div>
+	</div>
 </section>

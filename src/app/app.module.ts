@@ -43,6 +43,8 @@ import { appReducers } from './app.reducer';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from './common/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const appRoutes: Routes = [
   {
@@ -155,6 +157,8 @@ const appRoutes: Routes = [
     NgbModule,
     MaterialModule,
     FlexLayoutModule,
+    CarouselModule,
+    NgxPaginationModule
   ],
   providers: [
     AuthService,

@@ -23,47 +23,113 @@
     font-weight: 400;
     letter-spacing: 4px;
     margin-bottom: 30px;
-    font-size: calc(1.325rem + .9vw);
+    font-size: calc(2.025rem + .9vw);
 }
 .welcomeSubtittle{
     line-height: 1.625;
     font-weight: 400;
-    font-size: 1.875rem;
+    font-style: italic;
+    color: #fa9d33;
+    font-size: 1.975rem;
 }
 .caps {
     letter-spacing: .1em;
     text-transform: uppercase;
 }
 /*-----------------------------------------------------------TODAY COFFEE STYLES---------------------------------------------------------------------------------------*/
-.today-coffee-main-tittle{
-    font-family: 'Pacifico', cursive;
-    margin-bottom: 20px;
+.todaycoffeeTittle{
     font-weight: 400;
+    letter-spacing: 4px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: calc(1.325rem + .9vw);
 }
-.today-coffee-img {
-	margin: auto;
-  width: 150px;
-  height: 150px;
+
+.product-card {
+    border-radius: 20px;
+    width: 300px;
+    height: 460px;
+    position: relative;
+    box-shadow: 0 2px 7px #bbbbbb;
+    margin: 10px 15px 50px 15px;
+    background: #fafafa;
 }
-.coffeeCard:hover {
-    filter: brightness(90%);
-    border-radius: 10px;
+
+.badge {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    clip-path: polygon(100% 100%, 100% 0, 0 0);
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    background: #fa9d33;
+    color: #fff;
+    height: 70px;
+    width: 70px;
+    border-top-right-radius: 20px;
+    padding: 3px 10px;
 }
-.coffeeTittle{
+
+.badge-title{
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    padding-left: 18px;
+    font-size: 14px;
+}
+
+.product-tumb {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    padding: 50px;
+    background: #f0f0f0;
+}
+
+.product-tumb img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.product-details {
+    position: absolute;
+    padding: 30px;
+}
+
+.product-details h3 {
+    margin-bottom: 10px;
+    text-transform: uppercase; 
+    color: #363636;
+    text-decoration: none;
+    transition: 0.3s; 
+}
+
+.product-bottom-details {
+    overflow: hidden;
+    border-top: 1px solid #eee;
+}
+
+.product-bottom-details div {
+    float: left;
+    width: 50%;
+}
+
+.product-price {
+    font-size: 18px;
+    color: #fa9d33;
     font-weight: 600;
 }
-.coffeeTodayPrice{
-    color: rgb(136, 136, 136);
+
+.product-price small {
+    font-size: 80%;
+    font-weight: 400;
     text-decoration: line-through;
-    margin-right: 10px;
+    margin-right: 5px;
 }
-.coffeeOfferPrice{
-    color: black;
-    font-weight: bold;
-}
-.offert{
-  width: 100px;
-}
+
 /*-----------------------------------------------------------BANNER STYLES---------------------------------------------------------------------------------------*/
 .banerTittle{
     font-weight: 400;

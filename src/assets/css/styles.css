@@ -600,3 +600,9 @@ a.btn.active {
   padding: 60px 20px 60px 20px;
   height: 450px;
 }
+.ngx-pagination .current {
+  padding: 0.1875rem 0.625rem;
+  background: #fa9d33 !important;
+  color: #fefefe;
+  cursor: default;
+}

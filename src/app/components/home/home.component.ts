@@ -1,8 +1,10 @@
+import { Producto } from 'src/app/models/producto.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../services/auth.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ProductoService } from '../services/producto.service';
 
 @Component({
   selector: 'app-home',
@@ -10,18 +12,46 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   faChevronRight = faChevronRight;
+  public coffeesDay: Producto[] = [];
 
-  public coffeesDay = [];
-
+  customOptions: OwlOptions = {
+    mouseDrag: true,
+    touchDrag: true,
+    autoWidth: false,
+    lazyLoad: true,
+    animateOut: 'slideOutDown',
+    autoplay: true,
+    loop: true,
+    dots: false,
+    navSpeed: 10,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: false
+  }
+  
   constructor(
-    private firestoreService: AuthService,
+    private productoService: ProductoService,
     private router: Router,
     private meta: Meta,
     private titleService: Title
   ) { }
 
   ngOnInit(): void {
+    this.obtenerProductosEnOferta();
     this.titleService.setTitle('Coffee&Cream - Bienvenidos');
     this.meta.addTag({
       name: 'Coffee&Cream',
@@ -33,9 +63,17 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // productDetail(productId): void{
-  //   this.router.navigate(['/product', productId]);
-  // }
+  obtenerProductosEnOferta(){
+    this.productoService.obtenerProductosEnOfertaSinPaginar()
+      .subscribe(
+        (resp: any) =>{
+          this.coffeesDay = resp.productos;
+        },
+        (err)=> {
+          console.log('err :>> ', err);
+        }
+      );
+  }
 
   goTo(ruta: string){
     window.scroll({

@@ -63,6 +63,14 @@ export class ProductoService implements Resolve<any> {
     return this.http.get(url, {headers});
   }
 
+  public obtenerProductosEnOfertaSinPaginar(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    let url = environment.urlServices + '/productosEnOfertaSinPaginar/';
+    return this.http.get(url, {headers});
+  }
+
   public obtenerProductoPublic(id: string){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',

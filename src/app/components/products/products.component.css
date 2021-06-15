@@ -1,39 +1,121 @@
 /*-----------------------------------------------------------PRODUCTS STYLES------------------------------------------------------------------------------------*/
-.productsTittle{
-    font-weight:700;
-    font-size: 80px;
-    color: #ffffff;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration: underline #ffffff;
-    text-shadow: 2px 2px 2px black;
-    margin-top: 250px;
-    margin-bottom: 250px;
+.product-card {
+  border-radius: 20px;
+  width: 300px;
+  height: 460px;
+  position: relative;
+  box-shadow: 0 2px 7px #bbbbbb;
+  margin: 10px 15px 50px 15px;
+  background: #fafafa;
 }
-.coffee-Img {
-	margin: auto;
-  width: 150px;
-  height: 150px;
+
+.badge {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  clip-path: polygon(100% 100%, 100% 0, 0 0);
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  background: #fa9d33;
+  color: #fff;
+  height: 70px;
+  width: 70px;
+  border-top-right-radius: 20px;
+  padding: 3px 10px;
 }
-.coffeeCard:hover {
-    filter: brightness(90%);
-    border-radius: 10px;
+
+.badge-title{
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  padding-left: 18px;
+  font-size: 14px;
 }
-.coffeeTittle{
-    font-weight: 600;
+
+.product-tumb {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  padding: 50px;
+  background: #f0f0f0;
 }
-.coffeePrice{
-    color: black;
-    font-weight: bold;
+
+.product-tumb img {
+  max-width: 100%;
+  max-height: 100%;
 }
-.coffeeTodayPrice{
-  color: rgb(136, 136, 136);
+
+.product-details {
+  position: absolute;
+  padding: 30px;
+}
+
+.product-details h3 {
+  margin-bottom: 10px;
+  text-transform: uppercase; 
+  color: #363636;
+  text-decoration: none;
+  transition: 0.3s; 
+}
+
+.product-bottom-details {
+  overflow: hidden;
+  border-top: 1px solid #eee;
+}
+
+.product-bottom-details div {
+  float: left;
+  width: 50%;
+}
+
+.product-price {
+  font-size: 18px;
+  color: #fa9d33;
+  font-weight: 600;
+}
+
+.product-price small {
+  font-size: 80%;
+  font-weight: 400;
   text-decoration: line-through;
-  margin-right: 10px;
+  margin-right: 5px;
 }
-.offert{
-  width: 100px;
+
+.caps {
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
+
+.prodTittle{
+  font-weight: 400;
+  letter-spacing: 4px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: calc(2.125rem + .9vw);
+}
+
+h3.tittle {
+  font-size: 2.5em;
+  letter-spacing: 2px;
+  color: #292a2b;
+  text-transform: uppercase;
+}
+
+.sub-tittle {
+  font-size: 0.5em;
+  color: #FA9D33;
+  letter-spacing: 2px;
+  display: block;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}
+.events-info .sub-tittle {
+  font-size: 0.7em;
+}
+
 /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
 @media (max-width: 575px){
   .productsTittle{
@@ -46,5 +128,72 @@
     text-shadow: 2px 2px 2px black;
     margin-top: 250px;
     margin-bottom: 250px;
+  }
+}
+
+
+@media(max-width:1440px) {
+  h3.tittle {
+      font-size: 3.5em;
+  }
+}
+
+@media(max-width:1280px) {
+  h3.tittle {
+      font-size: 3em;
+  }
+
+  .events-info {
+      margin-top: 4em;
+      padding-left: 2em;
+  }
+}
+
+@media(max-width:1080px) {
+  h3.tittle {
+      font-size: 2.3em;
+  }
+}
+
+@media(max-width:800px) {
+  h3.tittle {
+      font-size: 2.3em;
+  }
+}
+
+@media(max-width:767px) {
+  h3.tittle {
+      font-size: 2em;
+  }
+}
+
+@media(max-width:640px) {
+  .sub-tittle {
+      font-size: 0.6em;
+  }
+}
+
+@media(max-width:600px) {
+  h3.tittle {
+      font-size: 1.8em;
+  }
+}
+
+@media(max-width:568px) {
+  h3.tittle {
+      font-size: 1.6em;
+  }
+}
+
+
+@media(max-width:384px) {
+  h3.tittle {
+      font-size: 1.6em;
+  }
+}
+
+@media(max-width:320px) {
+  h3.tittle {
+      font-size: 1.4em;
   }
 }

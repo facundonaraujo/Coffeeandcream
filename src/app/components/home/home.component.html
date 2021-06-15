@@ -9,22 +9,52 @@
 <div class="container welcome">
 	<div class="row">
 		<div class="col text-center">
-			<h2 class="welcomeTittle caps">Bienvenido a su cafetería</h2>
+			<h1 class="welcomeTittle caps">Bienvenido a su cafetería</h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-6 text-center welcomeSubtittle mx-auto">
 			<blockquote class="">
-				“La vida es demasiado corta como para no probar nuestro delicioso café. ”
+				<span style="font-size: 2.375rem;">“ </span>La vida es demasiado corta como para no probar nuestro delicioso café. <span style="font-size: 2.375rem;">”</span>
 			</blockquote>
 		</div>
 	</div>
 </div>
 
 <!-------------------------------------------------------- TODAY COFFEE ------------------------------------------------------------------->
-<!-- <section id="TodayCoffe">
-
-</section> -->
+<section id="TodayCoffe">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<h2 class="todaycoffeeTittle caps">¡Prueba uno de nuestros cafés del día!</h2>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col">
+				<owl-carousel-o [options]="customOptions">
+					<ng-container *ngFor="let coffee of coffeesDay">
+						<ng-template carouselSlide [id]="coffee._id">
+							<div class="product-card">
+								<div class="badge">
+									<p class="badge-title">SALE</p>
+								</div>
+								<div class="product-tumb">
+									<img [src]="coffee.img" alt="">
+								</div>
+								<div class="product-details">
+									<h3 style="letter-spacing: 1px; ">{{coffee.nombre}}</h3>
+									<div class="product-bottom-details">
+										<div class="product-price"><small>${{coffee.precioAnterior}}</small>${{coffee.precio}}</div>
+									</div>
+								</div>
+							</div>
+						</ng-template>
+					</ng-container>
+				  </owl-carousel-o>
+			</div>
+		</div>
+	</div>
+</section>
 <!-------------------------------------------------------- BANNER ------------------------------------------------------------------->
 <section id="Banner">
 	<div class="banerHomeContainer">

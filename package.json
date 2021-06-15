@@ -39,6 +39,8 @@
     "bootstrap": "^5.0.1",
     "firebase": "^8.6.1",
     "jquery": "^3.6.0",
+    "ngx-owl-carousel-o": "^4.0.0",
+    "ngx-pagination": "^5.1.1",
     "rxjs": "~7.0.1",
     "rxjs-compat": "^6.6.7",
     "sweetalert2": "^11.0.9",

@@ -5,6 +5,11 @@ import { NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { Meta, Title } from '@angular/platform-browser';
 // ICONOS
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faPhone} from '@fortawesome/free-solid-svg-icons';
+import { faMobile } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -16,6 +21,10 @@ export class ContactComponent implements OnInit {
   private sendMessageModalRef: NgbModalRef;
   // Iconos
   faCheck = faCheck;
+  faHome = faHome;
+  faPhone = faPhone;
+  faMobile = faMobile;
+  faEnvelope = faEnvelope;
 
   constructor(
     public fb: FormBuilder,
