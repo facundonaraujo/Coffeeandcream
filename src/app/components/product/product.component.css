@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------PRODUCT STYLES------------------------------------------------------------------------------------*/
 .productContainer{
-  min-height: 600px;
+  min-height: 500px;
+  margin-bottom: 60px;
 }
 .productImg{
   height: 260px;
@@ -10,10 +11,9 @@
 }
 .productTitle{
   font-weight: 700;
-  font-size: 45px;
+  font-size: 60px;
   color: #454546;
-  margin-top: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .productPrice{
   font-weight: 500;
@@ -31,15 +31,18 @@
   margin-bottom: 30px;
 }
 .offert{
-  width: 150px;
-  height: 25px;
-  text-align: center;
-  padding-top: 6px;
+	display: inline-block;
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 50px;
+	font-size: .9em;
+  background-color: #FA9D33;
+  margin-bottom: 5px;
 }
 .productDescription{
   font-weight: 400;
   font-size: 23px;
-  margin-bottom: 60px;
+  margin-bottom: 25px;
 }
 .borderImg{
   border: 1px solid #bfc8ca;
@@ -96,6 +99,93 @@
 .productAddCheck{
   margin-bottom: 10px;
 }
+
+.product-tumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 400px;
+  width: 400px; */
+  padding: 50px;
+  /* background: #f0f0f0; */
+}
+
+.product-tumb img {
+  max-width: 100%;
+  max-height: 100%;
+  height: 250px;
+}
+
+.button {
+  cursor: pointer;
+	width: fit-content;
+	height: fit-content;
+	margin-top: 10px;
+}
+
+.button a {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	font-size: 20px;
+	color: #111;
+	text-decoration: none;
+	padding: 10px 15px;
+	border: 1px solid #aaa;
+	font-weight: bold;
+  border-radius: 50px;
+}
+
+.button a:after{
+	content: "";
+	position: absolute;
+	top: 0;
+	right: -10px;
+	width: 0%;
+	background: #111;
+	height: 100%;
+	z-index: -1;
+	transition: width 0.3s ease-in-out;
+	transform: skew(-25deg);
+	transform-origin: right;
+}
+
+.button a:hover:after {
+	width: 150%;
+	left: -10px;
+	transform-origin: left;
+	
+}
+
+.button a:hover {
+	color: #fff;
+	transition: all 0.5s ease;
+}
+
+.content {
+	animation-delay: 0.3s;
+	position: absolute;
+	z-index: 3
+}
+
+.product-bottom-details{
+  margin-bottom: 15px;
+}
+
+.product-price {
+  font-size: 30px;
+  color: #fa9d33;
+  font-weight: 600;
+}
+
+.product-price small {
+  font-size: 80%;
+  font-weight: 400;
+  text-decoration: line-through;
+  margin-right: 5px;
+}
+
+
 /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
 @media (max-width: 1200px){
   .btnAddCart{

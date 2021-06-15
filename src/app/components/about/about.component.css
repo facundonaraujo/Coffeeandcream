@@ -11,90 +11,50 @@
     margin-bottom: 250px;
 }
 .aboutText{
-    font-weight:500;
-    text-align: justify;
-    font-size: 20px;
-    margin-top: 40px;
+    line-height: 1.425;
+    font-weight: 400;
+    font-size: 1.275rem;
+    margin-top: 30px;
     margin-bottom: 50px;
 }
+
+h3.tittle {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    color: #292a2b;
+    text-transform: uppercase;
+  }
+  
+  .sub-tittle {
+    font-size: 0.5em;
+    color: #FA9D33;
+    letter-spacing: 2px;
+    display: block;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+  }
+  .events-info .sub-tittle {
+    font-size: 0.7em;
+  }
+
 /*-----------------------------------------------------------MISSION AND VISION STYLES------------------------------------------------------------------------------------*/
-            /*------------------------------MISSION SYLES----------------------------*/
-            .missionBox {
-                display: block;
-                width: 100%;
-            }
-            .missionBox .blockInfo-about-mission {
-                background:#FA9D33;
-                max-width: 445px;
-                float: left;
-                height: 425px;
-                padding-right: 100px;
-                width: 100%;
-            }
-            .blockInfo-about-mission {
-                text-align: left;
-                padding: 60px 30px;
-            }
-            .blockInfo-about-mission .line {
-                display: inline-block;
-                height: 6px;
-                width: 50px;
-                margin-bottom: 30px;
-                background: rgb(255, 255, 255);
-            }
-            .blockInfo-about-mission .missionText {
-                color: rgb(255, 255, 255);
-                font-size: 16px;
-            }
-            .blockInfo-about-mission .title {
-                margin-bottom: 30px;
-                color: #fff;
-                text-transform: uppercase;
-                font-weight:700;
-                font-size: 42px;
-            }
-            .missionBox .blockInfo-about-mission .title {
-                height: 110px;
-            }
-            /*------------------------------VISION SYLES----------------------------*/
-            .visionBox {
-                display: block;
-                width: 100%;
-                margin-top: 50px;
-            }
-            .visionBox .blockInfo-about-vision {
-                background:#FA9D33;
-                max-width: 445px;
-                float: right;
-                height: 400px;
-                padding-right: 100px;
-                width: 100%;
-            }
-            .blockInfo-about-vision {
-                text-align: left;
-                padding: 60px 30px;
-            }
-            .blockInfo-about-vision .line {
-                display: inline-block;
-                height: 6px;
-                width: 50px;
-                margin-bottom: 30px;
-                background: rgb(255, 255, 255);
-            }
-            .blockInfo-about-vision .visionText {
-                color: rgb(255, 255, 255);
-                font-size: 16px;
-            }
-            .blockInfo-about-vision .title {
-                margin-bottom: 30px;
-                text-transform: uppercase;
-                color: #fff;
-                font-weight:700;
-                font-size: 42px;
-            }
-            .visionBox .blockInfo-about-vision .title {
-                height: 110px;
-            }
+.mvText{
+    line-height: 1.725;
+    font-weight: 400;
+    font-size: 1.375rem;
+    margin-top: 15px;
+    padding: 0 5rem;
+}
+.visionImg{
+    clip-path: polygon(10% 0,100% 0,100% 100%,0 100%);
+    width: 85%;
+    height: 100%;
+}
+.misionImg{
+    clip-path: polygon(0 0,90% 0,100% 100%,0 100%);
+    width: 85%;
+    height: 100%;
+}
 
 /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
 @media (max-width: 575px){
@@ -110,4 +70,71 @@
     margin-bottom: 250px;
   }
 }
+
+  @media(min-width:1280px) {
+    h3.tittle {
+        font-size: 3.5em;
+    }
+  }
+  
+  @media(max-width:1280px) {
+    h3.tittle {
+        font-size: 3em;
+    }
+  
+    .events-info {
+        margin-top: 4em;
+        padding-left: 2em;
+    }
+  }
+  
+  @media(max-width:1080px) {
+    h3.tittle {
+        font-size: 2.3em;
+    }
+  }
+  
+  @media(max-width:800px) {
+    h3.tittle {
+        font-size: 2.3em;
+    }
+  }
+  
+  @media(max-width:767px) {
+    h3.tittle {
+        font-size: 2em;
+    }
+  }
+  
+  @media(max-width:640px) {
+    .sub-tittle {
+        font-size: 0.6em;
+    }
+  }
+  
+  @media(max-width:600px) {
+    h3.tittle {
+        font-size: 1.8em;
+    }
+  }
+  
+  @media(max-width:568px) {
+    h3.tittle {
+        font-size: 1.6em;
+    }
+  }
+  
+  
+  @media(max-width:384px) {
+    h3.tittle {
+        font-size: 1.6em;
+    }
+  }
+  
+  @media(max-width:320px) {
+    h3.tittle {
+        font-size: 1.4em;
+    }
+  }
+  
 

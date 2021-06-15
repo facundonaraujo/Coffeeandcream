@@ -58,6 +58,11 @@ export class ProductsComponent implements OnInit {
   }
 
   productDetail(productId): void{
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     this.router.navigate(['/product', productId]);
   }
 }

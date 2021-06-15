@@ -133,6 +133,7 @@ export class ProductoService implements Resolve<any> {
         this.http.get(environment.urlServices + '/productoPublic/' + this.routeParams.id, {headers})
         .subscribe({
           next: (response: any) => {
+            this.producto = response.producto;
             resolve(response);
           },
           error: (err) => {

@@ -46,6 +46,7 @@
 }
 
 .product-card {
+    cursor: pointer;
     border-radius: 20px;
     width: 300px;
     height: 460px;

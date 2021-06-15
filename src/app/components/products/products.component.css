@@ -1,5 +1,6 @@
 /*-----------------------------------------------------------PRODUCTS STYLES------------------------------------------------------------------------------------*/
 .product-card {
+  cursor: pointer;
   border-radius: 20px;
   width: 300px;
   height: 460px;
@@ -132,7 +133,7 @@ h3.tittle {
 }
 
 
-@media(max-width:1440px) {
+@media(min-width:1280px) {
   h3.tittle {
       font-size: 3.5em;
   }

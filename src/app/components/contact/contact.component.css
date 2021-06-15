@@ -243,7 +243,7 @@ input.email {
 
 /*-- contact page --*/
 
-@media(max-width:1440px) {
+@media(min-width:1280px) {
   h3.tittle {
       font-size: 3.5em;
   }

@@ -564,19 +564,6 @@ a.btn.active {
 /*-- //place holder --*/
 
 /*-- //banner --*/
-
-.aboutMissionVision {
-  padding: 0;
-  background: url("../img/about-mission-vision.jpg");
-  z-index: 2;
-  top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  display: block;
-  width: 100%;
-}
 .errorContainer{
   padding: 0;
   background: url("../img/bg1.jpg");

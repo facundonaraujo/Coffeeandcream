@@ -1,10 +1,11 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { Producto } from './../../models/producto.model';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ProductoService } from '../services/producto.service';
 
 // IMPORT DE ICONOS
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -14,36 +15,30 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 export class ProductComponent implements OnInit {
   // Iconos
   public faCheck = faCheck;
+  public faShoppingBag = faShoppingBag;
 
-  public product = [];
-  public producto = {
-    id: '',
-    data: {}
-  };
-  public userLog: string;
-  public userId: string;
-  public addCantCartForm = new FormGroup({
-    productCant: new FormControl(1)
-  });
-  public productAddCheck = false;
-  public existeP = {
-    idP: '',
-    data: {}
-  };
+  public product: Producto = new Producto();
 
   constructor(
-    private firestoreService: AuthService,
-    private activatedRoute: ActivatedRoute,
+    private productoService: ProductoService,
+    private router: Router,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.product = this.productoService.producto;
+  }
 
-  refrescarEstado() {
+  agregarAlCarrito() {
 
   }
 
-  quitarDelCarrito() {}
-
-  agregarAlCarrito(form) {}
+  goToProducts(){
+    window.scroll({
+      top: 0,
+      left: 0,
+      // behavior: 'smooth',
+    });
+    this.router.navigate(['/products']);
+  }
 
 }

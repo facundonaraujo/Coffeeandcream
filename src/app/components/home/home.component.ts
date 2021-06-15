@@ -83,4 +83,13 @@ export class HomeComponent implements OnInit {
     });
     this.router.navigate(['/'+ ruta]);
   }
+
+  productDetail(productId): void{
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+    this.router.navigate(['/product', productId]);
+  }
 }

@@ -84,7 +84,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'product/:id', 
-    component: ProductComponent
+    component: ProductComponent,
+    resolve: {
+      product: ProductoService
+    }
   },
   // {
   //   path: 'admin-products', 
