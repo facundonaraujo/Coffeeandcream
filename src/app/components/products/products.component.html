@@ -24,7 +24,7 @@
 						<p class="badge-title">SALE</p>
 					</div>
 					<div class="product-tumb">
-						<img [src]="coffee.img" alt="">
+						<img [defaultImage]="'../../../assets/img/loading-image.gif'" [lazyLoad]="coffee.img"  alt="">
 					</div>
 					<div class="product-details">
 						<h3 style="letter-spacing: 1px; ">{{coffee.nombre}}</h3>

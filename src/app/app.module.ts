@@ -44,7 +44,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from './common/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 const appRoutes: Routes = [
   {
@@ -161,7 +162,8 @@ const appRoutes: Routes = [
     MaterialModule,
     FlexLayoutModule,
     CarouselModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    LazyLoadImageModule
   ],
   providers: [
     AuthService,

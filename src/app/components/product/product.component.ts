@@ -16,7 +16,6 @@ export class ProductComponent implements OnInit {
   // Iconos
   public faCheck = faCheck;
   public faShoppingBag = faShoppingBag;
-
   public product: Producto = new Producto();
 
   constructor(
