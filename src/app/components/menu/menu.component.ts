@@ -22,7 +22,6 @@ export class MenuComponent implements OnInit {
   faTimes = faTimes;
 
   constructor(
-    private authSvc: AuthService,
     private router: Router,
     private appService: AppService,
   ){}

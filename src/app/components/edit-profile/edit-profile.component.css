@@ -1,20 +1,54 @@
 /*-----------------------------------------------------------EDIT PROFILE STYLES------------------------------------------------------------------------------------*/
+a {
+  color: #212529;
+}
 .mainProfileTittle{
   font-weight: 700;
   color:#5a5a5a;
   margin-bottom: 50px;
 }
 .accountMenu{
-  min-height: 950px;
-  max-height: 1050px;
+  min-height: 450px;
+}
+.btn-style2 {
+  color: #fff;
+  padding: 12px 40px;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+  transition: 0.3s ease-in;
+  background: #212529;
+  border: transparent;
+}
+.btn-style2:hover {
+  color: #fff;
+  background: #FA9D33;
+  border: transparent;
+}
+.btn-style2:active {
+  background: #FA9D33;
+  border: transparent;
+  color: #fff;
+}
+.btn-style2:disabled{
+  cursor: not-allowed;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #FA9D33;
 }
 .links{
   color: #3A92C1;
+  font-weight: 700;
 }
 .pedidosTitle{
   font-weight: 700;
   margin-bottom: 15px;
   color:#5a5a5a;
+}
+.quitmpl{
+  margin-left: 0px !important;
+  padding-left: 0px !important;
 }
 .changePasswordButton, .changeNameButton{
   float: left;
@@ -35,6 +69,7 @@
 .mainListRow{
   background-color: #ffffff;
   border: 1px solid #d2e4e9;
+  border-radius: 5px;
   margin-bottom: 40px;
 }
 .mainListText{
@@ -67,7 +102,8 @@ ul.mainListUl li {
   font-weight: 700;
   font-size: 24px;
   padding-bottom: 10px;
-  padding-top: 10px;
+  padding-top: 25px;
+  padding-left: 8px;
 }
 .lineaSup{
   border-top: 1px solid #d2e4e9;
@@ -87,7 +123,27 @@ ul.mainListUl li {
 .btnBack{
   margin-bottom: 30px;
 }
-.mainListUl{}
+#customers {
+  border-collapse: collapse;
+  width: 100%;
+}
+#customers td, #customers th {
+  /* border: 1px solid #ddd; */
+  padding: 8px;
+}
+#customers tr:nth-child(even){
+  /* background-color: #f2f2f2; */
+}
+#customers tr:hover {
+  /* background-color: #ddd; */
+}
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  /* background-color: #FA9D33; */
+  /* color: white; */
+}
 /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
 @media (max-width: 768px){
   .accountMenu{
@@ -98,7 +154,6 @@ ul.mainListUl li {
     padding-left: 0px;
   }
   .pedidosTitle{
-
     font-weight: 700;
     margin-bottom: 15px;
     font-size: 20px;

@@ -10,166 +10,188 @@
 	<li class="breadcrumb-item active">Perfil</li>
 </ol>
 <!-------------------------------------------------------- START EDIT PROFILE ------------------------------------------------------------------->
-<div class="container">
+<div class="container py-5 px-5">
   <div class="row">
     <div class="col">
       <h2 class="mainProfileTittle">Mi Cuenta</h2>
     </div>
   </div>
   <div class="row accountMenu">
-    <div class="col-md-4">
-      <div class="list-group" id="lista" role="tablist">
-        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#elemento1" role="tab" aria-controls="elemento1">Mi perfil</a>
-        <a class="list-group-item list-group-item-action" data-toggle="list" href="#elemento2" role="tab" aria-controls="elemento2">Detalles de la cuenta</a>
-        <a class="list-group-item list-group-item-action" data-toggle="list" href="#elemento3" role="tab" aria-controls="elemento3">Pedidos</a>
-        <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" type="button" (click)="onLogout()">Cerrar Sesión</a>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="elemento1" role="tabpanel" aria-labelledby="elemento1">
-          <p>Hola <strong>{{name}}</strong> (¿No sos <strong>{{name}}</strong>? <span type="button" class="links" (click)="onLogout()">Cerrar Sesión</span>)</p>
-          <br>
-          <p>Desde el panel de control de tu cuenta podés ver tus
-            <span class="links">pedidos recientes</span>,
-            <span class="links">editar tu contraseña y los detalles de tu cuenta</span>.</p>
-        </div>
-
-        <div class="tab-pane fade show" id="elemento2" role="tabpanel" aria-labelledby="elemento2">
-          <div class="container">
-            <form [formGroup]="nameForm" (ngSubmit)="onChangeName()">
-              <div class="row">
-                <div class="col-12">
-                  <p class="subtittleAccount">Cambio de Nombre</p>
-                  <p class="mb-1">Nombre</p>
-                  <div class="form-group">
-                    <input type="text" class="form-control" aria-required="true" aria-invalid="true" name="nameAccount" id="nameAccount" formControlName="newName" required>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
+            <li ngbNavItem="Miperfil">
+              <a ngbNavLink>Mi perfil</a>
+              <ng-template ngbNavContent>
+                <div class="container">
+                  <p>Hola <strong style="text-transform: capitalize;">{{this.usuario.nombre}}</strong> (¿No sos <strong style="text-transform: capitalize;">{{this.usuario.nombre}}</strong>? <span type="button" class="links" (click)="onLogout()">Cerrar Sesión</span>)</p>
+                  <p>Desde el panel de control de tu cuenta podés ver tus
+                    <span class="links">pedidos recientes</span>,
+                    <span class="links">editar tu contraseña y los detalles de tu cuenta</span>.
+                  </p>
                 </div>
-                <button type="submit" class="btn btn-dark changeNameButton">Guardar Cambios</button>
-                </div>
-              </div>
-              <div class="row" *ngIf="changeNameAlert">
-                <div class="col">
-                  <ngb-alert id="changeNameAlert" type="success" [dismissible]="true" (close)="closeAlert('changeNameAlert')">Los cambios fueron guardados correctamente.</ngb-alert>
-                </div>
-              </div>
-            </form>
-            <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()">
-              <div class="row">
-                <div class="col-12">
-                    <p class="subtittleAccount">Cambio de contraseña</p>
-                    <p class="mb-1">Contraseña actual</p>
-                    <div class="form-group inner-addon right-addon">
-                      <fa-icon type="button"  [icon]="faEyeSlash" [class.hideIconPassword]="oldPasswordTypeInput == 'text'" class="iconLogin glyphicon glyphicon-user" (click)="showOldPassword()"></fa-icon>
-                      <fa-icon type="button"  [icon]="faEye" [class.hideIconPassword]="oldPasswordTypeInput == 'password'" class="iconLogin glyphicon glyphicon-user" (click)="showOldPassword()"></fa-icon>
-                      <input #oldPasswordEye [type]="oldPasswordTypeInput" class="form-control" placeholder="Contraseña" name="oldPassword" id="oldPassword" formControlName="oldPassword"  required>
-                    </div>
-                    <p class="mb-1">Nueva contraseña</p>
-                    <div class="form-group inner-addon right-addon">
-                      <fa-icon type="button"  [icon]="faEyeSlash" [class.hideIconPassword]="newPasswordTypeInput == 'text'" class="iconLogin glyphicon glyphicon-user" (click)="showNewPassword()"></fa-icon>
-                      <fa-icon type="button"  [icon]="faEye" [class.hideIconPassword]="newPasswordTypeInput == 'password'" class="iconLogin glyphicon glyphicon-user" (click)="showNewPassword()"></fa-icon>
-                      <input #newPasswordEye [type]="newPasswordTypeInput" class="form-control" placeholder="Contraseña" name="newPassword" id="newPassword" formControlName="newPassword"  required>
-                    </div>
-                    <button type="submit" class="btn btn-dark changePasswordButton">Guardar Cambios</button>
-                </div>
-              </div>
-              <div class="row" *ngIf="changePasswordAlert">
-                <div class="col">
-                  <ngb-alert id="changePasswordAlert" type="success" [dismissible]="true" (close)="closeAlert('changePasswordAlert')">Los cambios fueron guardados correctamente.</ngb-alert>
-                </div>
-              </div>
-              <div class="row" *ngIf="changePasswordErrorAlert">
-                <div class="col">
-                  <ngb-alert id="changePasswordErrorAlert" type="danger" [dismissible]="true" (close)="closeAlert('changePasswordErrorAlert')">La contraseña debe tener al menos 6 caracteres</ngb-alert>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="tab-pane fade show" id="elemento3" role="tabpanel" aria-labelledby="elemento3">
-          <div class="container" *ngIf="noTienePedidos">
-            <div class="row">
-              <div class="col">
-                <h5>No se ha hecho ningún pedido todavía.</h5>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="!noTienePedidos">
-            <div class="container" *ngIf="showOrders">
-              <div class="row" >
-                <div class="col">
-                    <h2 class="pedidosTitle">Pedidos</h2>
-                </div>
-              </div>
-              <div class="row mainListRow">
-                <div class="col-12">
-                  <ul class="mainListUl">
-                    <li>
+              </ng-template>
+            </li>
+            <li ngbNavItem="Detallesdelacuenta">
+              <a ngbNavLink>Detalles de la cuenta</a>
+              <ng-template ngbNavContent>
+                <form [formGroup]="datosform" class="py-4">
+                    <div class="container">
+                      <h4 class="pb-4">Información General</h4>
                       <div class="row">
-                        <div class="col-5 mainListText d-none d-lg-block"><p>Pedido</p></div>
-                        <div class="col-3 mainListText d-none d-lg-block"><p>Total</p></div>
-                        <div class="col-3 mainListText d-none d-lg-block"><p>Detalle</p></div>
+                        <mat-form-field appearance="outline" >
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="nombre" required>
+                            <mat-error *ngIf="datosform.get('nombre').hasError('required')">El nombre es obligatorio</mat-error>
+                        </mat-form-field>
                       </div>
-                    </li>
-                  </ul>
-                  <div class="pedidoList">
-                    <ul class="mainListUl">
-                      <li *ngFor="let pedido of pedidos">
-                        <div class="row align-items-center secondaryListRow">
-                          <div class="col-lg-5 secondaryListText d-lg-none d-block"><span class="mobilTxt">Pedido</span></div>
-                          <div class="col-lg-5 secondaryListText"><span>{{pedido.id}}</span></div>
-                          <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Total</span></div>
-                          <div class="col-lg-3 secondaryListText"><span>${{pedido.data.total}}</span></div>
-                          <div class="col-lg-3 secondaryListText"><button class="btn btn-outline-dark showDBtn" (click)="showOrderDetail(pedido.id)">Ver detalle</button></div>
+                      <div class="row">
+                        <mat-form-field appearance="outline" >
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput formControlName="tel">
+                        </mat-form-field>
+                      </div>
+                      <div class="row">
+                        <mat-form-field appearance="outline" >
+                            <mat-label>Direccion</mat-label>
+                            <input matInput formControlName="direccion">
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="end center">
+                        <div class="read mt-3">
+                          <button type="submit" class="btn-style2" [disabled]="datosform.invalid" (click)="onChangeDatos()">Guardar Cambios</button>
                         </div>
-                      </li>
-                    </ul>
+                      </div>
+                    </div>
+                </form>
+                <form [formGroup]="passwordform" class="py-4">
+                    <div class="container">
+                      <h4 class="pb-4">Cambiar Contraseña</h4>
+                      <div class="row">
+                        <mat-form-field appearance="outline" >
+                            <mat-label>Contraseña anterior</mat-label>
+                            <input type="password" matInput formControlName="oldpassword" required>
+                            <mat-error *ngIf="passwordform.get('oldpassword').hasError('required')">La contraseña anterior es obligatoria</mat-error>
+                            <mat-error *ngIf="passwordform.get('oldpassword').hasError('minlength')">Debe tener 6 caracteres como minimo</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="row">
+                        <mat-form-field appearance="outline" >
+                            <mat-label>Nueva contraseña</mat-label>
+                            <input type="password" matInput formControlName="newpassword" required>
+                            <mat-error *ngIf="passwordform.get('newpassword').hasError('required')">La nueva contraseña es obligatoria</mat-error>
+                            <mat-error *ngIf="passwordform.get('newpassword').hasError('minlength')">Debe tener 6 caracteres como minimo</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="end center">
+                        <div class="read mt-3">
+                          <button type="submit" class="btn-style2" [disabled]="passwordform.invalid" (click)="onChangePassword()">Cambiar Contraseña</button>
+                        </div>
+                      </div>
+                    </div>
+                </form>
+              </ng-template>
+            </li>
+            <li ngbNavItem="Pedidos">
+              <a ngbNavLink>Pedidos</a>
+              <ng-template ngbNavContent>
+                <div class="container" *ngIf="!tienePedidos">
+                  <div class="row">
+                    <div class="col text-center">
+                      <fa-icon style="font-size: 45px;" class="pt-4" [icon]="faExclamationCircle"></fa-icon>
+                      <h3 class="pt-3">No se ha realizado ningún pedido todavía.</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="container" *ngIf="showOrderD">
-              <div class="row" >
-                <div class="col">
-                    <h2 class="pedidosTitle">Pedido: {{this.pedidoId}}</h2>
-                </div>
-              </div>
-              <div class="row mainListRow">
-                <div class="col-12">
-                  <ul class="mainListUl">
-                    <li>
-                      <div class="row">
-                        <div class="col-6 mainListText d-none d-lg-block"><p>Producto</p></div>
-                        <div class="col-3 mainListText d-none d-lg-block"><p>Cantidad Pedida</p></div>
-                        <div class="col-3 mainListText d-none d-lg-block"><p>Precio Unitario</p></div>
+                <div *ngIf="tienePedidos">
+                  <div class="container" *ngIf="showOrders">
+                    <div class="row quitmpl" >
+                      <div class="col quitmpl">
+                          <h2 class="pedidosTitle">Pedidos</h2>
                       </div>
-                    </li>
-                  </ul>
-                  <div class="pedidoList">
-                    <ul class="mainListUl">
-                      <li *ngFor="let pedidoDe of pedidoDetalle">
-                        <div class="row align-items-center secondaryListRow">
-                          <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Producto</span></div>
-                          <div class="col-lg-6 secondaryListText"><span>{{pedidoDe.data.productName}}</span></div>
-                          <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Cantidad Pedida</span></div>
-                          <div class="col-lg-3 secondaryListText"><span class="pedidoDeTxt">{{pedidoDe.data.productCant}}</span></div>
-                          <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Precio Unitario</span></div>
-                          <div class="col-lg-3 secondaryListText"><span class="pedidoDeTxt">${{pedidoDe.data.productPrice}}</span></div>
+                    </div>
+                    <div class="row mainListRow" style="margin-left: 0.1px;">
+                      <div class="col-12">
+                        <ul class="mainListUl">
+                          <li>
+                            <div class="row">
+                              <div class="col-5 mainListText d-none d-lg-block"><p>Pedido</p></div>
+                              <div class="col-3 mainListText d-none d-lg-block"><p>Total</p></div>
+                              <div class="col-3 mainListText d-none d-lg-block"><p>Detalle</p></div>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="pedidoList">
+                          <ul class="mainListUl">
+                            <li *ngFor="let pedido of pedidos | paginate: { itemsPerPage: 9, currentPage: (this.pedidosPaginador.pageNumber + 1), totalItems: this.pedidosPaginador.totalElements }">
+                              <div class="row align-items-center secondaryListRow">
+                                <div class="col-lg-5 secondaryListText d-lg-none d-block"><span class="mobilTxt">Pedido</span></div>
+                                <div class="col-lg-5 secondaryListText"><span>{{pedido._id}}</span></div>
+                                <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Total</span></div>
+                                <div class="col-lg-3 secondaryListText"><span>${{pedido.total}}</span></div>
+                                <div class="col-lg-3 secondaryListText"><button class="btn btn-outline-dark showDBtn" (click)="showOrderDetail(pedido)">Ver detalle</button></div>
+                              </div>
+                            </li>
+                          </ul>
                         </div>
-                      </li>
-                    </ul>
+                        <div class="row justify-content-end">
+                          <div class="col-3" style="text-align: right;">
+                            <pagination-controls 
+                            (pageChange)="setPage($event)"
+                            responsive="true"
+                            previousLabel=""
+                            nextLabel=""
+                            ></pagination-controls>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                  <div class="container" *ngIf="showOrderD">
+                    <div class="row" >
+                      <div class="col" style="padding-left: 0%;">
+                          <h2 class="pedidosTitle">Pedido: {{this.pedido?._id}}</h2>
+                      </div>
+                    </div>
+                    <div class="row mainListRow">
+                      <div class="col-12">
+                        <table class="default"  id="customers">
+                          <tr>
+                            <th class="mainListText">Producto</th>
+                            <th class="mainListText">Cantidad</th>
+                            <th class="mainListText">Tamaño</th>
+                            <th class="mainListText">Total</th>
+                          </tr>
+                        
+                          <tr *ngFor="let pedidoDe of pedido.productos">
+                            <td>{{pedidoDe?.producto?.nombre}}</td>
+                            <td>{{pedidoDe?.cantidad}}</td>
+                            <td>{{pedidoDe?.size}}</td>
+                            <td>${{pedidoDe?.total}}</td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="col-12 lineaSup">
+                        <h4 class="totalText">Total: ${{pedido.total}}</h4>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-4" style="padding-left: 0%;">
+                        <button class="btn btn-outline-dark btn-block btnBack" (click)="hideOrderDetail()">Atras</button>
+                      </div>
+                    </div>
                 </div>
-                <div class="col-12 lineaSup" *ngFor="let ped of pedido">
-                  <h4 class="totalText">Total: ${{ped.data.total}}</h4>
                 </div>
-              </div>
-              <div class="row mt-4">
-                <div class="col-4">
-                  <button class="btn btn-outline-dark btn-block btnBack" (click)="hideOrderDetail()">Atras</button>
-                </div>
-              </div>
-          </div>
+              </ng-template>
+            </li>
+            <li ngbNavItem="CerrarSesion">
+              <a ngbNavLink (click)="onLogout()">Cerrar Sesión</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-9">
+          <div [ngbNavOutlet]="nav" class="ml-4"></div>
         </div>
       </div>
     </div>

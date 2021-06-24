@@ -22,7 +22,7 @@ export class UsuariosService{
     return this.http.put(url, usuario, {headers});
   }
 
-  public cambiarContraseña({oldpassword, newpassword, id}){
+  public cambiarContraseña(oldpassword, newpassword, id){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('token'),
@@ -31,8 +31,8 @@ export class UsuariosService{
       oldpassword: oldpassword,
       newpassword: newpassword
     }
-    let url = environment.urlServices + '/usuario/' + id;
-    return this.http.put(url, data, {headers});
+    let url = environment.urlServices + '/cambiarPassword/' + id;
+    return this.http.post(url, data, {headers});
   }
 
 }

@@ -181,9 +181,9 @@ nav .menu li a:hover {
   color: #FA9D33;
 }
 
-.active{
+/* .active{
 color: #FA9D33 !important;
-}
+} */
 
 /* Hide Dropdowns by Default
 * and giving it a position of absolute */
@@ -592,4 +592,32 @@ a.btn.active {
   background: #fa9d33 !important;
   color: #fefefe;
   cursor: default;
+}
+
+#product .mat-form-field-outline-start {
+  border-radius: 28px 0 0 28px !important;
+  border-width: 1px;
+  min-width: 28px !important;
+}
+
+#product .mat-form-field-outline-end {
+  border-radius: 0 28px 28px 0 !important;
+  border-width: 1px;
+}
+
+#product .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #aaa;
+}
+
+#product .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: .80em 1em;
+}
+
+#product .mat-select-value {
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+#product .mat-form-field-wrapper {
+  padding-bottom: 0em;
 }

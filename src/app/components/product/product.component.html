@@ -17,7 +17,7 @@
         <img [defaultImage]="'../../../assets/img/loading-image.gif'" [lazyLoad]="product.img" class="">
       </div>
     </div>
-    <div class="col-xl-6"  >
+    <div class="col-xl-6 mb-5">
      <div class="container">
        <div class="row">
          <div class="col">
@@ -35,8 +35,29 @@
           <p class="productDescription">{{product.descripcion}}</p>
          </div>
        </div>
+       <form class="example-form" id="product">
+          <div class="row mb-2">
+            <div class="col-3 selectT">
+              <div class="number-input">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                <input class="quantity" min="1" readonly name="quantity" value="1" type="number">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+              </div>
+            </div>
+            <div class="col-4">
+              <mat-form-field appearance="outline">
+                <mat-select required value="">
+                  <mat-option value="">Tamaño</mat-option>
+                  <mat-option value="Chico">Chico</mat-option>
+                  <mat-option value="Mediano">Mediano</mat-option>
+                  <mat-option value="Grande">Grande</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
        <div class="row">
-          <div class="col-4">
+          <div class="col-3 btnm">
             <div class="content animated fadeInLeft">
               <div class="button" (click)="agregarAlCarrito()">
                 <a class="cart-btn"><i class="cart-icon ion-bag"></i>Añadir al carrito</a>

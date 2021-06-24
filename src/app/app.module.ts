@@ -46,6 +46,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes = [
   {
@@ -163,7 +164,8 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     CarouselModule,
     NgxPaginationModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     AuthService,

@@ -1,9 +1,16 @@
+import { Usuario } from './../../models/usuario.model';
+import { Pedido } from './../../models/pedido.model';
 import { AuthService } from './../services/auth.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Aplicacion } from 'src/app/models/aplicacion.model';
+import { AppService } from '../services/app.service';
+import { UsuariosService } from '../services/usuarios.service';
+import { ToastrService } from 'ngx-toastr';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { PedidosService } from '../services/pedidos.service';
+import { PaginadorBusquedaTabla } from 'src/app/models/paginador.model';
 
 @Component({
   selector: 'app-edit-profile',
@@ -11,52 +18,82 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-  public name: any;
- 
-  public changeNameAlert = false;
-  public changePasswordAlert = false;
-  public changePasswordErrorAlert = false;
-
-  // ICONOS
-  faEye = faEye;
-  faEyeSlash = faEyeSlash;
-  // SHOW/HIDE PASSSWORD BUTTON
-  @ViewChild('oldPasswordEye', { read: ElementRef }) oldPasswordEye: ElementRef;
-  oldPasswordTypeInput  =  'password';
-  @ViewChild('newPasswordEye', { read: ElementRef }) newPasswordEye: ElementRef;
-  newPasswordTypeInput  =  'password';
-  // FORM
-  public nameForm = new FormGroup({
-    newName: new FormControl('')
-  });
-  public passwordForm = new FormGroup({
-    oldPassword: new FormControl(''),
-    newPassword: new FormControl('')
-  });
-  // Orders
-  public pedidos = [];
-  public userLog: string;
-  public userId: string;
-  public noTienePedidos = true;
-  public showOrders = false;
+  faExclamationCircle = faExclamationCircle;
+  active = 'Miperfil';
+  datosform: FormGroup;
+  passwordform: FormGroup;
+  public usuario: Usuario = new Usuario();
+  public pedidos: Pedido[] = [];
+  public pedidosPaginador: PaginadorBusquedaTabla = new PaginadorBusquedaTabla();
+  public tienePedidos = false;
+  public showOrders = true;
   public showOrderD = false;
-  public pedido = [];
+  public pedido: Pedido;
+
   public pedidoId: any;
   public pedidoDetalle = [];
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private appService: AppService,
+    private usuariosService: UsuariosService,
+    private pedidosService: PedidosService,
+    private _formBuilder: FormBuilder,
+    public toasterService: ToastrService,
   ) { }
 
-  ngOnInit() {}
-
-  // SHOW/HIDE PASSSWORD BUTTON
-  showOldPassword(): void {
-    this.oldPasswordTypeInput  =  this.oldPasswordTypeInput  ===  'text'  ?  'password'  :  'text';
+  ngOnInit() {
+    this.passwordform = this._formBuilder.group({
+      oldpassword: ['', [Validators.required, Validators.minLength(6)]],
+      newpassword: ['', [Validators.required, Validators.minLength(6)]],
+    });
+    this.datosform = this._formBuilder.group({
+      nombre: ['', [Validators.required]],
+      tel: [''],
+      direccion: [''],
+    });
+    this.appService.crearSubcriber().subscribe(
+      (data: Aplicacion) =>{
+        this.usuario = data.usuario;
+        this.initializeform();
+        this.obtenerPedidos();
+      },
+    )
   }
-  showNewPassword(): void {
-    this.newPasswordTypeInput  =  this.newPasswordTypeInput  ===  'text'  ?  'password'  :  'text';
+
+  initializeform(){
+    this.datosform.get('nombre').setValue(this.usuario?.nombre);
+    this.datosform.get('tel').setValue(this.usuario?.tel);
+    this.datosform.get('direccion').setValue(this.usuario?.direccion);
+  }
+
+  obtenerPedidos(){
+    this.pedidosService.obtenerPedidosCliente(this.pedidosPaginador, this.usuario?._id).subscribe(
+      (resp: any) => {
+        console.log('resp :>> ', resp);
+        this.pedidos = resp.pedidos;
+        if (this.pedidos.length > 0) {
+          this.tienePedidos = true;
+        } else {
+          this.tienePedidos = false;
+        }
+        this.pedidosPaginador.totalElements = resp.total;
+      },
+      (err: any) => {
+        console.log('Error :>> ', err);
+      }
+    )
+  }
+  
+  setPage(event){
+    this.pedidosPaginador.pageNumber = (event - 1);
+    this.obtenerPedidos();
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 
   async onLogout(): Promise<void>{
@@ -64,24 +101,47 @@ export class EditProfileComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  async onChangeName(): Promise<void> {
-
+  onChangeDatos() {
+    var valores = this.datosform.getRawValue();
+    var user: Usuario = {
+      _id: this.usuario?._id,
+      nombre: (valores.nombre) ? valores.nombre : this.usuario?.nombre,
+      tel: (valores.tel) ? valores.tel : this.usuario?.tel,
+      direccion: (valores.direccion) ? valores.direccion : this.usuario?.direccion,
+    };
+    this.usuariosService.actualizarUsuario(user).subscribe(
+      (resp: any) => {
+        this.usuario = resp.usuario;
+        this.appService.cambiarUsuario(this.usuario);
+        this.toasterService.success('Datos guardados correctamente', 'Operación exitosa');
+      },
+      (err: any) => {
+        this.toasterService.error(err?.mensaje, 'Operacion NO Exitosa ');
+      }
+    )
   }
 
   onChangePassword(){
-
+    var valores = this.passwordform.getRawValue();
+    this.usuariosService.cambiarContraseña(valores.oldpassword, valores.newpassword, this.usuario?._id ).subscribe(
+      (resp: any) => {
+      this.toasterService.success('La contraseña se actualizo correctamente', 'Operación exitosa');
+      },
+      (err: any) => {
+        this.toasterService.error(err?.mensaje, 'Operacion NO Exitosa ');
+      }
+    )
   }
 
-  closeAlert(alert){
-    document.getElementById(alert).style.display = 'none';
+  showOrderDetail(pedido: Pedido){
+    this.pedido = pedido;
+    this.showOrders = false;
+    this.showOrderD = true;
   }
 
-  showOrderDetail(pedidoId){
-
-  }
-  
   hideOrderDetail(){
     this.showOrders = true;
     this.showOrderD = false;
+    this.pedido = new Pedido();
   }
 }
