@@ -1,10 +1,5 @@
 import { AppService } from './components/services/app.service';
 import { Component, OnInit } from '@angular/core';
-
-// IMPORTACION DE ICONOS
-import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,28 +9,33 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
 
-  title = 'coffe&cream';
-  // ICONOS
-  faFacebookF = faFacebookF;
-  faInstagram = faInstagram;
-  faTwitter = faTwitter;
+  component: string = '';
+  component_class: string = '';
 
   constructor(
     private appService: AppService,
     private router: Router,
   ){
     this.appService.cargarStorage();
+    if (this.router.url.includes('/home')) {
+      this.component = 'home';
+      this.component_class = '';
+    }else{
+      this.component = '';
+      this.component_class = 'inner';
+    }
   }
 
-  ngOnInit() {}
-
-  goTo(ruta: string){
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (this.router.url.includes('/home')) {
+        this.component = 'home';
+        this.component_class = '';
+      }else{
+        this.component = '';
+        this.component_class = 'inner';
+      }
     });
-    this.router.navigate(['/'+ ruta]);
   }
 
 }

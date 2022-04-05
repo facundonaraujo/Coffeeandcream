@@ -36,6 +36,7 @@ import { InboxComponent } from './components/inbox/inbox.component';
 import { AdminPanelComponent } from './components/adminPanel/adminPanel.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -125,6 +126,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    FooterComponent,
     HomeComponent,
     AboutComponent,
     ProductsComponent,
@@ -139,7 +141,7 @@ const appRoutes: Routes = [
     AdminPanelComponent,
     MenuComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
