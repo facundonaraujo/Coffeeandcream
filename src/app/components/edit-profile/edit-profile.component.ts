@@ -4,8 +4,6 @@ import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Aplicacion } from 'src/app/models/aplicacion.model';
-import { AppService } from '../services/app.service';
 import { UsuariosService } from '../services/usuarios.service';
 import { ToastrService } from 'ngx-toastr';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
@@ -36,7 +34,6 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private appService: AppService,
     private usuariosService: UsuariosService,
     private pedidosService: PedidosService,
     private _formBuilder: FormBuilder,
@@ -44,6 +41,7 @@ export class EditProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.usuario = this.authService.getCurrentUser();
     this.passwordform = this._formBuilder.group({
       oldpassword: ['', [Validators.required, Validators.minLength(6)]],
       newpassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -53,13 +51,7 @@ export class EditProfileComponent implements OnInit {
       tel: [''],
       direccion: [''],
     });
-    this.appService.crearSubcriber().subscribe(
-      (data: Aplicacion) =>{
-        this.usuario = data.usuario;
-        this.initializeform();
-        this.obtenerPedidos();
-      },
-    )
+    this.initializeform();
   }
 
   initializeform(){
@@ -70,19 +62,21 @@ export class EditProfileComponent implements OnInit {
 
   obtenerPedidos(){
     this.pedidosService.obtenerPedidosCliente(this.pedidosPaginador, this.usuario?._id).subscribe(
-      (resp: any) => {
-        console.log('resp :>> ', resp);
-        this.pedidos = resp.pedidos;
-        if (this.pedidos.length > 0) {
-          this.tienePedidos = true;
-        } else {
-          this.tienePedidos = false;
+      {
+        next: (resp: any) => {
+          console.log('resp :>> ', resp);
+          this.pedidos = resp.pedidos;
+          if (this.pedidos.length > 0) {
+            this.tienePedidos = true;
+          } else {
+            this.tienePedidos = false;
+          }
+          this.pedidosPaginador.totalElements = resp.total;
+        },
+        error: (err: any) => {
+          console.log('Error :>> ', err);
         }
-        this.pedidosPaginador.totalElements = resp.total;
-      },
-      (err: any) => {
-        console.log('Error :>> ', err);
-      }
+      } 
     )
   }
   
@@ -110,26 +104,32 @@ export class EditProfileComponent implements OnInit {
       direccion: (valores.direccion) ? valores.direccion : this.usuario?.direccion,
     };
     this.usuariosService.actualizarUsuario(user).subscribe(
-      (resp: any) => {
-        this.usuario = resp.usuario;
-        this.appService.cambiarUsuario(this.usuario);
-        this.toasterService.success('Datos guardados correctamente', 'Operación exitosa');
-      },
-      (err: any) => {
-        this.toasterService.error(err?.mensaje, 'Operacion NO Exitosa ');
-      }
+      {
+        next: (resp: any) => {
+          this.usuario = resp.usuario;
+          this.usuariosService.setToken(this.usuario);
+          this.toasterService.success('Datos guardados correctamente', 'Operación exitosa');
+        },
+        error: (err: any) => {
+          this.toasterService.error(err?.error?.msg, 'Operacion NO Exitosa ');
+        }
+      } 
     )
   }
 
   onChangePassword(){
     var valores = this.passwordform.getRawValue();
     this.usuariosService.cambiarContraseña(valores.oldpassword, valores.newpassword, this.usuario?._id ).subscribe(
-      (resp: any) => {
-      this.toasterService.success('La contraseña se actualizo correctamente', 'Operación exitosa');
-      },
-      (err: any) => {
-        this.toasterService.error(err?.mensaje, 'Operacion NO Exitosa ');
-      }
+      {
+        next: (resp: any) => {
+          this.usuariosService.setToken(this.usuario);
+          this.toasterService.success('La contraseña se actualizo correctamente', 'Operación exitosa');
+        },
+        error: (err: any) => {
+          console.log('err', err)
+          this.toasterService.error(err?.error?.msg, 'Operacion NO Exitosa ');
+        }
+      }      
     )
   }
 

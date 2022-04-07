@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { Aplicacion } from '../../models/aplicacion.model';
-import { AppService } from '../services/app.service';
+
 // IMPORTACION DE ICONOS
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { Role } from 'src/app/models/enums.model';
 
 @Component({
   selector: 'app-menu',
@@ -23,10 +23,10 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private appService: AppService,
+    private authService: AuthService,
   ){}
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // Carrito
   public total() {
@@ -52,24 +52,17 @@ export class MenuComponent implements OnInit {
     // this.showCart = false;
   }
 
-  acount(): void {
-    this.appService.crearSubcriber().subscribe(
-      (data: Aplicacion) =>{
-        if (data.usuario !== null && data.usuario !== undefined) {
-          if (data.usuario?._id !== null && data.usuario?._id !== undefined && data.usuario?._id !== '') {
-            if (data.usuario?.role === 'ADMIN_ROLE') {
-              this.router.navigate(['/admin-panel']);
-            } else {
-              this.router.navigate(['/edit-profile']);
-            }
-          } else {
-            this.router.navigate(['/login']);
-          }
-        } else {
-          this.router.navigate(['/login']);
-        }
-      },
-    )
+  account(): void {
+    if (this.authService.estaLogueado()) {
+      const usuario = this.authService.getCurrentUser();
+      if (usuario.role === Role.ADMIN) {
+        this.router.navigate(['/admin-panel']);
+      } else {
+        this.router.navigate(['/edit-profile']);
+      }
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   public async comprar(){

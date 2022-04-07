@@ -38,9 +38,6 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { LoginComponent } from './components/auth/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { appReducers } from './app.reducer';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from './common/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -156,11 +153,6 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     NgbPaginationModule,
     NgbAlertModule,
-    StoreModule.forRoot(appReducers),
-    StoreDevtoolsModule.instrument({
-        maxAge: 25, // Retains last 25 states
-        logOnly: environment.production, // Restrict extension to log-only mode
-    }),
     NgbModule,
     MaterialModule,
     FlexLayoutModule,

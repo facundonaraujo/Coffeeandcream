@@ -1,4 +1,3 @@
-import { AppService } from './components/services/app.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -13,10 +12,8 @@ export class AppComponent implements OnInit{
   component_class: string = '';
 
   constructor(
-    private appService: AppService,
     private router: Router,
   ){
-    this.appService.cargarStorage();
     if (this.router.url.includes('/home')) {
       this.component = 'home';
       this.component_class = '';

@@ -4,31 +4,105 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { PaginadorBusquedaTabla } from 'src/app/models/paginador.model';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Server } from "miragejs";
+import { DEFAULT_PRODUCTS } from 'src/app/helpers/products';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService implements Resolve<any> {
   private filePath: any;
-  public actualProduct: any;
   routeParams: any;
   producto: Producto = new Producto();
+  productos: Producto[] = localStorage.getItem('Productos') ? JSON.parse(localStorage.getItem('Productos')) : DEFAULT_PRODUCTS;
 
   constructor(
     public http: HttpClient,
     private storage: AngularFireStorage
-  ) { }
+  ) {
+
+    let server = new Server({
+      routes() {
+        this.namespace = "api";
+
+        this.post("/productosPublic/", (schema, {requestBody}) => {
+          let body: PaginadorBusquedaTabla = JSON.parse(requestBody);
+          let productos = schema.db.productos;
+          let productos_aux = productos.slice(body.desde);
+          let total = productos.length;
+          return {
+            productos: productos_aux.slice(0, body.numeroPorPagina),
+            total: total
+          };
+        });
+
+        this.get("/productosSinPaginar/", (schema) => {
+          let productos = schema.db.productos;
+          let total = productos.length;
+          return {
+            productos: productos,
+            total: total
+          };
+        });
+
+        this.get("/productosEnOfertaSinPaginar/", (schema) => {
+          let productos = schema.db.productos;
+          let total = productos.length;
+          return {
+            productos: productos.filter( producto => producto.isInOferta === true),
+            total: total
+          };
+        });
+
+        this.get("/producto/:id", (schema, {params}) => {
+          return {
+            producto: schema.db.productos.findBy({_id: params.id})
+          };
+        });
+
+        this.put("/producto/:id", (schema, {params, requestBody}) => {
+          let body: Producto = JSON.parse(requestBody);
+          let producto = schema.db.productos.update(params.id, body);
+          localStorage.setItem('Productos', JSON.stringify(schema.db.productos));
+          return {
+            producto: producto
+          };
+        });
+
+        this.post("/producto/", (schema, {requestBody}) => {
+          let body: Producto = JSON.parse(requestBody);
+          let producto = schema.db.productos.insert(body);
+          localStorage.setItem('Productos', JSON.stringify(schema.db.productos));
+          return {
+            producto: producto
+          };
+        });
+
+        this.delete("/producto/:id", (schema, {params}) => {
+          let producto = schema.db.productos.remove({_id: params.id});
+          localStorage.setItem('Productos', JSON.stringify(schema.db.productos));
+          return {
+            producto: producto
+          };
+        });
+      }
+    });
+    server.db.loadData({
+      productos: this.productos
+    });
+    localStorage.setItem('Productos', JSON.stringify(this.productos));
+
+  }
 
   public crearProducto(producto: Producto){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'authorization': localStorage.getItem('token'),
+      'authorization': localStorage.getItem('Token'),
     });
-    let url = environment.urlServices + '/producto';
+    let url = '/api/producto';
     if (producto._id) {
       url += '/' + producto._id;
       return this.http.put(url, producto, {headers});
@@ -41,25 +115,16 @@ export class ProductoService implements Resolve<any> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    let url = environment.urlServices + '/productosPublic/';
-    return this.http.post(url, paginador, {headers});
-  }
-
-  public obtenerProductosPaginados(paginador: PaginadorBusquedaTabla){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
-    });
-    let url = environment.urlServices + '/productosPaginados/';
+    let url = '/api/productosPublic/';
     return this.http.post(url, paginador, {headers});
   }
 
   public obtenerProductosSinPaginar(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('Token'),
     });
-    let url = environment.urlServices + '/productosSinPaginar/';
+    let url = '/api/productosSinPaginar/';
     return this.http.get(url, {headers});
   }
 
@@ -67,33 +132,25 @@ export class ProductoService implements Resolve<any> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    let url = environment.urlServices + '/productosEnOfertaSinPaginar/';
-    return this.http.get(url, {headers});
-  }
-
-  public obtenerProductoPublic(id: string){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    let url = environment.urlServices + '/productoPublic/' + id;
+    let url = '/api/productosEnOfertaSinPaginar/';
     return this.http.get(url, {headers});
   }
 
   public obtenerProducto(id: string){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('Token'),
     });
-    let url = environment.urlServices + '/producto/' + id;
+    let url = '/api/producto/' + id;
     return this.http.get(url, {headers});
   }
 
   public eliminarProducto(id: string){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('Token'),
     });
-    let url = environment.urlServices + '/producto/' + id;
+    let url = '/api/producto/' + id;
     return this.http.delete(url, {headers});
   }
 
@@ -130,7 +187,7 @@ export class ProductoService implements Resolve<any> {
       if ('new' === this.routeParams.id) {
         resolve(this.producto = new Producto());
       }else{
-        this.http.get(environment.urlServices + '/productoPublic/' + this.routeParams.id, {headers})
+        this.http.get('/api/producto/' + this.routeParams.id, {headers})
         .subscribe({
           next: (response: any) => {
             this.producto = response.producto;

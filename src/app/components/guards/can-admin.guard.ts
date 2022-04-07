@@ -1,23 +1,24 @@
 import { Usuario } from './../../models/usuario.model';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AppService } from '../services/app.service';
+import jwt_decode from "jwt-decode";
+import { Role } from 'src/app/models/enums.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsAdminGuard implements CanActivate {
-    usuario: Usuario;
 
     constructor(
         private router: Router,
     ){}
 
     canActivate(): boolean {
-        if (localStorage.getItem('usuario')) {
-            this.usuario = JSON.parse(localStorage.getItem('usuario'));
-            if (this.usuario !== null && this.usuario !== undefined) {
-                if (this.usuario?.role === 'ADMIN_ROLE') {
+        if (localStorage.getItem('Token')) {
+            const token = localStorage.getItem('Token');
+            let usuario: Usuario = jwt_decode(token);
+            if (usuario !== null && usuario !== undefined) {
+                if (usuario?.role === Role.ADMIN) {
                     return true;
                 } else {
                     this.router.navigate(['/home']);

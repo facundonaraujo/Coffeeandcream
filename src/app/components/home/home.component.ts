@@ -66,11 +66,13 @@ export class HomeComponent implements OnInit {
   obtenerProductosEnOferta(){
     this.productoService.obtenerProductosEnOfertaSinPaginar()
       .subscribe(
-        (resp: any) =>{
-          this.coffeesDay = resp.productos;
-        },
-        (err)=> {
-          console.log('err :>> ', err);
+        {
+          next: (resp: any) => {
+            this.coffeesDay = resp.productos;
+          },
+          error: (err: any) => {
+            console.log('err :>> ', err);
+          }
         }
       );
   }

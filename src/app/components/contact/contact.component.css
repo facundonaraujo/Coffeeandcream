@@ -238,7 +238,9 @@ input.email {
 }
 
 .btn-style2:disabled{
-  cursor: not-allowed;
+  background: #dde1e3;
+  color: #576a74;
+  cursor: default;
 }
 
 /*-- contact page --*/

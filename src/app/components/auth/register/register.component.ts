@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Role } from 'src/app/models/enums.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
@@ -50,15 +51,15 @@ export class RegisterComponent implements OnInit {
       nombre: valores.nombre,
       email: valores.email,
       password: valores.password,
-      role: 'USER_ROLE'
+      role: Role.USER
     };
     this.authService.register(usuario).then(
       (resp: any) => {
-        console.log('resp :>> ', resp);
         Swal.fire({
           icon: 'success',
           title: 'Registro completado',
           showConfirmButton: true,
+          confirmButtonText: 'Iniciar Sesión',
           confirmButtonAriaLabel: 'Iniciar Sesión'
         }).then(
           (resp: any) => {
@@ -67,16 +68,10 @@ export class RegisterComponent implements OnInit {
         )
       },
       (err) => {
-        var error = '';
-        if (err.error.msg) {
-          error = err.error.msg;
-        }else if (err.error.mensaje) {
-          error = err.error.mensaje;
-        }
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: error,
+          text: err?.error?.msg,
         })
       }
     );

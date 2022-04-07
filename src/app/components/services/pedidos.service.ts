@@ -31,7 +31,7 @@ export class PedidosService implements Resolve<any> {
     }
   }
 
-  public obtenerPedidosCliente(paginador: PaginadorBusquedaTabla, id: string){
+  public obtenerPedidosCliente(paginador: PaginadorBusquedaTabla, id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('token'),

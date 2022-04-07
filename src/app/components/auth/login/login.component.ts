@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
 
   login(){
     let valores = this.loginForm.getRawValue();
-    let usuario: Usuario = {
+    let login = {
       email: valores.email,
       password: valores.password
     };
-    this.authService.login(usuario).then(
+    this.authService.login(login).then(
       (resp: Usuario) => {
         if (resp.role === 'ADMIN_ROLE') {
           this.router.navigate(['/admin-panel'])
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: err.error.msg,
+          text: err?.error?.msg,
         })
       }
     );

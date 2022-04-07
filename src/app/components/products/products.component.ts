@@ -37,18 +37,29 @@ export class ProductsComponent implements OnInit {
   obtenerProductos(){
     this.productoService.obtenerProductosPublic(this.productosPaginador)
       .subscribe(
-        (resp: any) =>{
-          this.products = resp.productos;
-          this.productosPaginador.totalElements = resp.total;
-        },
-        (err)=> {
-          console.log('err :>> ', err);
+        {
+          next: (resp: any) => {
+            this.products = resp.productos;
+            this.productosPaginador.totalElements = resp.total;
+          },
+          error: (err: any) => {
+            console.log('err :>> ', err);
+          }
         }
       );
   }
 
   setPage(event){
+    let last_paginador = {...this.productosPaginador}
     this.productosPaginador.pageNumber = (event - 1);
+    if (this.productosPaginador.pageNumber > last_paginador.pageNumber) {
+      this.productosPaginador.desde += 9;
+    } else {
+      this.productosPaginador.desde -= 9;
+    }
+    if (this.productosPaginador.desde < 0) {
+      this.productosPaginador.desde = 0;
+    }
     this.obtenerProductos();
     window.scroll({
       top: 0,
