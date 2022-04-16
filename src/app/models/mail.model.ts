@@ -1,6 +1,6 @@
 export class Mail{
     constructor(
-        public _id?: string,
+        public id?: number,
         public asunto?: string,
         public email?: string,
         public mensaje?:string,

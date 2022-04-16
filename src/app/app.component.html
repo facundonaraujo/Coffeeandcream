@@ -1,12 +1,21 @@
-<!-- header -->
-<div class="main-banner {{component_class}}" id="home">
-	<app-menu></app-menu>
-  <div class="banner-info" *ngIf="component === 'home'">
-		<h3>El café es amor, el café es vida</h3>
-	</div>
-</div>
-<!-- //header -->
-<router-outlet></router-outlet>
-<!-- footer -->
-<app-footer></app-footer>
-<!-- //footer -->
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+	<mat-drawer #drawer [mode]="'over'" position="end">
+		<app-cart
+			(onCartClose)="onCartClose($event)"
+		></app-cart>
+	</mat-drawer>
+	<mat-drawer-content>
+		<div class="body-container">
+			<div class="main-banner {{component_class}}" id="home">
+				<app-menu 
+					(onCartToggle)="onCartToggle($event)"
+				></app-menu>
+			  	<div class="banner-info" *ngIf="component === 'home'">
+					<h3>El café es amor, el café es vida</h3>
+				</div>
+			</div>
+			<router-outlet></router-outlet>
+			<app-footer></app-footer>
+		</div>
+	</mat-drawer-content>
+</mat-drawer-container>

@@ -52,13 +52,12 @@
   background-color: transparent;
   padding: 5px 15px;
   border: 2.5px solid black;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 .btnProduct:hover{
   background-color: #343A40;
   color: #ffffff;
   border: 2.5px solid transparent;
-  border-radius: 4px;
 }
 .btnProduct:focus{
   outline: none;
@@ -68,7 +67,7 @@
   width: 45px;
   height: 38px;
   border: 2px solid;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 .btnAddCart{
   margin-left: 10px;
@@ -116,6 +115,38 @@
   height: 250px;
 }
 
+.button-add-cart{
+  width: 230px;
+  color: #fff;
+  padding: 12px 40px;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+  transition: 0.3s ease-in;
+  background: #212529;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.button-add-cart:hover {
+  color: #fff;
+  background: #FA9D33;
+  border: none;
+  outline: none;
+}
+
+.button-add-cart:active {
+  background: #FA9D33;
+  border: none;
+  color: #fff;
+  outline: none;
+}
+
 .button {
   cursor: pointer;
 	width: fit-content;
@@ -130,10 +161,10 @@
 	font-size: 20px;
 	color: #111;
 	text-decoration: none;
-	padding: 10px 15px;
-	border: 1px solid #aaa;
+	padding: 10px 70px;
+	border: 1px solid #111;
 	font-weight: bold;
-  border-radius: 50px;
+  border-radius: 6px;
 }
 
 .button a:after{
@@ -142,7 +173,7 @@
 	top: 0;
 	right: -10px;
 	width: 0%;
-	background: #111;
+	background: #fa9d33;
 	height: 100%;
 	z-index: -1;
 	transition: width 0.3s ease-in-out;
@@ -154,12 +185,12 @@
 	width: 150%;
 	left: -10px;
 	transform-origin: left;
-	
 }
 
 .button a:hover {
 	color: #fff;
 	transition: all 0.5s ease;
+  border: 1px solid #fa9d33;
 }
 
 .content {
@@ -185,30 +216,31 @@
   margin-right: 5px;
 }
 
-.btnm{
-  margin-right: 40px;
-}
-
 .selectT{
   margin-top: 7px !important;
   margin-right: 40px !important;
 }
 
-input[type="number"] {
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
+.cart-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
+.cart-btn-text{
+  font-size: 17px;
+  margin-top: 2px;
+}
+
+.cart-icon{
+  font-size: 18px;
+  margin-right: 1rem;
 }
 
 .number-input {
   margin-right: 15px;
-  border-radius: 50px;
-  border: 1px solid #aaa;
+  border-radius: 6px;
+  border: 1px solid #212529;
   display: inline-flex;
 }
 
@@ -221,47 +253,66 @@ input[type=number]::-webkit-outer-spin-button {
   outline:none;
   -webkit-appearance: none;
   background-color: transparent;
-  border: none;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 56px;
+  height: 54px;
+  border: none;
   cursor: pointer;
   margin: 0;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
 }
 
-.number-input button:before,
-.number-input button:after {
-  display: inline-block;
-  position: absolute;
-  content: '';
-  width: 1rem;
-  height: 2px;
-  background-color: #212121;
-  transform: translate(-50%, -50%);
-}
-.number-input button.plus:after {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-.number-input input[type=number] {
-  max-width: 5rem;
+.number-input .input-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 111px;
   padding: .5rem;
-  border: solid #aaa;
-  border-width: 0 1px;
-  font-size: 1.5rem;
-  height: 3rem;
+  border: none;
+  font-size: 16px;
+  height: 54px;
   font-weight: bold;
   text-align: center;
 }
 
-.number-input input[type=number]:focus, .number-input input[type=number]:active {
-  border: solid #aaa;
-  border-width: 0 1px;
+.horizontal-divider{
+  border-left: 1px solid #c1cdd4;
+  margin: 5px 0;
+}
+
+.basic-cart-link {
+  color: #212529;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+  transition: 0.3s ease-in;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  width: 100%;
+  text-align: center;
+}
+
+.basic-cart-link:hover {
+  color: #FA9D33;
+  border: none;
   outline: none;
 }
 
+.link-row{
+  display: flex;
+  /* width: 230px; */
+}
+
+.btn-row{
+  display: flex;
+  align-items: center;
+}
 
 /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
 @media (max-width: 1200px){

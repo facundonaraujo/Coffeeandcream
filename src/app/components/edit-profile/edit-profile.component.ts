@@ -61,7 +61,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   obtenerPedidos(){
-    this.pedidosService.obtenerPedidosCliente(this.pedidosPaginador, this.usuario?._id).subscribe(
+    this.pedidosService.obtenerPedidosCliente(this.pedidosPaginador, this.usuario?.id).subscribe(
       {
         next: (resp: any) => {
           console.log('resp :>> ', resp);
@@ -98,7 +98,7 @@ export class EditProfileComponent implements OnInit {
   onChangeDatos() {
     var valores = this.datosform.getRawValue();
     var user: Usuario = {
-      _id: this.usuario?._id,
+      id: this.usuario?.id,
       nombre: (valores.nombre) ? valores.nombre : this.usuario?.nombre,
       tel: (valores.tel) ? valores.tel : this.usuario?.tel,
       direccion: (valores.direccion) ? valores.direccion : this.usuario?.direccion,
@@ -119,7 +119,7 @@ export class EditProfileComponent implements OnInit {
 
   onChangePassword(){
     var valores = this.passwordform.getRawValue();
-    this.usuariosService.cambiarContraseña(valores.oldpassword, valores.newpassword, this.usuario?._id ).subscribe(
+    this.usuariosService.cambiarContraseña(valores.oldpassword, valores.newpassword, this.usuario?.id ).subscribe(
       {
         next: (resp: any) => {
           this.usuariosService.setToken(this.usuario);

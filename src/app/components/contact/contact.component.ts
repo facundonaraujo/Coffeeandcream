@@ -1,8 +1,10 @@
 import { MailService } from '../services/mail.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
+import { Mail } from 'src/app/models/mail.model';
+import { ToastrService } from 'ngx-toastr';
+
 // ICONOS
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +20,6 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 export class ContactComponent implements OnInit {
   // Formulario ccontacto
   public contactForm: FormGroup;
-  private sendMessageModalRef: NgbModalRef;
   // Iconos
   faCheck = faCheck;
   faHome = faHome;
@@ -28,18 +29,18 @@ export class ContactComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    private maiñService: MailService,
-    public sendMessageModal: NgbModal,
+    private mailService: MailService,
     private meta: Meta,
-    private titleService: Title
+    private titleService: Title,
+    public toasterService: ToastrService,
     ) {
-    this.contactForm = this.fb.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      affair: ['', [Validators.required]],
-      message: ['', [Validators.required]]
-    });
+      this.contactForm = this.fb.group({
+        name: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        phone: new FormControl('', [Validators.required]),
+        affair: new FormControl('', [Validators.required]),
+        message: new FormControl('', [Validators.required])
+      });
    }
 
   ngOnInit(): void {
@@ -54,20 +55,24 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  public sendForm(form, confirmsend){
-    const data: any = {
-      contactName: form.contactName,
-      contactEmail: form.contactEmail,
-      contactPhone: form.contactPhone,
-      contactAffair: form.contactAffair,
-      contactMessage: form.contactMessage
+  public sendForm(form_data, form){
+    const data: Mail = {
+      asunto: form_data.affair,
+      email: form_data.email,
+      mensaje: form_data.message,
+      nombre: form_data.name,
+      tel: form_data.phone,
     };
-    this.maiñService.sendMessage(data);
-    this.contactForm.reset();
-    this.openConfirmSendModal(confirmsend);
+    this.mailService.sendMessage(data).subscribe({
+      next: (resp) => {
+        form.form.markAsPristine();
+        form.resetForm();
+        this.toasterService.success('El formulario ha sido enviado', 'Operación exitosa');
+      },
+      error: (err) => {
+        this.toasterService.error(err?.error?.msg, 'Operacion NO Exitosa ');
+      }
+    });
   }
 
-  openConfirmSendModal(confirmsend){
-    this.sendMessageModalRef = this.sendMessageModal.open(confirmsend);
-  }
 }

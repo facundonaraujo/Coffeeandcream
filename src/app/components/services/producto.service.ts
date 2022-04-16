@@ -59,7 +59,7 @@ export class ProductoService implements Resolve<any> {
 
         this.get("/producto/:id", (schema, {params}) => {
           return {
-            producto: schema.db.productos.findBy({_id: params.id})
+            producto: schema.db.productos.findBy({id: params.id})
           };
         });
 
@@ -82,7 +82,7 @@ export class ProductoService implements Resolve<any> {
         });
 
         this.delete("/producto/:id", (schema, {params}) => {
-          let producto = schema.db.productos.remove({_id: params.id});
+          let producto = schema.db.productos.remove({id: params.id});
           localStorage.setItem('Productos', JSON.stringify(schema.db.productos));
           return {
             producto: producto
@@ -103,8 +103,8 @@ export class ProductoService implements Resolve<any> {
       'authorization': localStorage.getItem('Token'),
     });
     let url = '/api/producto';
-    if (producto._id) {
-      url += '/' + producto._id;
+    if (producto.id) {
+      url += '/' + producto.id;
       return this.http.put(url, producto, {headers});
     } else {
       return this.http.post(url, producto, {headers});
@@ -136,7 +136,7 @@ export class ProductoService implements Resolve<any> {
     return this.http.get(url, {headers});
   }
 
-  public obtenerProducto(id: string){
+  public obtenerProducto(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('Token'),
@@ -145,7 +145,7 @@ export class ProductoService implements Resolve<any> {
     return this.http.get(url, {headers});
   }
 
-  public eliminarProducto(id: string){
+  public eliminarProducto(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('Token'),

@@ -156,14 +156,11 @@ input.email {
   resize: none;
   width: 100%;
   background: none;
-  color: #999;
   font-size: 14px;
-  padding: 1em;
   outline: none;
   letter-spacing: 1px;
   min-height: 10em;
   -webkit-appearance: none;
-  margin-top: 1em;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
@@ -223,6 +220,7 @@ input.email {
   transition: 0.3s ease-in;
   background: #212529;
   border: transparent;
+  border-radius: 6px;
 }
 
 .btn-style2:hover {

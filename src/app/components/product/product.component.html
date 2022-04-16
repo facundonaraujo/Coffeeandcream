@@ -2,7 +2,8 @@
 	<li class="breadcrumb-item">
 		<a [routerLink]="['/home']">Home</a>
 	</li>
-	<li class="breadcrumb-item active">Producto</li>  <!-- CAMBIAR -->
+	<li class="breadcrumb-item active">Producto</li>
+	<li class="breadcrumb-item active" *ngIf="product">{{product.nombre}}</li>
 </ol>
 <!-------------------------------------------------------- START PRODUCT ------------------------------------------------------------------->
 <div class="container productContainer">
@@ -14,59 +15,48 @@
     </div>
     <div class="col-xl-6 mb-5">
      <div class="container">
-       <div class="row">
-         <div class="col">
-          <span class="badge badge-pill offert" *ngIf="product.isInOferta === true">SALE</span>
-          <h2 class="productTitle">{{product.nombre}}</h2>
-         </div>
-       </div>
-       <div class="row">
-          <div class="product-bottom-details">
-            <div class="product-price"><small *ngIf="product.isInOferta === true">${{product.precioAnterior}}</small>${{product.precio}}</div>
+        <div class="row">
+          <div class="col">
+           <span class="badge badge-pill offert" *ngIf="product.isInOferta === true">SALE</span>
+           <h2 class="productTitle">{{product.nombre}}</h2>
           </div>
-       </div>
-       <div class="row">
-         <div class="col-9">
-          <p class="productDescription">{{product.descripcion}}</p>
-         </div>
-       </div>
-       <form class="example-form" id="product">
-          <div class="row mb-2">
-            <div class="col-3 selectT">
-              <div class="number-input">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-                <input class="quantity" min="1" readonly name="quantity" value="1" type="number">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="row">
+           <div class="product-bottom-details">
+             <div class="product-price"><small *ngIf="product.isInOferta === true">${{product.precioAnterior}}</small>${{product.precio}}</div>
+           </div>
+        </div>
+        <div class="row">
+          <div class="col-9">
+           <p class="productDescription">{{product.descripcion}}</p>
+          </div>
+        </div>
+        <div class="row" *ngIf="!estaEnCarrito">
+          <div>
+            <div class="button-add-cart" (click)="agregarAlCarrito()">
+              <fa-icon class="cart-icon" [icon]="faShoppingBag"></fa-icon>
+              <span class="cart-btn-text">Agregar</span> 
+             </div>
+          </div>
+        </div>
+        <section *ngIf="estaEnCarrito">
+          <div class="btn-row">
+            <div class="number-input">
+              <button class="number-remove-btn" (click)="removerItemCarrito()" >
+                <fa-icon [icon]="faMinus"></fa-icon>
+              </button>
+              <div class="horizontal-divider"></div>
+              <div class="input-value">
+                <span>{{cantidad}}</span>
               </div>
+              <div class="horizontal-divider"></div>
+              <button class="number-add-btn plus" (click)="agregarItemCarrito()" >
+                <fa-icon [icon]="faPlus"></fa-icon>
+              </button>
             </div>
-            <div class="col-4">
-              <mat-form-field appearance="outline">
-                <mat-select required value="">
-                  <mat-option value="">Tamaño</mat-option>
-                  <mat-option value="Chico">Chico</mat-option>
-                  <mat-option value="Mediano">Mediano</mat-option>
-                  <mat-option value="Grande">Grande</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+            <button class="button-add-cart" (click)="goToCheckout()">Finalizar compra</button>
           </div>
-        </form>
-       <div class="row">
-          <div class="col-3 btnm">
-            <div class="content animated fadeInLeft">
-              <div class="button" (click)="agregarAlCarrito()">
-                <a class="cart-btn"><i class="cart-icon ion-bag"></i>Añadir al carrito</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="content animated fadeInLeft">
-              <div class="button" (click)="goToProducts()">
-                <a class="cart-btn"><i class="cart-icon ion-bag"></i>Seguir Comprando</a>
-              </div>
-            </div>
-          </div>
-       </div>
+        </section>
      </div>
     </div>
   </div>

@@ -16,6 +16,7 @@ import { PedidosService } from './components/services/pedidos.service';
 import { ProductoService } from './components/services/producto.service';
 import { MailService } from './components/services/mail.service';
 import { UsuariosService } from './components/services/usuarios.service';
+import { CartService } from './components/services/cart.service';
 import { IsAdminGuard } from './components/guards/can-admin.guard';
 import { IsUserGuard } from './components/guards/can-edit.guard';
 import { IsLoggedGuard } from './components/guards/isLogged.guard';
@@ -37,6 +38,7 @@ import { AdminPanelComponent } from './components/adminPanel/adminPanel.componen
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from './common/material.module';
@@ -69,8 +71,8 @@ const appRoutes: Routes = [
     component: ContactComponent
   },
   {
-    path: 'cart', 
-    component: CartComponent
+    path: 'checkout', 
+    component: CheckoutComponent
   },
   {
     path: 'login', 
@@ -139,6 +141,7 @@ const appRoutes: Routes = [
     MenuComponent,
     LoginComponent,
     RegisterComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -169,7 +172,8 @@ const appRoutes: Routes = [
     MailService,
     ProductoService,
     UsuariosService,
-    IsLoggedGuard
+    IsLoggedGuard,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

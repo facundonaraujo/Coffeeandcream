@@ -1,5 +1,5 @@
 html,
-body {
+body, .body-container {
 	padding: 0px;
 	margin: 0;
 	margin-left: 0px;
@@ -9,6 +9,11 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar{
+  width: 0px;
+  background-color: transparent;
 }
 
 body a {
@@ -25,12 +30,22 @@ a:hover {
   text-decoration: none;
 }
 
-body::-webkit-scrollbar{
+.body-container{
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mat-drawer-content {
+  overflow: hidden !important;
+}
+
+.body-container::-webkit-scrollbar{
   width: 10px;
   background-color: #1b1d1d;
 }
 
-body::-webkit-scrollbar-thumb{
+.body-container::-webkit-scrollbar-thumb{
   border-radius: 10px;
   border:2px solid #1b1d1d;
   background-color: #FA9D33;
@@ -445,7 +460,7 @@ color: #1e272e !important;
 /*--/banner --*/
 
 .main-banner {
-  background: url(../img/banner.jpg)no-repeat center;
+  background: url(../img/banner.jpg) no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -457,7 +472,7 @@ color: #1e272e !important;
 }
 
 .main-banner.inner {
-  background: url(../img/banner.jpg)no-repeat center;
+  background: url(../img/banner.jpg) no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -620,4 +635,14 @@ a.btn.active {
 
 #product .mat-form-field-wrapper {
   padding-bottom: 0em;
+}
+
+.mat-divider{
+  width: 100%;
+  border-top: 1px solid #c1cdd4;
+}
+
+.mat-badge-content {
+  background: #fa9d33 !important;
+  color: #fff !important;
 }

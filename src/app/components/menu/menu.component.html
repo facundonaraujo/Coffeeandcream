@@ -23,7 +23,11 @@
               <a class="menuText" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contacto</a>
             </li>
             <li>
-              <a type="button" class="menuText" (click)="cart()" ><fa-icon [icon]="faShoppingBag"></fa-icon></a>
+              <a type="button" class="menuText" (click)="cart()">
+                <div style="padding-right: 3px;" matBadge="{{this.carrito.length}}" matBadgeHidden="{{this.carrito.length === 0}}"  matBadgePosition="after">
+                  <fa-icon [icon]="faShoppingBag"></fa-icon>
+                </div>
+              </a>
             </li>
             <li>
               <a type="button" class="menuText" (click)="account()" ><fa-icon [icon]="faUser"></fa-icon></a>

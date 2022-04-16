@@ -10,7 +10,7 @@
         <h3 class="tittle text-center mb-lg-5 mb-3"><span class="sub-tittle">Encuéntranos</span>Contactenos</h3>
         <div class="row contact-main-info mt-5">
             <div class="col-md-7 contact-right">
-                <form name="contactForm" [formGroup]="contactForm">
+                <form #f="ngForm"  name="contactForm" [formGroup]="contactForm" (submit)="sendForm(contactForm.value, f)">
                   <div fxLayout="row" fxLayoutAlign="center">
                     <mat-form-field appearance="outline"  fxFlex="100%" >
                         <mat-label>Nombre</mat-label>
@@ -70,7 +70,5 @@
                 </div>
             </div>
         </div>
-  
-  
     </div>
 </section>

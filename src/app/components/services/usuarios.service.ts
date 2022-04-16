@@ -21,7 +21,7 @@ export class UsuariosService{
 
         this.put("/usuario/:id", (schema, {params, requestBody}) => {
           let body: Usuario = JSON.parse(requestBody);
-          let usuario = schema.db.usuarios.findBy({_id: params.id});
+          let usuario = schema.db.usuarios.findBy({id: params.id});
           if (usuario) {
             usuario = schema.db.usuarios.update(params.id, body)
             localStorage.setItem('Usuarios', JSON.stringify(schema.db.usuarios));
@@ -35,7 +35,7 @@ export class UsuariosService{
 
         this.put("/cambiarPassword/:id", (schema, {params, requestBody}) => {
           let body: ChangePasswordPayload = JSON.parse(requestBody);
-          let usuario = schema.db.usuarios.findBy({_id: params.id});
+          let usuario = schema.db.usuarios.findBy({id: params.id});
           if (usuario && usuario.password === body.oldpassword) {
             usuario = schema.db.usuarios.update(params.id, {password: body.newpassword})
             localStorage.setItem('Usuarios', JSON.stringify(schema.db.usuarios));
@@ -69,7 +69,7 @@ export class UsuariosService{
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('Token'),
     });
-    let url = '/api/usuario/' + usuario._id;
+    let url = '/api/usuario/' + usuario.id;
     return this.http.put(url, usuario, {headers});
   }
 

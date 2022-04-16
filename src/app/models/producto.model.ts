@@ -1,6 +1,6 @@
 export class Producto{
   constructor(
-      public _id?: string,
+      public id?: number,
       public nombre?: string,
       public codigo?: string,
       public descripcion?: string,

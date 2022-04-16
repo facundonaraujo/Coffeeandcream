@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,8 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { Role } from 'src/app/models/enums.model';
+import { Carrito } from 'src/app/models/cart.model';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-menu',
@@ -20,13 +22,26 @@ export class MenuComponent implements OnInit {
   faShoppingBag = faShoppingBag;
   faUser = faUserCircle;
   faTimes = faTimes;
+  
+  public carrito: Carrito[] = [];
+  cartToggle: boolean = false;
+  @Output('onCartToggle') onCartToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private router: Router,
     private authService: AuthService,
+    private cartService: CartService,
   ){}
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.cartService.carrito.subscribe({
+      next: resp => {
+        if (resp !== undefined && resp !== null) {
+          this.carrito = resp;
+        }
+      }
+    });
+  }
 
   // Carrito
   public total() {
@@ -45,7 +60,8 @@ export class MenuComponent implements OnInit {
   }
 
   cart(): void {
-    // this.showCart = !this.showCart;
+    this.cartToggle = !this.cartToggle;
+    this.onCartToggle.emit(this.cartToggle);
   }
 
   closeCart(): void {

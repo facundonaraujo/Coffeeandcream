@@ -2,7 +2,7 @@ import { Role } from '../models/enums.model'
 
 export class Usuario{
     constructor(
-        public _id?: number,
+        public id?: number,
         public email?: string,
         public password?: string,
         public nombre?: string,

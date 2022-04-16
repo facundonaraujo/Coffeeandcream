@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { CartService } from './components/services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,11 @@ export class AppComponent implements OnInit{
 
   component: string = '';
   component_class: string = '';
+  @ViewChild('drawer', { static: false }) public drawer: MatDrawer;
 
   constructor(
     private router: Router,
+    private cartService: CartService,
   ){
     if (this.router.url.includes('/home')) {
       this.component = 'home';
@@ -33,6 +37,25 @@ export class AppComponent implements OnInit{
         this.component_class = 'inner';
       }
     });
+    this.cartService.addElementToCart$.subscribe({
+      next: resp => {
+        if (resp !== undefined && resp !== null) {
+          this.onCartOpen(resp);
+        }
+      }
+    });
+  }
+
+  onCartToggle(event){
+    this.drawer.toggle();
+  }
+
+  onCartClose(event){
+    this.drawer.close();
+  }
+
+  onCartOpen(event){
+    this.drawer.open();
   }
 
 }

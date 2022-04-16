@@ -34,8 +34,6 @@ export class AuthService{
 
         this.post("/register/", (schema, {requestBody}) => {
           let body: Usuario = JSON.parse(requestBody);
-          const usuarios = schema.db.usuarios;
-          body._id = (usuarios.length + 1);
           const usuario = schema.db.usuarios.insert(body);
           localStorage.setItem('Usuarios', JSON.stringify(schema.db.usuarios));
           if (usuario) {

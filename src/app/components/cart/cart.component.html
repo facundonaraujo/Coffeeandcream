@@ -1,153 +1,78 @@
-<!-------------------------------------------------------- START CART ------------------------------------------------------------------->
-<!-------------------------------------------------------- START SECTION 0 ------------------------------------------------------------------->
-<div class="container cartContainer" *ngIf="showSection0">
-  <div class="row errorCartRow">
-    <div class="col">
-      <fa-icon class="crossIcon" [icon]="faTimes"></fa-icon>
-      <h1 class="noItemsTxt">¡NO HA AÑADIDO NINGUN ELEMENTO AL CARRITO!</h1>
+<div class="cartContainer">
+  <div class="container">
+    <div class="my-cart-title-row">
+      <div style="padding-right: 3px;" matBadge="{{this.carrito.length}}" matBadgeHidden="{{this.carrito.length === 0}}"  matBadgePosition="after" >
+        <fa-icon class="cart-icon" [icon]="faShoppingBag"></fa-icon>
+      </div>
+      <p class="my-cart-title">Mi Carrito</p>
+      <fa-icon class="cross-icon" (click)="onCartClose.emit(true)" [icon]="faTimes"></fa-icon>
     </div>
+    <ng-container *ngIf="this.carrito.length === 0">
+      <div class="row errorCartRow">
+        <div class="col">
+          <h2 class="noItemsTxt">Parece que tu carrito está vacío.</h2>
+          <h2 class="noItemsTxt">¡Empieza a añadir productos!</h2>
+        </div>
+      </div>
+      <div class="go-products-row mt-5">
+        <div>
+          <button class="basic-cart-btn" (click)="onCartClose.emit(true)" [routerLink]="['/products']">Ver productos</button>
+        </div>
+      </div>
+    </ng-container>
   </div>
-  <div class="row mt-5">
-    <div class="col-12 col-lg-8 col-xl-6 offset-xl-3 offset-lg-2">
-      <button class="btn btn-dark btn-block" [routerLink]="['/products']"><fa-icon class="arrowIconLeft0" [icon]="faAngleLeft"></fa-icon> Volver a la Tienda </button>
+  <ng-container *ngIf="this.carrito.length > 0">
+    <div class="container">
+      <h3 class="firstTittle">Resumen</h3>
+      <mat-divider class="mat-divider"></mat-divider>
     </div>
-  </div>
-</div>
-<!-------------------------------------------------------- START SECTION 1 ------------------------------------------------------------------->
-<div class="container cartContainer" *ngIf="showSection1">
-  <div class="row align-items-center">
-    <div class="col-1">
-      <p class="circle">1</p>
-    </div>
-    <div class="col-md-6 col-9 ml-4 ml-md-1">
-      <h3 class="firstTittle">Revisar total</h3>
-    </div>
-  </div>
-  <div class="row rowMainCartList">
-    <div class="col">
-      <ul class="mainListUl">
-        <li class="mainListLi">
-          <div class="row">
-            <div class="col-lg-3 col-md-2 d-none d-md-block mainListText"><p>Producto</p></div>
-            <div class="col-lg-4 col-md-4 d-none d-md-block mainListText"><p>Descripción</p></div>
-            <div class="col-lg-2 col-md-2 d-none d-md-block mainListText"><p>Precio</p></div>
-            <div class="col-lg-2 col-md-2 d-none d-md-block mainListText"><p>Cantidad</p></div>
-            <div class="col-lg-1 col-md-2 d-none d-md-block mainListText"><p>Quitar</p></div>
+    <div class="products-container">
+      <div class="item" *ngFor="let item of carrito">
+        <div class="first-item-row">
+          <div class="img-item-row">
+            <img class="item-image" src="{{item.producto.img}}" alt="">
+            <span class="item-name">{{item.producto.nombre}}</span>
           </div>
-        </li>
-      </ul>
-      <div>
-        <div class="contenedorList">
-          <ul class="mainListUl">
-            <li class="secondaryListLi" *ngFor="let pcart of carrito">
-              <div class="row align-items-center secondaryListRow">
-                <div class="col-lg-3 col-md-2 d-block d-md-none secondaryListText"><span class="mobilTxt">Producto</span></div>
-                <div class="col-lg-3 col-md-2 secondaryListText"><span>{{pcart.data.productName}}</span></div>
-                <div class="col-lg-4 col-md-4 d-block d-md-none secondaryListText"><span class="mobilTxt">Descripción</span></div>
-                <div class="col-lg-4 col-md-4 secondaryListText"><span>{{pcart.data.productDescription}}</span></div>
-                <div class="col-lg-2 col-md-2 d-block d-md-none secondaryListText"><span class="mobilTxt">Precio</span></div>
-                <div class="col-lg-2 col-md-2 secondaryListText"><span class="pl-md-3">${{pcart.data.productPrice}}</span></div>
-                <div class="col-lg-2 col-md-2 d-block d-md-none secondaryListText"><span class="mobilTxt">Cantidad</span></div>
-                <div class="col-lg-2 col-md-2 secondaryListText"><span class="cantTxt">{{pcart.data.productCant}}</span></div>
-                <div class="col-lg-2 col-md-2 d-block d-md-none secondaryListText"><span class="mobilTxt">Quitar</span></div>
-                <div class="col-lg-1 col-md-2 secondaryListText"><fa-icon type="button" class="trashIcon" [icon]="faTrash" (click)="removerItemCarrito(pcart.id)"></fa-icon></div>
-              </div>
-            </li>
-          </ul>
+          <fa-icon class="delete-icon" (click)="removerProductoCarrito(item.producto)" [icon]="faTrash"></fa-icon>
+        </div>
+        <div class="second-item-row">
+          <div class="number-input">
+            <button class="number-remove-btn" (click)="removerItemCarrito(item.producto)" >
+              <fa-icon [icon]="faMinus"></fa-icon>
+            </button>
+            <div class="horizontal-divider"></div>
+            <div class="input-value">
+              <span>{{item.cantidad}}</span>
+            </div>
+            <div class="horizontal-divider"></div>
+            <button class="number-add-btn plus" (click)="agregarItemCarrito(item.producto)" >
+              <fa-icon [icon]="faPlus"></fa-icon>
+            </button>
+          </div>
+          <span class="item-total">{{(item.producto.precio * item.cantidad) | currency}}</span>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <p class="totalPrice">Total: {{total() | currency}}</p>
-    </div>
-  </div>
-  <div class="row nextSection">
-    <div class="col-xl-3 col-lg-4 col-sm-6">
-      <button class="btn btn-dark btn-block btnReponsive" [routerLink]="['/products']"><fa-icon class="arrowIconLeft1" [icon]="faAngleLeft"></fa-icon> Seguir Comprando </button>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-sm-6">
-      <button class="btn btn-dark btn-block btnReponsive" (click)="goSection2()">Continuar <fa-icon class="arrowIconRigth" [icon]="faAngleRight"></fa-icon></button>
-    </div>
-  </div>
-</div>
-<!-------------------------------------------------------- START SECTION 2 ------------------------------------------------------------------->
-<div class="container cartContainer" *ngIf="showSection2">
-  <form [formGroup]="newOrderForm" (ngSubmit)="newOrder(newOrderForm.value)">
-  <div class="row align-items-center">
-    <div class="col-1">
-      <p class="circle">2</p>
-    </div>
-    <div class="col-md-6 col-9 ml-4 ml-md-1">
-      <h3 class="firstTittle">Detalles de facturación</h3>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-10">
-        <div class="form-group">
-          <label for="nombre">Nombre y apellido</label>
-          <input type="text" class="form-control" placeholder="Nombre y apellido" name="nombreyapellido" id="nombreyapellido" formControlName="clientName" required>
+    <div class="container">
+      <div class="subtotal-row">
+        <span class="subtotal-text">Subtotal</span>
+        <span class="subtotal-text">{{subtotal() | currency}}</span>
+      </div>
+      <div class="total-row">
+        <span class="total-text">Total</span>
+        <span class="total-text">{{subtotal() | currency}}</span>
+      </div>
+      <section class="buttons-row">
+        <div class="go-products-row mt-4">
+          <button class="basic-cart-btn" (click)="goToCheckout()">Finalizar compra</button>
         </div>
-        <div class="form-group">
-          <label for="direccion">Dirección</label>
-          <input type="text" class="form-control" placeholder="Número de la casa y nombre de la calle" name="direccion" id="direccion" formControlName="clientDirection" required>
+        <div class="go-products-row mt-3">
+          <button class="basic-cart-btn" (click)="vaciarCarrito()">Vaciar carrito</button>
         </div>
-        <div class="form-group">
-          <label for="localidad">Localidad</label>
-          <input type="text" class="form-control" placeholder="Localidad" name="localidad" id="localidad" formControlName="clientLocalidad" required>
+        <div class="go-products-row mt-3">
+          <a class="basic-cart-link" (click)="onCartClose.emit(true)" [routerLink]="['/products']">Seguir Comprando</a>
         </div>
-
-        <div class="form-group">
-          <label for="provincia">Provincia</label>
-          <select name="provincia" id="provincia" class="form-control" formControlName="clientProvincia" required>
-            <option value="Mendoza">Mendoza</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="telefono">Teléfono</label>
-          <input type="text" class="form-control" placeholder="Número de telefono" name="telefono" id="telefono" formControlName="clientTelefono" required>
-        </div>
-
-        <div class="form-group">
-          <label for="formaDePago">Forma de pago</label>
-          <select name="formaDePago" id="formaDePago" class="form-control" formControlName="clientFormaPago" required>
-            <option value="Efectivo">Efectivo</option>
-            <option value="Tarjeta" disabled>Tarjeta</option>
-          </select>
-        </div>
+      </section>
     </div>
-  </div>
-  <div class="row nextSection">
-    <div class="col-xl-3 col-lg-4 col-sm-6">
-      <button class="btn btn-dark btn-block btnReponsive" (click)="backSection1()"><fa-icon class="arrowIconLeft" [icon]="faAngleLeft"></fa-icon> Volver</button>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-sm-6">
-      <button class="btn btn-dark btn-block btnReponsive" type="submit" [disabled]="newOrderForm.invalid">Finalizar Compra <fa-icon class="arrowIconRigth" [icon]="faAngleRight"></fa-icon></button>
-    </div>
-  </div>
-  </form>
-</div>
-<!-------------------------------------------------------- START SECTION 3 ------------------------------------------------------------------->
-<div class="container cartContainer" *ngIf="showSection3">
-  <div class="row align-items-center">
-    <div class="col-1">
-      <p class="circle">3</p>
-    </div>
-    <div class="col-md-6 col-9 ml-4 ml-md-1">
-      <h3 class="firstTittle">Gracias por su compra</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <h2 class="confirmTittle text-center"><fa-icon class="confirmIcon" [icon]="faCheck"></fa-icon> Su pedido se a efectuado satisfactoriamente</h2>
-      <p class="confirmSubtittle text-center">Sus productos se enviaran a la direcciòn especificada, le contactaremos a la brevedad.</p>
-    </div>
-  </div>
-  <div class="row nextSection" >
-    <div class="col-10 offset-1">
-      <button class="btn btn-dark btn-block" [routerLink]="['/home']">Ir al inicio</button>
-    </div>
-  </div>
+  </ng-container>
 </div>

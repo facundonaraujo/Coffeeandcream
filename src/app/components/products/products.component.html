@@ -14,7 +14,7 @@
 		</div>
 		<div class="row justify-content-start">
 			<div class="col-4" *ngFor="let coffee of products | paginate: { itemsPerPage: 9, currentPage: (this.productosPaginador.pageNumber + 1), totalItems: this.productosPaginador.totalElements }">
-				<div class="product-card" (click)="productDetail(coffee._id)">
+				<div class="product-card" (click)="productDetail(coffee.id)">
 					<div class="badge" *ngIf="coffee.isInOferta">
 						<p class="badge-title">SALE</p>
 					</div>
