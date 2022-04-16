@@ -314,6 +314,15 @@
   align-items: center;
 }
 
+.product-add{
+  margin-top: 10px;
+  color: #24AF64;
+}
+
+.product-add-icon{
+  margin-right: 8px;
+}
+
 /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
 @media (max-width: 1200px){
   .btnAddCart{

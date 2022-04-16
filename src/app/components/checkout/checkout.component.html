@@ -1,79 +1,93 @@
-<!-------------------------------------------------------- START STEP 1 ------------------------------------------------------------------->
-<div class="container cartContainer" *ngIf="step === 1">
-  <form [formGroup]="newOrderForm" (ngSubmit)="newOrder(newOrderForm.value)">
-  <div class="row align-items-center">
-    <div class="col-1">
-      <p class="circle">2</p>
-    </div>
-    <div class="col-md-6 col-9 ml-4 ml-md-1">
-      <h3 class="firstTittle">Detalles de facturación</h3>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a [routerLink]="['/home']">Home</a>
+	</li>
+	<li class="breadcrumb-item active">Checkout</li>
+</ol>
+<section class="pb-md-5 pb-4 pt-md-3 pt-2 checkout-section">
+  <div class="container checkout-container pb-md-5 pb-4 pt-md-3 pt-2">
+    <ng-container *ngIf="step === 1">
+      <div class="container products-container">
+        <div style="margin-bottom: 20px;">
+          <h3 class="resumen-title">Carrito</h3>
+          <mat-divider class="mat-divider"></mat-divider>
+        </div>
+        <div class="item" *ngFor="let item of carrito">
+          <div class="first-item-row">
+            <div class="img-item-row">
+              <img class="item-image" src="{{item.producto.img}}" alt="">
+              <span class="item-name">{{item.producto.nombre}}</span>
+            </div>
+            <fa-icon class="delete-icon" (click)="removerProductoCarrito(item.producto)" [icon]="faTrash"></fa-icon>
+          </div>
+          <div class="second-item-row">
+            <div class="number-input">
+              <button class="number-remove-btn" (click)="removerItemCarrito(item.producto)" >
+                <fa-icon [icon]="faMinus"></fa-icon>
+              </button>
+              <div class="horizontal-divider"></div>
+              <div class="input-value">
+                <span>{{item.cantidad}}</span>
+              </div>
+              <div class="horizontal-divider"></div>
+              <button class="number-add-btn plus" (click)="agregarItemCarrito(item.producto)" >
+                <fa-icon [icon]="faPlus"></fa-icon>
+              </button>
+            </div>
+            <span class="item-total">{{(item.producto.precio * item.cantidad) | currency}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="step === 2">
+      <div class="container products-container">
+        <mat-stepper orientation="vertical" [linear]="true" #stepper style="background: transparent;">
+          <mat-step>
+            <ng-template matStepLabel>Datos de Facturación</ng-template>
+            <ng-template matStepContent>
+              <p>This content was rendered lazily</p>
+              <button mat-button matStepperNext>Next</button>
+            </ng-template>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Método de entrega</ng-template>
+            <ng-template matStepContent>
+              <p>This content was also rendered lazily</p>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </ng-template>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Método de pago</ng-template>
+            <p>This content was rendered eagerly</p>
+            <button mat-button matStepperPrevious>Back</button>
+          </mat-step>
+        </mat-stepper>
+      </div>
+    </ng-container>
+    <div class="container total-container">
+      <div class="go-back-btn-row" (click)="step = 1" *ngIf="step === 2">
+        <fa-icon style="margin-right: 8px;" [icon]="faChevronLeft"></fa-icon>
+        <span>Volver al carrito</span>
+      </div>
+      <h3 class="resumen-title">Resumen</h3>
+      <mat-divider class="mat-divider"></mat-divider>
+      <div class="subtotal-row">
+        <span class="subtotal-text">Subtotal</span>
+        <span class="subtotal-text">{{subtotal() | currency}}</span>
+      </div>
+      <div class="envio-row">
+        <span class="envio-text">Costo del envio</span>
+        <span class="envio-text">Gratis</span>
+      </div>
+      <mat-divider class="mat-divider"></mat-divider>
+      <div class="total-row">
+        <span class="total-text">Total</span>
+        <span class="total-text">{{subtotal() | currency}}</span>
+      </div>
+      <div class="continue-btn-row mt-4">
+        <button class="basic-cart-btn" (click)="step = 2" *ngIf="step === 1">Continuar con la compra</button>
+      </div>
     </div>
   </div>
-  <div class="row mt-3">
-    <div class="col-10">
-        <div class="form-group">
-          <label for="nombre">Nombre y apellido</label>
-          <input type="text" class="form-control" placeholder="Nombre y apellido" name="nombreyapellido" id="nombreyapellido" formControlName="clientName" required>
-        </div>
-        <div class="form-group">
-          <label for="direccion">Dirección</label>
-          <input type="text" class="form-control" placeholder="Número de la casa y nombre de la calle" name="direccion" id="direccion" formControlName="clientDirection" required>
-        </div>
-        <div class="form-group">
-          <label for="localidad">Localidad</label>
-          <input type="text" class="form-control" placeholder="Localidad" name="localidad" id="localidad" formControlName="clientLocalidad" required>
-        </div>
-
-        <div class="form-group">
-          <label for="provincia">Provincia</label>
-          <select name="provincia" id="provincia" class="form-control" formControlName="clientProvincia" required>
-            <option value="Mendoza">Mendoza</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="telefono">Teléfono</label>
-          <input type="text" class="form-control" placeholder="Número de telefono" name="telefono" id="telefono" formControlName="clientTelefono" required>
-        </div>
-
-        <div class="form-group">
-          <label for="formaDePago">Forma de pago</label>
-          <select name="formaDePago" id="formaDePago" class="form-control" formControlName="clientFormaPago" required>
-            <option value="Efectivo">Efectivo</option>
-            <option value="Tarjeta" disabled>Tarjeta</option>
-          </select>
-        </div>
-    </div>
-  </div>
-  <div class="row nextSection">
-    <div class="col-xl-3 col-lg-4 col-sm-6">
-      <button class="btn btn-dark btn-block btnReponsive" (click)="backSection1()"><fa-icon class="arrowIconLeft" [icon]="faAngleLeft"></fa-icon> Volver</button>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-sm-6">
-      <button class="btn btn-dark btn-block btnReponsive" type="submit" [disabled]="newOrderForm.invalid">Finalizar Compra <fa-icon class="arrowIconRigth" [icon]="faAngleRight"></fa-icon></button>
-    </div>
-  </div>
-  </form>
-</div>
-<!-------------------------------------------------------- START STEP 2 ------------------------------------------------------------------->
-<div class="container cartContainer" *ngIf="step === 2">
-  <div class="row align-items-center">
-    <div class="col-1">
-      <p class="circle">3</p>
-    </div>
-    <div class="col-md-6 col-9 ml-4 ml-md-1">
-      <h3 class="firstTittle">Gracias por su compra</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <h2 class="confirmTittle text-center"><fa-icon class="confirmIcon" [icon]="faCheck"></fa-icon> Su pedido se a efectuado satisfactoriamente</h2>
-      <p class="confirmSubtittle text-center">Sus productos se enviaran a la direcciòn especificada, le contactaremos a la brevedad.</p>
-    </div>
-  </div>
-  <div class="row nextSection" >
-    <div class="col-10 offset-1">
-      <button class="btn btn-dark btn-block" [routerLink]="['/home']">Ir al inicio</button>
-    </div>
-  </div>
-</div>
+</section>  

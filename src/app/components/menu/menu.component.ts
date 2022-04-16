@@ -43,29 +43,9 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  // Carrito
-  public total() {
-    // let total = 0;
-    // this.carrito.forEach(p => total += p.data.productTotal);
-    // return total;
-  }
-
-  // public removerItemCarrito(cartid){
-  //   this.cartService.quitarProducto(this.userId, cartid);
-  // }
-
-  // MOSTRAR CARRITO Y LOGIN
-  openCart(){
-    // this.showCart = true;
-  }
-
   cart(): void {
     this.cartToggle = !this.cartToggle;
     this.onCartToggle.emit(this.cartToggle);
-  }
-
-  closeCart(): void {
-    // this.showCart = false;
   }
 
   account(): void {
@@ -79,10 +59,6 @@ export class MenuComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
-  }
-
-  public async comprar(){
-
   }
 
 }

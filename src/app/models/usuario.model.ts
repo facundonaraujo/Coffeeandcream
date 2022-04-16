@@ -9,6 +9,8 @@ export class Usuario{
         public role?: Role,
         public tel?: string,
         public direccion?: string,
+        public localidad?: string,
+        public provincia?: string,
     ){}
 }
 

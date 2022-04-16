@@ -31,7 +31,7 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
   ) {}
 
-  async ngOnInit() { 
+  ngOnInit() { 
     this.cartService.carrito.subscribe({
       next: resp => {
         if (resp !== undefined && resp !== null) {
@@ -61,10 +61,6 @@ export class CartComponent implements OnInit {
 
   public vaciarCarrito(){
     this.cartService.vaciarCarrito();
-  }
-
-  public goToCheckout(){
-
   }
 
 }

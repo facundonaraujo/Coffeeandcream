@@ -64,7 +64,7 @@
       </div>
       <section class="buttons-row">
         <div class="go-products-row mt-4">
-          <button class="basic-cart-btn" (click)="goToCheckout()">Finalizar compra</button>
+          <button class="basic-cart-btn" (click)="onCartClose.emit(true)" [routerLink]="['/checkout']">Finalizar compra</button>
         </div>
         <div class="go-products-row mt-3">
           <button class="basic-cart-btn" (click)="vaciarCarrito()">Vaciar carrito</button>

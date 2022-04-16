@@ -1,8 +1,10 @@
 <ol class="breadcrumb">
 	<li class="breadcrumb-item">
-		<a [routerLink]="['/home']">Home</a>
+    <a [routerLink]="['/home']">Home</a>
 	</li>
-	<li class="breadcrumb-item active">Producto</li>
+	<li class="breadcrumb-item active">
+    <a [routerLink]="['/products']">Productos</a>
+  </li>
 	<li class="breadcrumb-item active" *ngIf="product">{{product.nombre}}</li>
 </ol>
 <!-------------------------------------------------------- START PRODUCT ------------------------------------------------------------------->
@@ -54,7 +56,11 @@
                 <fa-icon [icon]="faPlus"></fa-icon>
               </button>
             </div>
-            <button class="button-add-cart" (click)="goToCheckout()">Finalizar compra</button>
+            <button class="button-add-cart" [routerLink]="['/checkout']">Finalizar compra</button>
+          </div>
+          <div class="btn-row product-add">
+            <fa-icon class="product-add-icon" [icon]="faCheck"></fa-icon>
+            <span>Producto Agregado</span>
           </div>
         </section>
      </div>
