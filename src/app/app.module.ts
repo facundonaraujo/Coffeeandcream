@@ -17,6 +17,7 @@ import { ProductoService } from './components/services/producto.service';
 import { MailService } from './components/services/mail.service';
 import { UsuariosService } from './components/services/usuarios.service';
 import { CartService } from './components/services/cart.service';
+import { ServerService } from './components/services/server.service';
 import { IsAdminGuard } from './components/guards/can-admin.guard';
 import { IsUserGuard } from './components/guards/can-edit.guard';
 import { IsLoggedGuard } from './components/guards/isLogged.guard';
@@ -173,7 +174,8 @@ const appRoutes: Routes = [
     ProductoService,
     UsuariosService,
     IsLoggedGuard,
-    CartService
+    CartService,
+    ServerService
   ],
   bootstrap: [AppComponent]
 })
