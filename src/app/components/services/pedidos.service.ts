@@ -10,7 +10,7 @@ import { ServerService } from './server.service';
 })
 export class PedidosService implements Resolve<any> {
   routeParams: any;
-  pedido: Pedido = new Pedido();
+  pedido: Pedido | any;
 
   constructor(
     private serverService: ServerService,
@@ -20,7 +20,7 @@ export class PedidosService implements Resolve<any> {
     return this.serverService.crearPedido(pedido);
   }
 
-  public obtenerPedidosCliente(paginador: PaginadorBusquedaTabla, id: number){
+  public obtenerPedidosCliente(paginador: PaginadorBusquedaTabla, id: number | any){
     return this.serverService.obtenerPedidosCliente(paginador, id);
   }
 
@@ -39,7 +39,7 @@ export class PedidosService implements Resolve<any> {
   public getPedido(): Promise<any> {
     return new Promise((resolve, reject) => {
       if ('new' === this.routeParams.id) {
-        resolve(this.pedido = new Pedido());
+        resolve(this.pedido = {});
       }else{
         this.serverService.getPedido(this.routeParams.id)
         .subscribe({

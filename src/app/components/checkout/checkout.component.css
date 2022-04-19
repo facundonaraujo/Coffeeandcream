@@ -97,6 +97,13 @@
   color: #fff;
   outline: none;
 }
+.basic-cart-btn:disabled {
+  background: #dde1e3;
+  color: #576a74;
+  cursor: default;
+  border: none;
+  outline: none;
+}
 
 .delete-icon{
   color: #454546;

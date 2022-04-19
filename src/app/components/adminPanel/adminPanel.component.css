@@ -9,7 +9,7 @@
     max-height: 1050px;
   }
   .links{
-    color: #3A92C1;
+    color: #FA9D33;
   }
   .pedidosTitle{
     font-weight: 700;
@@ -87,7 +87,6 @@
   .btnBack{
     margin-bottom: 30px;
   }
-  .mainListUl{}
   /*--------------------------------------RESPONSIVE SETTINGS --------------------------------------*/
   @media (max-width: 768px){
     .accountMenu{

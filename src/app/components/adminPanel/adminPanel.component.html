@@ -114,7 +114,7 @@
                           <div class="col-lg-5 secondaryListText d-lg-none d-block"><span class="mobilTxt">Pedido</span></div>
                           <div class="col-lg-5 secondaryListText"><span>{{pedido.id}}</span></div>
                           <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Total</span></div>
-                          <div class="col-lg-3 secondaryListText"><span>${{pedido.data.total}}</span></div>
+                          <div class="col-lg-3 secondaryListText"><span>${{pedido.total}}</span></div>
                           <div class="col-lg-3 secondaryListText"><button class="btn btn-outline-dark showDBtn" (click)="showOrderDetail(pedido.id)">Ver detalle</button></div>
                         </div>
                       </li>
@@ -145,18 +145,18 @@
                       <li *ngFor="let pedidoDe of pedidoDetalle">
                         <div class="row align-items-center secondaryListRow">
                           <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Producto</span></div>
-                          <div class="col-lg-6 secondaryListText"><span>{{pedidoDe.data.productName}}</span></div>
+                          <div class="col-lg-6 secondaryListText"><span>{{pedidoDe.producto?.nombre}}</span></div>
                           <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Cantidad Pedida</span></div>
-                          <div class="col-lg-3 secondaryListText"><span class="pedidoDeTxt">{{pedidoDe.data.productCant}}</span></div>
+                          <div class="col-lg-3 secondaryListText"><span class="pedidoDeTxt">{{pedidoDe.cantidad}}</span></div>
                           <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Precio Unitario</span></div>
-                          <div class="col-lg-3 secondaryListText"><span class="pedidoDeTxt">${{pedidoDe.data.productPrice}}</span></div>
+                          <div class="col-lg-3 secondaryListText"><span class="pedidoDeTxt">${{pedidoDe.producto?.precio}}</span></div>
                         </div>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div class="col-12 lineaSup" *ngFor="let ped of pedido">
-                  <h4 class="totalText">Total: ${{ped.data.total}}</h4>
+                <div class="col-12 lineaSup">
+                  <h4 class="totalText">Total: ${{pedido?.total}}</h4>
                 </div>
               </div>
               <div class="row mt-4">

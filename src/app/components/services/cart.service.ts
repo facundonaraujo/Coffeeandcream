@@ -7,7 +7,7 @@ import { Carrito } from 'src/app/models/cart.model';
   providedIn: 'root'
 })
 export class CartService {
-  private default_carrito: Carrito[] = localStorage.getItem('Carrito') ? JSON.parse(localStorage.getItem('Carrito')) : [];
+  private default_carrito: Carrito[] = localStorage.getItem('Carrito') ? JSON.parse(localStorage.getItem('Carrito') || '[]') : [];
 
   private updateCarrito = new BehaviorSubject<Carrito[]>(this.default_carrito);
   carrito = this.updateCarrito.asObservable();

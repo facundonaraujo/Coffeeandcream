@@ -55,7 +55,7 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  public sendForm(form_data, form){
+  public sendForm(form_data: any, form: any){
     const data: Mail = {
       asunto: form_data.affair,
       email: form_data.email,

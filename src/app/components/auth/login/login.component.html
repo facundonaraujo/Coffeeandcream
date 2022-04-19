@@ -17,16 +17,16 @@
                         <mat-form-field appearance="outline"  fxFlex="100%" >
                             <mat-label>Correo electrónico</mat-label>
                             <input matInput formControlName="email" required>
-                            <mat-error *ngIf="loginForm.get('email').hasError('required')">Correo electrónico es obligatorio</mat-error>
-                            <mat-error *ngIf="loginForm.get('email').hasError('email')">El correo electrónico ingresado no es valido</mat-error>
+                            <mat-error *ngIf="loginForm?.get('email')?.hasError('required')">Correo electrónico es obligatorio</mat-error>
+                            <mat-error *ngIf="loginForm?.get('email')?.hasError('email')">El correo electrónico ingresado no es valido</mat-error>
                         </mat-form-field>
                       </div>
                       <div fxLayout="row" fxLayoutAlign="center">
                         <mat-form-field appearance="outline"  fxFlex="100%" >
                             <mat-label>Contraseña</mat-label>
                             <input matInput type="password" formControlName="password" required>
-                            <mat-error *ngIf="loginForm.get('password').hasError('required')">Contraseña es obligatoria</mat-error>
-                            <mat-error *ngIf="loginForm.get('password').hasError('minlength')">Debe tener 6 caracteres como minimo</mat-error>
+                            <mat-error *ngIf="loginForm?.get('password')?.hasError('required')">Contraseña es obligatoria</mat-error>
+                            <mat-error *ngIf="loginForm?.get('password')?.hasError('minlength')">Debe tener 6 caracteres como minimo</mat-error>
                         </mat-form-field>
                       </div>
                       <div fxLayout="row" fxLayoutAlign="center">

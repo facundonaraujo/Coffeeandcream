@@ -15,6 +15,7 @@ export class IsUserGuard implements CanActivate {
     canActivate(): boolean {
         if (localStorage.getItem('Token')) {
             const token = localStorage.getItem('Token');
+            if (!token) return false;
             let usuario: Usuario = jwt_decode(token);
             if (usuario !== null && usuario !== undefined) {
                 if (usuario?.role === Role.USER) {

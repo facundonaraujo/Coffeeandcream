@@ -22,8 +22,8 @@ export class AdminProductsComponent implements OnInit {
   public faMugHot  = faMugHot;
 
   // Productos
-  public products = [];
-  public coffeesDay = [];
+  public products: Producto[] = [];
+  public coffeesDay: Producto[] = [];
   public documentId: any;
   public currentStatus = 1;
   public newProductForm = new FormGroup({
@@ -44,9 +44,9 @@ export class AdminProductsComponent implements OnInit {
   });
   private image: any;
   private editImage: any;
-  private newProductModalRef: NgbModalRef;
-  private editProductModalRef: NgbModalRef;
-  private deleteProductModalRef: NgbModalRef;
+  private newProductModalRef: NgbModalRef | any;
+  private editProductModalRef: NgbModalRef | any;
+  private deleteProductModalRef: NgbModalRef | any;
   public productImgActual: any;
   public isCreatingProduct = true;
   public isCoffeeDay = false;
@@ -79,16 +79,16 @@ export class AdminProductsComponent implements OnInit {
   ngOnInit(): void {}
 
   // MODALES
-  openNewProductModal(contenido): void {
+  openNewProductModal(contenido: any): void {
     this.newProductModalRef = this.newProductModal.open(contenido);
 
   }
 
   closeNewProductModal(): void {
-    this.newProductModalRef.close();
+    this.newProductModalRef?.close();
   }
 
-  openEditProductModal(edit, productId): void {
+  openEditProductModal(edit: any, productId: number | any): void {
     // this.editProductModalRef = this.editProductModal.open(edit);
     // const editSubscribe = this.firestoreService.getProduct(productId).subscribe((product) => {
     //   this.documentId = productId;
@@ -107,17 +107,17 @@ export class AdminProductsComponent implements OnInit {
   }
 
   closeEditProductModal(): void {
-    this.editProductModalRef.close();
+    this.editProductModalRef?.close();
   }
 
-  openDeleteProductModal(deleteproduct, productId): void{
+  openDeleteProductModal(deleteproduct: any, productId: number | any): void{
     this.deleteProductModalRef = this.deleteProductModal.open(deleteproduct);
     this.documentId = productId;
     console.log(this.documentId);
   }
 
   closeDeleteProductModal(): void{
-    this.deleteProductModalRef.close();
+    this.deleteProductModalRef?.close();
   }
 
   // FORMULARIOS
@@ -129,7 +129,7 @@ export class AdminProductsComponent implements OnInit {
     this.editImage = event.target.files[0];
   }
 
-  newProduct(form) {
+  newProduct(form: any) {
       // this.coffeeDayPrice = 0;
       // this.isCoffeeDay = false;
       // const data: Product = {
@@ -154,7 +154,7 @@ export class AdminProductsComponent implements OnInit {
       //   });
   }
 
-  editProduct(form) {
+  editProduct(form: any) {
     // this.isCoffeeDay = false;
     // if (this.editImage == null){
     //   const data: Product = {
@@ -207,6 +207,14 @@ export class AdminProductsComponent implements OnInit {
     // this.firestoreService.preDeleteProduct(this.documentId);
     // this.closeDeleteProductModal();
     // this.documentId = '';
+  }
+
+  addCoffeeDay(id: number | any){
+
+  }
+
+  deleteCoffeeDay(id: number | any){
+
   }
 
 }

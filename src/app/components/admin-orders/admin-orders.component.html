@@ -33,14 +33,14 @@
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Código</span></div>
                 <div class="col-md-3 col-12 col-xl-2 secondaryListText"><span class="pedidoId">{{pedido.id}}</span></div>
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Cliente</span></div>
-                <div class="col-md-2 secondaryListText"><span class="clientName">{{pedido.data.clientName}}</span></div>
+                <div class="col-md-2 secondaryListText"><span class="clientName">{{pedido?.cliente?.nombre}}</span></div>
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Dirección</span></div>
-                <div class="col-md-2 col-xl-3 secondaryListText"><span>{{pedido.data.clientDirection}}, {{pedido.data.clientLocalidad}}, {{pedido.data.clientProvincia}}</span></div>
+                <div class="col-md-2 col-xl-3 secondaryListText"><span>{{pedido?.cliente?.direccion}}, {{pedido?.cliente?.codigoPostal}}, {{pedido?.cliente?.provincia}}</span></div>
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Télefono</span></div>
-                <div class="col-md-2 secondaryListText"><span class="pedidoTel">{{pedido.data.clientTelefono}}</span></div>
+                <div class="col-md-2 secondaryListText"><span class="pedidoTel">{{pedido?.cliente?.tel}}</span></div>
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Total</span></div>
-                <div class="col-md-1 secondaryListText"><span class="pedidoTotal">${{pedido.data.total}}</span></div>
-                <div class="col-md-2 secondaryListText"><button class="btn btn-outline-dark btn-responsive" (click)="showOrderDetail(pedido.id)">Ver detalle</button></div>
+                <div class="col-md-1 secondaryListText"><span class="pedidoTotal">${{pedido.total}}</span></div>
+                <div class="col-md-2 secondaryListText"><button class="btn btn-outline-dark btn-responsive" (click)="showOrderDetail(pedido?.id)">Ver detalle</button></div>
               </div>
             </li>
           </ul>
@@ -71,22 +71,22 @@
             <li class="liResponsive" *ngFor="let pedidoDe of pedidoDetalle">
               <div class="row align-items-center secondaryListRow">
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Producto</span></div>
-                <div class="col-md-3 secondaryListText"><span>{{pedidoDe.data.productName}}</span></div>
+                <div class="col-md-3 secondaryListText"><span>{{pedidoDe.producto?.nombre}}</span></div>
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Id</span></div>
-                <div class="col-md-3 secondaryListText"><span>{{pedidoDe.id}}</span></div>
+                <div class="col-md-3 secondaryListText"><span>{{pedidoDe.producto?.id}}</span></div>
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Código</span></div>
-                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt">{{pedidoDe.data.productCode}}</span></div>
+                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt">{{pedidoDe.producto?.codigo}}</span></div>
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Cantidad Pedida</span></div>
-                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt2">{{pedidoDe.data.productCant}}</span></div>
+                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt2">{{pedidoDe.cantidad}}</span></div>
                 <div class="col-12 d-block d-md-none secondaryListText"><span class="mobilTxt">Precio Unitario</span></div>
-                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt3">${{pedidoDe.data.productPrice}}</span></div>
+                <div class="col-md-2 secondaryListText"><span class="pedidoDeTxt3">${{pedidoDe.producto?.precio}}</span></div>
               </div>
             </li>
           </ul>
         </div>
       </div>
-      <div class="col-12 lineaSup" *ngFor="let ped of pedido">
-        <h4 class="totalText">Total: ${{ped.data.total}}</h4>
+      <div class="col-12 lineaSup">
+        <h4 class="totalText">Total: ${{pedido?.total}}</h4>
       </div>
     </div>
     <div class="row mt-4">

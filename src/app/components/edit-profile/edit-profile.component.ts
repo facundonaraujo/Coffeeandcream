@@ -18,16 +18,15 @@ import { PaginadorBusquedaTabla } from 'src/app/models/paginador.model';
 export class EditProfileComponent implements OnInit {
   faExclamationCircle = faExclamationCircle;
   active = 'Miperfil';
-  datosform: FormGroup;
-  passwordform: FormGroup;
+  datosform: FormGroup = new FormGroup({});
+  passwordform: FormGroup = new FormGroup({});
   public usuario: Usuario = new Usuario();
   public pedidos: Pedido[] = [];
   public pedidosPaginador: PaginadorBusquedaTabla = new PaginadorBusquedaTabla();
   public tienePedidos = false;
   public showOrders = true;
   public showOrderD = false;
-  public pedido: Pedido;
-
+  public pedido: Pedido | any;
   public pedidoId: any;
   public pedidoDetalle = [];
 
@@ -55,9 +54,9 @@ export class EditProfileComponent implements OnInit {
   }
 
   initializeform(){
-    this.datosform.get('nombre').setValue(this.usuario?.nombre);
-    this.datosform.get('tel').setValue(this.usuario?.tel);
-    this.datosform.get('direccion').setValue(this.usuario?.direccion);
+    this.datosform.get('nombre')?.setValue(this.usuario?.nombre);
+    this.datosform.get('tel')?.setValue(this.usuario?.tel);
+    this.datosform.get('direccion')?.setValue(this.usuario?.direccion);
   }
 
   obtenerPedidos(){
@@ -80,7 +79,7 @@ export class EditProfileComponent implements OnInit {
     )
   }
   
-  setPage(event){
+  setPage(event: number){
     this.pedidosPaginador.pageNumber = (event - 1);
     this.obtenerPedidos();
     window.scroll({
@@ -96,8 +95,8 @@ export class EditProfileComponent implements OnInit {
   }
 
   onChangeDatos() {
-    var valores = this.datosform.getRawValue();
-    var user: Usuario = {
+    let valores = this.datosform.getRawValue();
+    let user: Usuario = {
       id: this.usuario?.id,
       nombre: (valores.nombre) ? valores.nombre : this.usuario?.nombre,
       tel: (valores.tel) ? valores.tel : this.usuario?.tel,
@@ -118,7 +117,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   onChangePassword(){
-    var valores = this.passwordform.getRawValue();
+    let valores = this.passwordform.getRawValue();
     this.usuariosService.cambiarContraseña(valores.oldpassword, valores.newpassword, this.usuario?.id ).subscribe(
       {
         next: (resp: any) => {
@@ -142,6 +141,6 @@ export class EditProfileComponent implements OnInit {
   hideOrderDetail(){
     this.showOrders = true;
     this.showOrderD = false;
-    this.pedido = new Pedido();
+    this.pedido = undefined
   }
 }

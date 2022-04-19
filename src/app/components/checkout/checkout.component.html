@@ -42,25 +42,102 @@
     <ng-container *ngIf="step === 2">
       <div class="container products-container">
         <mat-stepper orientation="vertical" [linear]="true" #stepper style="background: transparent;">
-          <mat-step>
+          <mat-step [stepControl]="stepOneForm">
             <ng-template matStepLabel>Datos de Facturación</ng-template>
             <ng-template matStepContent>
-              <p>This content was rendered lazily</p>
-              <button mat-button matStepperNext>Next</button>
+              <form [formGroup]="stepOneForm" style="width: 100%; margin-bottom: 10px;">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombre" required>
+                    <mat-error *ngIf="stepOneForm.get('nombre')?.hasError('required')">El nombre es obligatorio</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required readonly>
+                    <mat-error *ngIf="stepOneForm.get('email')?.hasError('required')">El email es obligatorio</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput formControlName="tel" required>
+                    <mat-error *ngIf="stepOneForm.get('tel')?.hasError('required')">El telefono es obligatorio</mat-error>
+                </mat-form-field>
+              </form>
+              <div style="display: flex; align-items: center; justify-content: flex-start;">
+                <button class="basic-cart-btn" matStepperNext [disabled]="stepOneForm.invalid">Siguiente</button>
+                <div class="basic-cart-btn" style="visibility: hidden;"></div>
+              </div>
             </ng-template>
           </mat-step>
-          <mat-step>
+          <mat-step [stepControl]="stepTwoForm1">
             <ng-template matStepLabel>Método de entrega</ng-template>
             <ng-template matStepContent>
-              <p>This content was also rendered lazily</p>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <div [formGroup]="stepTwoForm1" style="width: 100%; margin-bottom: 10px;">
+                <form [formGroup]="stepTwoForm1">
+                  <mat-form-field appearance="outline"  style="width: 100%;">
+                    <mat-label>Seleccione un método de entrega</mat-label>
+                    <mat-select formControlName="metodoEntrega" required (selectionChange)="checkMetodoDeEntrega($event.value)">
+                      <mat-option *ngFor="let option of metodoEntregaOpciones" [value]="option.value" >
+                        {{option.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </form>
+                <form [formGroup]="stepTwoForm2">
+
+                  <ng-container *ngIf="esEnvioDomicilio">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Dirección</mat-label>
+                        <input matInput formControlName="direccion" required>
+                        <mat-error *ngIf="stepTwoForm2.get('direccion')?.hasError('required')">La direccion es obligatoria</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Código postal</mat-label>
+                        <input type="number" matInput formControlName="codigoPostal" required>
+                        <mat-error *ngIf="stepTwoForm2.get('codigoPostal')?.hasError('required')">El código postal es obligatorio</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Provincia</mat-label>
+                        <input matInput formControlName="provincia" required>
+                        <mat-error *ngIf="stepTwoForm2.get('provincia')?.hasError('required')">La Provincia es obligatoria</mat-error>
+                    </mat-form-field>
+                  </ng-container>
+                </form>
+
+              </div>
+              <div style="display: flex; align-items: center;">
+                <button class="basic-cart-btn" style="margin-right: 10px;" matStepperPrevious>Anterior</button>
+                <button class="basic-cart-btn" matStepperNext [disabled]="
+                    stepTwoForm1.invalid || (esEnvioDomicilio === true && stepTwoForm2.invalid)
+                ">Siguiente</button>
+              </div>
             </ng-template>
           </mat-step>
           <mat-step>
             <ng-template matStepLabel>Método de pago</ng-template>
-            <p>This content was rendered eagerly</p>
-            <button mat-button matStepperPrevious>Back</button>
+            <form [formGroup]="stepThreeForm" style="width: 100%; margin-bottom: 10px;">
+              <mat-form-field  appearance="outline" style="width: 100%;">
+                <mat-label>Seleccione un método de pago</mat-label>
+                <mat-select formControlName="formaPago" required>
+                  <mat-option *ngFor="let option of metodoPagoOpciones" [value]="option.value" [disabled]="option.disabled">
+                    {{option.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
+            <div style="display: flex; align-items: center;">
+              <button class="basic-cart-btn" style="margin-right: 10px;" matStepperPrevious>Anterior</button>
+              <button class="basic-cart-btn" matStepperPrevious [disabled]="stepThreeForm.invalid || loading" (click)="newOrder()">
+                <span *ngIf="!loading">Pagar</span>
+                <mat-progress-spinner
+                  [diameter]="20"
+                  *ngIf="loading"
+                  color="primary"
+                  mode="indeterminate"
+                  style="margin-left: auto; margin-right: auto;"
+                >
+                </mat-progress-spinner>
+              </button>
+            </div>
           </mat-step>
         </mat-stepper>
       </div>

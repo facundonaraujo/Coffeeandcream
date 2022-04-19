@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
   public faPlus = faPlus;
   public faMinus = faMinus;
 
-  public product: Producto = new Producto();
+  public product: Producto | any;
   public carrito: Carrito[] = [];
   public estaEnCarrito: boolean = false;
   public cantidad: number = 1;
@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
       next: resp => {
         if (resp !== undefined && resp !== null) {
           this.carrito = resp;
-          let i = this.carrito.findIndex(prod => prod.producto.id === this.product.id);
+          let i = this.carrito.findIndex(prod => prod.producto.id === this.product?.id);
           if (i > -1) {
             this.cantidad = this.carrito[i].cantidad;
             this.estaEnCarrito = true;

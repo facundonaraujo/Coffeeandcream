@@ -11,8 +11,8 @@ import { ProductoService } from '../services/producto.service';
 })
 export class ProductsComponent implements OnInit {
   // Productos
-  public products = [];
-  public selectedProduct: Producto
+  public products: Producto[] = [];
+  public selectedProduct: Producto | any;
   public productosPaginador: PaginadorBusquedaTabla = new PaginadorBusquedaTabla();
   constructor(
     private productoService: ProductoService,
@@ -49,7 +49,7 @@ export class ProductsComponent implements OnInit {
       );
   }
 
-  setPage(event){
+  setPage(event: number){
     let last_paginador = {...this.productosPaginador}
     this.productosPaginador.pageNumber = (event - 1);
     if (this.productosPaginador.pageNumber > last_paginador.pageNumber) {
@@ -68,7 +68,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  productDetail(productId): void{
+  productDetail(productId: number | any): void{
     window.scroll({
       top: 0,
       left: 0,

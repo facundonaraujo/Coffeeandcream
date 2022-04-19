@@ -27,7 +27,7 @@
 			<div class="col">
 				<owl-carousel-o [options]="customOptions">
 					<ng-container *ngFor="let coffee of coffeesDay">
-						<ng-template carouselSlide [id]="coffee.id">
+						<ng-template carouselSlide [id]="coffee.nombre">
 							<div class="product-card" (click)="productDetail(coffee.id)">
 								<div class="badge">
 									<p class="badge-title">SALE</p>

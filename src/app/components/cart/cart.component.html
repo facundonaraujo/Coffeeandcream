@@ -30,8 +30,8 @@
       <div class="item" *ngFor="let item of carrito">
         <div class="first-item-row">
           <div class="img-item-row">
-            <img class="item-image" src="{{item.producto.img}}" alt="">
-            <span class="item-name">{{item.producto.nombre}}</span>
+            <img class="item-image" src="{{item.producto?.img}}" alt="">
+            <span class="item-name">{{item.producto?.nombre}}</span>
           </div>
           <fa-icon class="delete-icon" (click)="removerProductoCarrito(item.producto)" [icon]="faTrash"></fa-icon>
         </div>
@@ -49,7 +49,7 @@
               <fa-icon [icon]="faPlus"></fa-icon>
             </button>
           </div>
-          <span class="item-total">{{(item.producto.precio * item.cantidad) | currency}}</span>
+          <span class="item-total">{{(item.producto.precio * item!.cantidad) | currency}}</span>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ import { ServerService } from './server.service';
 export class ProductoService implements Resolve<any> {
   private filePath: any;
   routeParams: any;
-  producto: Producto = new Producto();
+  producto: Producto | any;
 
   constructor(
     private serverService: ServerService,
@@ -73,7 +73,7 @@ export class ProductoService implements Resolve<any> {
   public getProducto(): Promise<any> {
     return new Promise((resolve, reject) => {
       if ('new' === this.routeParams.id) {
-        resolve(this.producto = new Producto());
+        resolve(this.producto = {});
       }else{
         this.serverService.getProducto(this.routeParams.id)
         .subscribe({

@@ -10,7 +10,7 @@ import { ServerService } from './server.service';
 })
 export class MailService implements Resolve<any> {
   routeParams: any;
-  mail: Mail = new Mail();
+  mail: Mail | any;
 
   constructor(
     private serverService: ServerService,
@@ -31,7 +31,7 @@ export class MailService implements Resolve<any> {
   public getMail(): Promise<any> {
     return new Promise((resolve, reject) => {
       if ('new' === this.routeParams.id) {
-        resolve(this.mail = new Mail());
+        resolve(this.mail = {});
       }else{
         this.serverService.getMail(this.routeParams.id)
         .subscribe({

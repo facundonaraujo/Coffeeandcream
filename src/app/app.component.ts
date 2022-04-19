@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
 
   component: string = '';
   component_class: string = '';
-  @ViewChild('drawer', { static: false }) public drawer: MatDrawer;
+  @ViewChild('drawer', { static: false }) public drawer: MatDrawer | any;
 
   constructor(
     private router: Router,
@@ -46,15 +46,15 @@ export class AppComponent implements OnInit{
     });
   }
 
-  onCartToggle(event){
+  onCartToggle(event: any){
     this.drawer.toggle();
   }
 
-  onCartClose(event){
+  onCartClose(event: any){
     this.drawer.close();
   }
 
-  onCartOpen(event){
+  onCartOpen(event: any){
     this.drawer.open();
   }
 

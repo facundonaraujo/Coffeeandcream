@@ -24,11 +24,11 @@
           <li class="liResponsive" *ngFor="let product of products">
             <div class="row align-items-center secondaryListRow">
               <div class="col-sm-2 d-block d-sm-none secondaryListText"><span class="mobilTxt">Código</span></div>
-              <div class="col-sm-2 secondaryListText"><span>{{product.data.productCode}}</span></div>
+              <div class="col-sm-2 secondaryListText"><span>{{product.codigo}}</span></div>
               <div class="col-sm-3 d-block d-sm-none secondaryListText"><span class="mobilTxt">Nombre</span></div>
-              <div class="col-sm-3 secondaryListText"><span>{{product.data.productName}}</span></div>
+              <div class="col-sm-3 secondaryListText"><span>{{product.nombre}}</span></div>
               <div class="col-sm-3 d-block d-sm-none secondaryListText"><span class="mobilTxt">Precio</span></div>
-              <div class="col-sm-3 secondaryListText"><span>${{product.data.productPrice}}</span></div>
+              <div class="col-sm-3 secondaryListText"><span>${{product.precio}}</span></div>
               <div class="col-1 secondaryListText"><fa-icon class="editIcon" type="button" [icon]="faEdit" (click)="openEditProductModal(edit, product.id)"></fa-icon></div>
               <div class="col-1 secondaryListText"><fa-icon class="deleteIcon" type="button" [icon]="faTrash" (click)="openDeleteProductModal(deleteproduct, product.id)"></fa-icon></div>
               <div class="col-1 secondaryListText"><fa-icon class="addCoffeDayIcon" type="button" [icon]="faMugHot" (click)="addCoffeeDay(product.id)"></fa-icon></div>
@@ -60,12 +60,12 @@
           <li class="liResponsive" *ngFor="let coffee of coffeesDay">
             <div class="row align-items-center secondaryListRow">
               <div class="col-sm-2 d-block d-sm-none secondaryListText"><span class="mobilTxt">Código</span></div>
-              <div class="col-sm-2 secondaryListText"><span>{{coffee.data.productCode}}</span></div>
+              <div class="col-sm-2 secondaryListText"><span>{{coffee.codigo}}</span></div>
               <div class="col-sm-3 d-block d-sm-none secondaryListText"><span class="mobilTxt">Nombre</span></div>
-              <div class="col-sm-3 secondaryListText"><span>{{coffee.data.productName}}</span></div>
+              <div class="col-sm-3 secondaryListText"><span>{{coffee.nombre}}</span></div>
               <div class="col-sm-3 d-block d-sm-none secondaryListText"><span class="mobilTxt">Precio</span></div>
-              <div class="col-sm-3 secondaryListText"><span>${{coffee.data.productPrice}}</span></div>
-              <div class="col-1 secondaryListText"><fa-icon class="deleteIcon" type="button" [icon]="faTrash" (click)="deleteCoffeeDay(coffee.id, coffee.data.productId)"></fa-icon></div>
+              <div class="col-sm-3 secondaryListText"><span>${{coffee.precio}}</span></div>
+              <div class="col-1 secondaryListText"><fa-icon class="deleteIcon" type="button" [icon]="faTrash" (click)="deleteCoffeeDay(coffee.id)"></fa-icon></div>
             </div>
           </li>
         </ul>

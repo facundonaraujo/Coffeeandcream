@@ -1,3 +1,5 @@
+import { Carrito } from './../../models/cart.model';
+import { Pedido } from 'src/app/models/pedido.model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
@@ -20,9 +22,9 @@ export class AdminPanelComponent implements OnInit {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   // SHOW/HIDE PASSSWORD BUTTON
-  @ViewChild('oldPasswordEye', { read: ElementRef }) oldPasswordEye: ElementRef;
+  @ViewChild('oldPasswordEye', { read: ElementRef }) oldPasswordEye: ElementRef | any;
   oldPasswordTypeInput  =  'password';
-  @ViewChild('newPasswordEye', { read: ElementRef }) newPasswordEye: ElementRef;
+  @ViewChild('newPasswordEye', { read: ElementRef }) newPasswordEye: ElementRef | any;
   newPasswordTypeInput  =  'password';
   // FORM
   public nameForm = new FormGroup({
@@ -33,15 +35,13 @@ export class AdminPanelComponent implements OnInit {
     newPassword: new FormControl('')
   });
   // Orders
-  public pedidos = [];
-  public userLog: string;
-  public userId: string;
+  public pedidos: Pedido[] = [];
   public noTienePedidos = true;
   public showOrders = false;
   public showOrderD = false;
-  public pedido = [];
+  public pedido: Pedido | any;
   public pedidoId: any;
-  public pedidoDetalle = [];
+  public pedidoDetalle: Carrito[] = [];
 
   constructor(
     private router: Router,
@@ -69,11 +69,11 @@ export class AdminPanelComponent implements OnInit {
 
   }
 
-  closeAlert(alert){
-    document.getElementById(alert).style.display = 'none';
+  closeAlert(alert: string = ''){
+    document.getElementById(alert)!.style.display = 'none';
   }
 
-  showOrderDetail(pedidoId){
+  showOrderDetail(id: number | any){
 
   }
   

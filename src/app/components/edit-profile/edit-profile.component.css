@@ -19,6 +19,7 @@ a {
   transition: 0.3s ease-in;
   background: #212529;
   border: transparent;
+  border-radius: 6px;
 }
 .btn-style2:hover {
   color: #fff;
@@ -40,7 +41,7 @@ a {
   background-color: #FA9D33;
 }
 .links{
-  color: #3A92C1;
+  color: #FA9D33;
   font-weight: 700;
 }
 .pedidosTitle{
@@ -132,12 +133,6 @@ ul.mainListUl li {
 #customers td, #customers th {
   /* border: 1px solid #ddd; */
   padding: 8px;
-}
-#customers tr:nth-child(even){
-  /* background-color: #f2f2f2; */
-}
-#customers tr:hover {
-  /* background-color: #ddd; */
 }
 #customers th {
   padding-top: 12px;

@@ -30,13 +30,13 @@
             <li class="liResponsive" *ngFor="let correo of inbox">
               <div class="row align-items-center secondaryListRow">
                 <div class="col-12 d-block d-lg-none secondaryListText"><span class="mobilTxt">Remitente</span></div>
-                <div class="col-lg-2 secondaryListText"><span class="">{{correo.data.contactName}}</span></div>
+                <div class="col-lg-2 secondaryListText"><span class="">{{correo.nombre}}</span></div>
                 <div class="col-12 d-block d-lg-none secondaryListText"><span class="mobilTxt">Correo</span></div>
-                <div class="col-lg-3 secondaryListText"><span class="">{{correo.data.contactEmail}}</span></div>
+                <div class="col-lg-3 secondaryListText"><span class="">{{correo.email}}</span></div>
                 <div class="col-12 d-block d-lg-none secondaryListText"><span class="mobilTxt">Asunto</span></div>
-                <div class="col-lg-3 secondaryListText"><span>{{correo.data.contactAffair}}</span></div>
+                <div class="col-lg-3 secondaryListText"><span>{{correo.asunto}}</span></div>
                 <div class="col-12 d-block d-lg-none secondaryListText"><span class="mobilTxt">Télefono</span></div>
-                <div class="col-lg-2 secondaryListText"><span class="">{{correo.data.contactPhone}}</span></div>
+                <div class="col-lg-2 secondaryListText"><span class="">{{correo.tel}}</span></div>
                 <div class="col-lg-2 secondaryListText"><button class="btn btn-outline-dark btn-responsive" (click)="showMesagge(correo.id)">Ver Mensaje</button></div>
               </div>
             </li>
@@ -45,25 +45,25 @@
     </div>
   </div>
   <div class="container containerInbox" *ngIf="showInboxD" >
-    <div *ngFor="let message of inboxMesage">
+    <div>
       <div class="contenedor">
         <div class="firstContenedor">
           <h3 class="messageTittle text-center">Mensaje</h3>
         </div>
         <div class="secondContenedor">
-          <h5 class="destinatarioTitle">De:<span class="destinatarioTitle2">{{message.data.contactName}}</span></h5>
+          <h5 class="destinatarioTitle">De:<span class="destinatarioTitle2">{{inboxMesage?.nombre}}</span></h5>
         </div>
         <div class="secondContenedor">
-          <h5 class="destinatarioTitle">Correo:<span class="destinatarioTitle2">{{message.data.contactEmail}}</span></h5>
+          <h5 class="destinatarioTitle">Correo:<span class="destinatarioTitle2">{{inboxMesage?.email}}</span></h5>
         </div>
         <div class="secondContenedorAffair">
-          <h5 class="destinatarioTitle">Asunto:<span class="destinatarioTitle2">{{message.data.contactAffair}}</span></h5>
+          <h5 class="destinatarioTitle">Asunto:<span class="destinatarioTitle2">{{inboxMesage?.asunto}}</span></h5>
         </div>
         <div class="secondContenedor">
-          <h5 class="destinatarioTitle">Télefono:<span class="destinatarioTitle2">{{message.data.contactPhone}}</span></h5>
+          <h5 class="destinatarioTitle">Télefono:<span class="destinatarioTitle2">{{inboxMesage?.tel}}</span></h5>
         </div>
         <div class="thirdContenedor">
-          <p class="messageText">{{message.data.contactMessage}}</p>
+          <p class="messageText">{{inboxMesage?.mensaje}}</p>
         </div>
       </div>
 

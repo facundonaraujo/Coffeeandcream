@@ -43,7 +43,7 @@ export class CartComponent implements OnInit {
 
   public subtotal() {
     let subtotal = 0;
-    this.carrito.forEach(p => subtotal += (p.producto.precio * p.cantidad));
+    this.carrito.forEach(p => subtotal += (p?.producto.precio * p.cantidad));
     return subtotal;
   }
 

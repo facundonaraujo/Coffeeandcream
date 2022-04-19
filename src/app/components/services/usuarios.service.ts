@@ -8,7 +8,7 @@ import { ServerService } from './server.service';
   providedIn: 'root'
 })
 export class UsuariosService{
-  usuarios: Usuario[] = localStorage.getItem('Usuarios') ? JSON.parse(localStorage.getItem('Usuarios')) : DEFAULT_USERS;
+  usuarios: Usuario[] = localStorage.getItem('Usuarios') ? JSON.parse(localStorage.getItem('Usuarios') || '[]') : DEFAULT_USERS;
 
   constructor(
     private serverService: ServerService
@@ -23,7 +23,7 @@ export class UsuariosService{
     return this.serverService.actualizarUsuario(usuario);
   }
 
-  public cambiarContraseña(oldpassword, newpassword, id){
+  public cambiarContraseña(oldpassword: string | any, newpassword: string | any, id: number | any){
     return this.serverService.cambiarContraseña(oldpassword, newpassword, id);
   }
 

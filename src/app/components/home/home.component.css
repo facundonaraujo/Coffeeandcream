@@ -167,6 +167,7 @@
     transition: 0.3s ease-in;
     background: #9E0F16;
     border: transparent;
+    border-radius: 6px;
 }
   
 .btn-style2:hover {

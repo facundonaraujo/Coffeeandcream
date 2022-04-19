@@ -22,8 +22,9 @@ export class AuthService{
     return (localStorage.getItem('Token')) ? true : false;
   }
 
-  getCurrentUser(): Usuario{
+  getCurrentUser(): Usuario | any{
     const token = localStorage.getItem('Token');
+    if (!token) return undefined;
     let usuario: Usuario = jwt_decode(token);
     return usuario;
   }

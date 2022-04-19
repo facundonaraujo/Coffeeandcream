@@ -38,7 +38,7 @@
                         <mat-form-field appearance="outline" >
                             <mat-label>Nombre</mat-label>
                             <input matInput formControlName="nombre" required>
-                            <mat-error *ngIf="datosform.get('nombre').hasError('required')">El nombre es obligatorio</mat-error>
+                            <mat-error *ngIf="datosform.get('nombre')?.hasError('required')">El nombre es obligatorio</mat-error>
                         </mat-form-field>
                       </div>
                       <div class="row">
@@ -67,16 +67,16 @@
                         <mat-form-field appearance="outline" >
                             <mat-label>Contraseña anterior</mat-label>
                             <input type="password" matInput formControlName="oldpassword" required>
-                            <mat-error *ngIf="passwordform.get('oldpassword').hasError('required')">La contraseña anterior es obligatoria</mat-error>
-                            <mat-error *ngIf="passwordform.get('oldpassword').hasError('minlength')">Debe tener 6 caracteres como minimo</mat-error>
+                            <mat-error *ngIf="passwordform.get('oldpassword')?.hasError('required')">La contraseña anterior es obligatoria</mat-error>
+                            <mat-error *ngIf="passwordform.get('oldpassword')?.hasError('minlength')">Debe tener 6 caracteres como minimo</mat-error>
                         </mat-form-field>
                       </div>
                       <div class="row">
                         <mat-form-field appearance="outline" >
                             <mat-label>Nueva contraseña</mat-label>
                             <input type="password" matInput formControlName="newpassword" required>
-                            <mat-error *ngIf="passwordform.get('newpassword').hasError('required')">La nueva contraseña es obligatoria</mat-error>
-                            <mat-error *ngIf="passwordform.get('newpassword').hasError('minlength')">Debe tener 6 caracteres como minimo</mat-error>
+                            <mat-error *ngIf="passwordform.get('newpassword')?.hasError('required')">La nueva contraseña es obligatoria</mat-error>
+                            <mat-error *ngIf="passwordform.get('newpassword')?.hasError('minlength')">Debe tener 6 caracteres como minimo</mat-error>
                         </mat-form-field>
                       </div>
                       <div fxLayout="row" fxLayoutAlign="end center">
@@ -134,7 +134,7 @@
                           <div class="col-3" style="text-align: right;">
                             <pagination-controls 
                             (pageChange)="setPage($event)"
-                            responsive="true"
+                            [responsive]="true"
                             previousLabel=""
                             nextLabel=""
                             ></pagination-controls>
@@ -159,16 +159,15 @@
                             <th class="mainListText">Total</th>
                           </tr>
                         
-                          <tr *ngFor="let pedidoDe of pedido.productos">
+                          <tr *ngFor="let pedidoDe of pedido?.productos">
                             <td>{{pedidoDe?.producto?.nombre}}</td>
                             <td>{{pedidoDe?.cantidad}}</td>
-                            <td>{{pedidoDe?.size}}</td>
-                            <td>${{pedidoDe?.total}}</td>
+                            <td>${{pedidoDe!.cantidad * pedidoDe.producto!.precio}}</td>
                           </tr>
                         </table>
                       </div>
                       <div class="col-12 lineaSup">
-                        <h4 class="totalText">Total: ${{pedido.total}}</h4>
+                        <h4 class="totalText">Total: ${{pedido?.total}}</h4>
                       </div>
                     </div>
                     <div class="row mt-4">

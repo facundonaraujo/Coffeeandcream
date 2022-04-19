@@ -11,10 +11,10 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+  registerForm: FormGroup = new FormGroup({});
   private _unsubscribeAll: Subject<any>;
   
   constructor(
@@ -38,10 +38,10 @@ export class RegisterComponent implements OnInit {
     });
 
     
-    this.registerForm.get('password').valueChanges
+    this.registerForm.get('password')?.valueChanges
     .pipe(takeUntil(this._unsubscribeAll))
     .subscribe(() => {
-        this.registerForm.get('passwordConfirm').updateValueAndValidity();
+        this.registerForm.get('passwordConfirm')?.updateValueAndValidity();
     });
   }
 

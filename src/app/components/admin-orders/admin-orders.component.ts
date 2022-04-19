@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Carrito } from 'src/app/models/cart.model';
+import { Pedido } from 'src/app/models/pedido.model';
 
 @Component({
   selector: 'app-admin-orders',
@@ -8,15 +10,13 @@ import { Router } from '@angular/router';
 })
 export class AdminOrdersComponent implements OnInit {
   // Orders
-  public pedidos = [];
-  public userLog: string;
-  public userId: string;
+  public pedidos: Pedido[] = [];
   public noTienePedidos = true;
   public showOrders = false;
   public showOrderD = false;
-  public pedido = [];
+  public pedido: Pedido | any;
   public pedidoId: any;
-  public pedidoDetalle = [];
+  public pedidoDetalle: Carrito[] = [];
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class AdminOrdersComponent implements OnInit {
 
   async ngOnInit(){}
 
-  public showOrderDetail(pedidoId){
+  public showOrderDetail(id: number | any){
 
   }
 

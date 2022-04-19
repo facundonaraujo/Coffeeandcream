@@ -15,10 +15,10 @@ import { ChangePasswordPayload, LoginPayload, Usuario } from 'src/app/models/usu
   providedIn: 'root'
 })
 export class ServerService {
-  usuarios: Usuario[] = localStorage.getItem('Usuarios') ? JSON.parse(localStorage.getItem('Usuarios')) : DEFAULT_USERS;
-  productos: Producto[] = localStorage.getItem('Productos') ? JSON.parse(localStorage.getItem('Productos')) : DEFAULT_PRODUCTS;
-  pedidos: Pedido[] = localStorage.getItem('Pedidos') ? JSON.parse(localStorage.getItem('Pedidos')) : DEFAULT_ORDERS;
-  mails: Mail[] = localStorage.getItem('Mails') ? JSON.parse(localStorage.getItem('Mails')) : DEFAULT_MAILS;
+  usuarios: Usuario[] = localStorage.getItem('Usuarios') ? JSON.parse(localStorage.getItem('Usuarios') || '[]') : DEFAULT_USERS;
+  productos: Producto[] = localStorage.getItem('Productos') ? JSON.parse(localStorage.getItem('Productos') || '[]') : DEFAULT_PRODUCTS;
+  pedidos: Pedido[] = localStorage.getItem('Pedidos') ? JSON.parse(localStorage.getItem('Pedidos') || '[]') : DEFAULT_ORDERS;
+  mails: Mail[] = localStorage.getItem('Mails') ? JSON.parse(localStorage.getItem('Mails') || '[]') : DEFAULT_MAILS;
 
   constructor(
     public http: HttpClient,
@@ -255,16 +255,16 @@ export class ServerService {
   public actualizarUsuario(usuario: Usuario){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('Token'),
+      'Authorization': localStorage.getItem('Token') ?? '',
     });
     let url = '/api/usuario/' + usuario.id;
     return this.http.put(url, usuario, {headers});
   }
 
-  public cambiarContraseña(oldpassword, newpassword, id){
+  public cambiarContraseña(oldpassword: string | any, newpassword: string | any, id: number | any){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('Token'),
+      'Authorization': localStorage.getItem('Token') ?? '',
     });
     var data = {
       oldpassword: oldpassword,
@@ -279,7 +279,7 @@ export class ServerService {
   public crearProducto(producto: Producto){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'authorization': localStorage.getItem('Token'),
+      'authorization': localStorage.getItem('Token') ?? '',
     });
     let url = '/api/producto';
     if (producto.id) {
@@ -301,7 +301,7 @@ export class ServerService {
   public obtenerProductosSinPaginar(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('Token'),
+      'Authorization': localStorage.getItem('Token') ?? '',
     });
     let url = '/api/productosSinPaginar/';
     return this.http.get(url, {headers});
@@ -318,7 +318,7 @@ export class ServerService {
   public obtenerProducto(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('Token'),
+      'Authorization': localStorage.getItem('Token') ?? '',
     });
     let url = '/api/producto/' + id;
     return this.http.get(url, {headers});
@@ -327,7 +327,7 @@ export class ServerService {
   public eliminarProducto(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('Token'),
+      'Authorization': localStorage.getItem('Token') ?? '',
     });
     let url = '/api/producto/' + id;
     return this.http.delete(url, {headers});
@@ -345,7 +345,7 @@ export class ServerService {
   public crearPedido(pedido: Pedido){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'authorization': localStorage.getItem('token'),
+      'authorization': localStorage.getItem('token') ?? '',
     });
     let url = '/api/pedido';
     if (pedido.id) {
@@ -359,7 +359,7 @@ export class ServerService {
   public obtenerPedidosCliente(paginador: PaginadorBusquedaTabla, id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token') ?? '',
     });
     let url = '/api/pedidos/' + id;
     return this.http.post(url, paginador, {headers});
@@ -368,7 +368,7 @@ export class ServerService {
   public obtenerPedidosAdmin(paginador: PaginadorBusquedaTabla){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token') ?? '',
     });
     let url = '/api/pedidos/';
     return this.http.post(url, paginador, {headers});
@@ -377,7 +377,7 @@ export class ServerService {
   public obtenerPedido(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token') ?? '',
     });
     let url = '/api/pedido/' + id;
     return this.http.get(url, {headers});
@@ -386,7 +386,7 @@ export class ServerService {
   public eliminarPedido(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token') ?? '',
     });
     let url = '/api/pedido/' + id;
     return this.http.delete(url, {headers});
@@ -395,7 +395,7 @@ export class ServerService {
   public getPedido(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token') ?? '',
     });
     return this.http.get('/api/pedido/' + id, {headers});
   }
@@ -410,7 +410,7 @@ export class ServerService {
   public getMessages(paginador: PaginadorBusquedaTabla){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token') ?? '',
     });
     let url = '/api/mails/';
     return this.http.post(url, paginador, {headers});
@@ -419,7 +419,7 @@ export class ServerService {
   public getIndividualMessage(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token') ?? '',
     });
     let url = '/api/mail/' + id;
     return this.http.get(url, {headers});
@@ -428,7 +428,7 @@ export class ServerService {
   public getMail(id: number){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token') ?? '',
     });
     return this.http.get( '/api/mail/' + id, {headers});
   }

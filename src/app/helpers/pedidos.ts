@@ -1,3 +1,4 @@
+import { ShippingMethod } from './../models/enums.model';
 
 import { OrderStatus, PaymentMethod, Role } from '../models/enums.model';
 import { Pedido } from './../models/pedido.model';
@@ -36,6 +37,7 @@ export const DEFAULT_ORDERS: Pedido[] = [
         ],
         status: OrderStatus.CONFIRMED,
         formaPago: PaymentMethod.CASH,
+        metodoEntrega: ShippingMethod.RETIRO_LOCAL,
         cliente: {
             id: 1,
             email: 'user@user.com',
@@ -75,6 +77,7 @@ export const DEFAULT_ORDERS: Pedido[] = [
         ],
         status: OrderStatus.CANCELED,
         formaPago: PaymentMethod.CASH,
+        metodoEntrega: ShippingMethod.ENVIO_DOMICILIO,
         cliente: {
             id: 1,
             email: 'user@user.com',
