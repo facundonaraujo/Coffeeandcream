@@ -88,8 +88,6 @@
 }
 
 .products-container::-webkit-scrollbar-thumb{
-  border-radius: 10px;
-  border:2px solid #1b1d1d;
   background-color: #FA9D33;
 }
 
@@ -209,10 +207,11 @@ ul.mainListUl li {
   overflow-y: auto;
 }
 .contenedorList::-webkit-scrollbar{
-  width: 5px;
+  width: 10px;
+  background-color: #1b1d1d;
 }
 .contenedorList::-webkit-scrollbar-thumb{
-  background: rgb(75, 75, 75);
+  background-color: #FA9D33;
 }
 .nextSection{
   margin-top: 25px;

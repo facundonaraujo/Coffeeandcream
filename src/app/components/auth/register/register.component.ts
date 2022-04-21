@@ -16,6 +16,7 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   private _unsubscribeAll: Subject<any>;
+  loading: boolean = false;
   
   constructor(
     private _formBuilder: FormBuilder,
@@ -46,35 +47,40 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    let valores = this.registerForm.getRawValue();
-    let usuario: Usuario = {
-      nombre: valores.nombre,
-      email: valores.email,
-      password: valores.password,
-      role: Role.USER
-    };
-    this.authService.register(usuario).then(
-      (resp: any) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Registro completado',
-          showConfirmButton: true,
-          confirmButtonText: 'Iniciar Sesión',
-          confirmButtonAriaLabel: 'Iniciar Sesión'
-        }).then(
-          (resp: any) => {
-            this.router.navigate(['/login'])
-          }
-        )
-      },
-      (err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err?.error?.msg,
-        })
-      }
-    );
+    if (!this.loading) {
+      this.loading = true;      
+      let valores = this.registerForm.getRawValue();
+      let usuario: Usuario = {
+        nombre: valores.nombre,
+        email: valores.email,
+        password: valores.password,
+        role: Role.USER
+      };
+      this.authService.register(usuario).then(
+        (resp: any) => {
+          this.loading = false;   
+          Swal.fire({
+            icon: 'success',
+            title: 'Registro completado',
+            showConfirmButton: true,
+            confirmButtonText: 'Iniciar Sesión',
+            confirmButtonAriaLabel: 'Iniciar Sesión'
+          }).then(
+            (resp: any) => {
+              this.router.navigate(['/login'])
+            }
+          )
+        },
+        (err) => {
+          this.loading = false; 
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err?.error?.msg,
+          })
+        }
+      );
+    }
   }
 
   goTo(ruta: string){

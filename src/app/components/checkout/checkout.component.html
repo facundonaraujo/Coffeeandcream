@@ -126,16 +126,8 @@
             </form>
             <div style="display: flex; align-items: center;">
               <button class="basic-cart-btn" style="margin-right: 10px;" matStepperPrevious>Anterior</button>
-              <button class="basic-cart-btn" matStepperPrevious [disabled]="stepThreeForm.invalid || loading" (click)="newOrder()">
-                <span *ngIf="!loading">Pagar</span>
-                <mat-progress-spinner
-                  [diameter]="20"
-                  *ngIf="loading"
-                  color="primary"
-                  mode="indeterminate"
-                  style="margin-left: auto; margin-right: auto;"
-                >
-                </mat-progress-spinner>
+              <button id="button" class="basic-cart-btn" [ngStyle]="{cursor: loading ? 'default' : 'pointer'}" [disabled]="stepThreeForm.invalid" (click)="newOrder()">
+                Pagar
               </button>
             </div>
           </mat-step>

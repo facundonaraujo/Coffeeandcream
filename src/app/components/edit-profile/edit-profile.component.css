@@ -11,9 +11,11 @@ a {
   min-height: 450px;
 }
 .btn-style2 {
+  min-width: 220px;
+  height: 58px;
   color: #fff;
   padding: 12px 40px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 30px;
   font-weight: 600;
   transition: 0.3s ease-in;
@@ -70,9 +72,9 @@ a {
   color: black;
 }
 .mainListRow{
-  background-color: #ffffff;
-  border: 1px solid #d2e4e9;
-  border-radius: 5px;
+  /* background-color: #ffffff; */
+  /* border: 1px solid #d2e4e9; */
+  /* border-radius: 5px; */
   margin-bottom: 40px;
 }
 .mainListText{
@@ -89,10 +91,11 @@ ul.mainListUl li {
   overflow-y: auto;
 }
 .pedidoList::-webkit-scrollbar{
-  width: 7px;
+  width: 10px;
+  background-color: #1b1d1d;
 }
 .pedidoList::-webkit-scrollbar-thumb{
-  background: rgb(99, 99, 99);
+  background-color: #FA9D33;
 }
 .secondaryListRow{
   margin-bottom: 15px;
@@ -119,9 +122,6 @@ ul.mainListUl li {
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-.showDBtn{
-  margin-top: 10px;
 }
 .btnBack{
   margin-bottom: 30px;
@@ -156,4 +156,88 @@ ul.mainListUl li {
     font-size: 20px;
     color:#5a5a5a;
   }
+}
+
+.pedido-title-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.go-back-btn-row{
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.go-back-btn-row:hover{
+  color: #FA9D33;
+}
+
+.list-row{
+  border-radius: 6px;
+  border: 1px solid #aebcc0;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.showDBtnContainer{
+  position: relative;
+}
+
+.showDBtn{
+  font-size: 15px;
+  font-weight: 600;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  background-color: #2d3338;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  width: 25px;
+  height: 25px;
+  font-size: 15px;
+  border-radius: 50%;
+}
+
+.showDBtn:hover{
+  background: #FA9D33;
+  color: #fff;
+}
+
+.text-column{
+  font-size: 15px;
+  font-weight: 600;
+}
+.subtext-column{
+  font-size: 13px;
+  color: #adadad;
+}
+
+.pedido-total{
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.first-col{
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+
+.nav-lk:hover{
+  color: #FA9D33 !important;
+}
+
+.nav-link.active.nav-lk:hover{
+  color: #fff !important;
 }

@@ -39,7 +39,7 @@ export class ServerService {
           } else {
             return new Response(400, {}, { msg: 'Las credenciales ingresadas no son validas.' });
           }
-        });
+        },{ timing: 1000 });
 
         this.post("/register/", (schema, {requestBody}) => {
           let body: Usuario = JSON.parse(requestBody);
@@ -52,7 +52,7 @@ export class ServerService {
           } else {
             return new Response(500, {}, { msg: 'No se pudo realizar el registro, intente nuevamente.' });
           }
-        });
+        },{ timing: 1000 });
 
         // USUARIOS
 
@@ -68,7 +68,7 @@ export class ServerService {
           } else {
             return new Response(500, {}, { msg: 'Se produjo un error al guardar los cambios, intente nuevamente.' });
           }
-        });
+        },{ timing: 1000 });
 
         this.put("/cambiarPassword/:id", (schema, {params, requestBody}) => {
           let body: ChangePasswordPayload = JSON.parse(requestBody);
@@ -86,7 +86,7 @@ export class ServerService {
               return new Response(500, {}, { msg: 'Se produjo un error al cambiar la contraseña, intente nuevamente.' });
             }
           }
-        });
+        },{ timing: 1000 });
 
         // PRODUCTOS
 
@@ -99,7 +99,7 @@ export class ServerService {
             productos: productos_aux.slice(0, body.numeroPorPagina),
             total: total
           };
-        });
+        },{ timing: 1000 });
 
         this.get("/productosSinPaginar/", (schema) => {
           let productos = schema.db.productos;
@@ -108,7 +108,7 @@ export class ServerService {
             productos: productos,
             total: total
           };
-        });
+         },{ timing: 1000 });
 
         this.get("/productosEnOfertaSinPaginar/", (schema) => {
           let productos = schema.db.productos;
@@ -117,13 +117,13 @@ export class ServerService {
             productos: productos.filter( producto => producto.isInOferta === true),
             total: total
           };
-        });
+        },{ timing: 1000 });
 
         this.get("/producto/:id", (schema, {params}) => {
           return {
             producto: schema.db.productos.findBy({id: params.id})
           };
-        });
+        },{ timing: 1000 });
 
         this.put("/producto/:id", (schema, {params, requestBody}) => {
           let body: Producto = JSON.parse(requestBody);
@@ -132,7 +132,7 @@ export class ServerService {
           return {
             producto: producto
           };
-        });
+        },{ timing: 1000 });
 
         this.post("/producto/", (schema, {requestBody}) => {
           let body: Producto = JSON.parse(requestBody);
@@ -141,7 +141,7 @@ export class ServerService {
           return {
             producto: producto
           };
-        });
+       },{ timing: 1000 });
 
         this.delete("/producto/:id", (schema, {params}) => {
           let producto = schema.db.productos.remove({id: params.id});
@@ -149,7 +149,7 @@ export class ServerService {
           return {
             producto: producto
           };
-        });
+         },{ timing: 1000 });
 
         // PEDIDOS
 
@@ -160,7 +160,7 @@ export class ServerService {
           return {
             pedido: pedido
           };
-        });
+        },{ timing: 1000 });
 
         this.post("/pedido/", (schema, {requestBody}) => {
           let body: Pedido = JSON.parse(requestBody);
@@ -169,7 +169,7 @@ export class ServerService {
           return {
             pedido: pedido
           };
-        });
+        },{ timing: 1000 });
 
         this.post("/pedidos/:id", (schema, {params, requestBody}) => {
           let body: PaginadorBusquedaTabla = JSON.parse(requestBody);
@@ -183,13 +183,13 @@ export class ServerService {
             pedidos: pedidos_aux.slice(0, body.numeroPorPagina),
             total: total
           };
-        });
+        },{ timing: 1000 });
 
         this.get("/pedido/:id", (schema, {params}) => {
           return {
             pedido: schema.db.pedidos.findBy({id: params.id})
           };
-        });
+        },{ timing: 1000 });
 
         this.delete("/pedido/:id", (schema, {params}) => {
           let pedido = schema.db.pedidos.remove({id: params.id});
@@ -197,7 +197,7 @@ export class ServerService {
           return {
             pedido: pedido
           };
-        });
+        },{ timing: 1000 });
 
         // MAIL
 
@@ -208,7 +208,7 @@ export class ServerService {
           return {
             mail: mail
           };
-        });
+        },{ timing: 1000 });
 
         this.post("/mails/", (schema, {requestBody}) => {
           let body: PaginadorBusquedaTabla = JSON.parse(requestBody);
@@ -219,13 +219,13 @@ export class ServerService {
             mails: mails_aux.slice(0, body.numeroPorPagina),
             total: total
           };
-        });
+        },{ timing: 1000 });
 
         this.get("/mail/:id", (schema, {params}) => {
           return {
             mail: schema.db.mails.findBy({id: params.id})
           };
-        });
+        },{ timing: 1000 });
       }
     });
     server.db.loadData({

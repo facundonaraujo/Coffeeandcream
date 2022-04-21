@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
+  loading: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -31,27 +32,32 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    let valores = this.loginForm.getRawValue();
-    let login = {
-      email: valores.email,
-      password: valores.password
-    };
-    this.authService.login(login).then(
-      (resp: Usuario) => {
-        if (resp.role === 'ADMIN_ROLE') {
-          this.router.navigate(['/admin-panel'])
-        } else {
-          this.router.navigate(['/edit-profile'])
+    if (!this.loading) {
+      this.loading = true;
+      let valores = this.loginForm.getRawValue();
+      let login = {
+        email: valores.email,
+        password: valores.password
+      };
+      this.authService.login(login).then(
+        (resp: Usuario) => {
+          this.loading = false;
+          if (resp.role === 'ADMIN_ROLE') {
+            this.router.navigate(['/admin-panel'])
+          } else {
+            this.router.navigate(['/edit-profile'])
+          }
+        },
+        (err) => {
+          this.loading = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err?.error?.msg,
+          })
         }
-      },
-      (err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err?.error?.msg,
-        })
-      }
-    );
+      );
+    }
   }
 
   goTo(ruta: string){

@@ -2,7 +2,9 @@ import { Producto } from './../../models/producto.model';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Carrito } from '../../models/cart.model'
 import { CartService } from '../services/cart.service';
-
+import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 // ICONOS
 import { faShoppingBag, faTrash, faAngleLeft, faAngleRight, faCheck, faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,7 +31,9 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-  ) {}
+    private router: Router,
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() { 
     this.cartService.carrito.subscribe({
@@ -61,6 +65,27 @@ export class CartComponent implements OnInit {
 
   public vaciarCarrito(){
     this.cartService.vaciarCarrito();
+  }
+
+  goToCheckout(){
+    if (this.authService.estaLogueado()) {
+      this.router.navigate(['/checkout'])
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Inicia sesión para poder finalizar la compra.',
+        showConfirmButton: true,
+        confirmButtonText: 'Iniciar Sesión',
+        confirmButtonAriaLabel: 'Iniciar Sesión',
+        confirmButtonColor: '#FA9D33',
+      }).then(
+        (resp: any) => {
+          if (resp.isConfirmed)
+            this.router.navigate(['/login'])
+        }
+      );
+    }
   }
 
 }

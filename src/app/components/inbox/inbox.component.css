@@ -31,10 +31,11 @@ ul.mainListUl li {
   overflow-y: auto;
 }
 .inboxList::-webkit-scrollbar{
-  width: 7px;
+  width: 10px;
+  background-color: #1b1d1d;
 }
 .inboxList::-webkit-scrollbar-thumb{
-  background: rgb(99, 99, 99);
+  background-color: #FA9D33;
 }
 .secondaryListRow{
   margin-bottom: 15px;
@@ -109,10 +110,11 @@ ul.mainListUl li {
   padding-bottom: 5px;
 }
 .thirdContenedor::-webkit-scrollbar{
-  width: 5px;
+  width: 10px;
+  background-color: #1b1d1d;
 }
 .thirdContenedor::-webkit-scrollbar-thumb{
-  background: rgb(99, 99, 99);
+  background-color: #FA9D33;
 }
 .mobilTxt{
   font-size: 16px;

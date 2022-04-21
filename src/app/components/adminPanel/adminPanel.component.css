@@ -51,10 +51,11 @@
     overflow-y: auto;
   }
   .pedidoList::-webkit-scrollbar{
-    width: 7px;
+    width: 10px;
+    background-color: #1b1d1d;
   }
   .pedidoList::-webkit-scrollbar-thumb{
-    background: rgb(99, 99, 99);
+    background-color: #FA9D33;
   }
   .secondaryListRow{
     margin-bottom: 15px;

@@ -17,7 +17,7 @@
         <div class="col-3">
           <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
             <li ngbNavItem="Miperfil">
-              <a ngbNavLink>Mi perfil</a>
+              <a class="nav-lk" ngbNavLink>Mi perfil</a>
               <ng-template ngbNavContent>
                 <div class="container">
                   <p>Hola <strong style="text-transform: capitalize;">{{this.usuario.nombre}}</strong> (¿No sos <strong style="text-transform: capitalize;">{{this.usuario.nombre}}</strong>? <span type="button" class="links" (click)="onLogout()">Cerrar Sesión</span>)</p>
@@ -29,7 +29,7 @@
               </ng-template>
             </li>
             <li ngbNavItem="Detallesdelacuenta">
-              <a ngbNavLink>Detalles de la cuenta</a>
+              <a class="nav-lk" ngbNavLink>Detalles de la cuenta</a>
               <ng-template ngbNavContent>
                 <form [formGroup]="datosform" class="py-4">
                     <div class="container">
@@ -55,7 +55,17 @@
                       </div>
                       <div fxLayout="row" fxLayoutAlign="end center">
                         <div class="read mt-3">
-                          <button type="submit" class="btn-style2" [disabled]="datosform.invalid" (click)="onChangeDatos()">Guardar Cambios</button>
+                          <button id="button" type="submit" class="btn-style2" [disabled]="datosform.invalid" (click)="onChangeDatos()">
+                            <span *ngIf="!change_data_loading">Guardar Cambios</span>
+                            <mat-progress-spinner
+                              [diameter]="24"
+                              *ngIf="change_data_loading"
+                              color="primary"
+                              mode="indeterminate"
+                              style="margin-left: auto; margin-right: auto;"
+                            >
+                            </mat-progress-spinner>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -81,7 +91,17 @@
                       </div>
                       <div fxLayout="row" fxLayoutAlign="end center">
                         <div class="read mt-3">
-                          <button type="submit" class="btn-style2" [disabled]="passwordform.invalid" (click)="onChangePassword()">Cambiar Contraseña</button>
+                          <button id="button" type="submit" class="btn-style2" [disabled]="passwordform.invalid" (click)="onChangePassword()">
+                            <span *ngIf="!change_pass_loading">Cambiar Contraseña</span>
+                            <mat-progress-spinner
+                              [diameter]="24"
+                              *ngIf="change_pass_loading"
+                              color="primary"
+                              mode="indeterminate"
+                              style="margin-left: auto; margin-right: auto;"
+                            >
+                            </mat-progress-spinner>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -89,98 +109,134 @@
               </ng-template>
             </li>
             <li ngbNavItem="Pedidos">
-              <a ngbNavLink>Pedidos</a>
+              <a class="nav-lk" ngbNavLink>Pedidos</a>
               <ng-template ngbNavContent>
-                <div class="container" *ngIf="!tienePedidos">
-                  <div class="row">
-                    <div class="col text-center">
-                      <fa-icon style="font-size: 45px;" class="pt-4" [icon]="faExclamationCircle"></fa-icon>
-                      <h3 class="pt-3">No se ha realizado ningún pedido todavía.</h3>
-                    </div>
-                  </div>
-                </div>
-                <div *ngIf="tienePedidos">
-                  <div class="container" *ngIf="showOrders">
-                    <div class="row quitmpl" >
-                      <div class="col quitmpl">
-                          <h2 class="pedidosTitle">Pedidos</h2>
+                <ng-container *ngIf="!tienePedidos">
+                  <div class="container" >
+                    <div class="row">
+                      <div class="col text-center">
+                        <fa-icon style="font-size: 45px;" class="pt-4" [icon]="faExclamationCircle"></fa-icon>
+                        <h3 class="pt-3">No se ha realizado ningún pedido todavía.</h3>
                       </div>
                     </div>
-                    <div class="row mainListRow" style="margin-left: 0.1px;">
-                      <div class="col-12">
-                        <ul class="mainListUl">
-                          <li>
-                            <div class="row">
-                              <div class="col-5 mainListText d-none d-lg-block"><p>Pedido</p></div>
-                              <div class="col-3 mainListText d-none d-lg-block"><p>Total</p></div>
-                              <div class="col-3 mainListText d-none d-lg-block"><p>Detalle</p></div>
-                            </div>
-                          </li>
-                        </ul>
-                        <div class="pedidoList">
-                          <ul class="mainListUl">
-                            <li *ngFor="let pedido of pedidos | paginate: { itemsPerPage: 9, currentPage: (this.pedidosPaginador.pageNumber + 1), totalItems: this.pedidosPaginador.totalElements }">
-                              <div class="row align-items-center secondaryListRow">
-                                <div class="col-lg-5 secondaryListText d-lg-none d-block"><span class="mobilTxt">Pedido</span></div>
-                                <div class="col-lg-5 secondaryListText"><span>{{pedido.id}}</span></div>
-                                <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Total</span></div>
-                                <div class="col-lg-3 secondaryListText"><span>${{pedido.total}}</span></div>
-                                <div class="col-lg-3 secondaryListText"><button class="btn btn-outline-dark showDBtn" (click)="showOrderDetail(pedido)">Ver detalle</button></div>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="tienePedidos">
+                  <ng-container *ngIf="showOrders">
+                    <div class="container" >
+                      <div class="row quitmpl" >
+                        <div class="col quitmpl">
+                            <h2 class="pedidosTitle">Pedidos</h2>
+                        </div>
+                      </div>
+                      <div class="row mainListRow" style="margin-left: 0.1px;">
+                        <div class="col-12">
+                          <!-- <ul class="mainListUl">
+                            <li>
+                              <div class="row">
+                                <div class="col-5 mainListText d-none d-lg-block"><p>Pedido</p></div>
+                                <div class="col-3 mainListText d-none d-lg-block"><p>Total</p></div>
+                                <div class="col-3 mainListText d-none d-lg-block"><p>Detalle</p></div>
                               </div>
                             </li>
-                          </ul>
+                          </ul> -->
+                          <!-- <div class="pedidoList">
+                            <ul class="mainListUl">
+                              <li *ngFor="let pedido of pedidos | paginate: { itemsPerPage: 9, currentPage: (this.pedidosPaginador.pageNumber + 1), totalItems: this.pedidosPaginador.totalElements }">
+                                <div class="row align-items-center secondaryListRow">
+                                  <div class="col-lg-5 secondaryListText d-lg-none d-block"><span class="mobilTxt">Pedido</span></div>
+                                  <div class="col-lg-5 secondaryListText"><span>{{pedido.id}}</span></div>
+                                  <div class="col-lg-3 secondaryListText d-lg-none d-block"><span class="mobilTxt">Total</span></div>
+                                  <div class="col-lg-3 secondaryListText"><span>${{pedido.total}}</span></div>
+                                  <div class="col-lg-3 secondaryListText"><button class="btn btn-outline-dark showDBtn" (click)="showOrderDetail(pedido)">Ver detalle</button></div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div> -->
+                          <ng-container *ngIf="!get_pedidos_loading; else loadingContent">
+                            <div 
+                              class="list-row" 
+                              *ngFor="let pedido of pedidos | paginate: { 
+                                itemsPerPage: 9, currentPage: (this.pedidosPaginador.pageNumber + 1), 
+                                totalItems: this.pedidosPaginador.totalElements 
+                              }"
+                            >
+                              <div class="first-col">
+                                <span class="text-column">Pedido</span>
+                                <span class="subtext-column">N° {{pedido.id}}</span>
+                              </div>
+                              <span class="pedido-total">{{pedido.total | currency}}</span>
+                              <!-- <button class="btn btn-outline-dark showDBtn" (click)="showOrderDetail(pedido)">Ver detalle</button> -->
+                              <div class="showDBtn" (click)="showOrderDetail(pedido)">
+                                <fa-icon [icon]="faArrowRight"></fa-icon>
+                              </div>
+                            </div>
+                            <div class="row justify-content-end">
+                              <div class="col-3" style="text-align: right;">
+                                <pagination-controls 
+                                (pageChange)="setPage($event)"
+                                [responsive]="true"
+                                previousLabel=""
+                                nextLabel=""
+                                ></pagination-controls>
+                              </div>
+                            </div>
+                          </ng-container>
+                          <ng-template #loadingContent>
+                            <div class="row justify-content-start">
+                              <div class="col-12" *ngFor="let i of [].constructor(9)">
+                                <ngx-skeleton 
+                                  height="50px" 
+                                  borderRadius="6px" 
+                                  width="100%" 
+                                  margin="0 0 15px 0" 
+                                  [animate]="true"
+                                ></ngx-skeleton>
+                              </div>
+                            </div>
+                          </ng-template>
+                
                         </div>
-                        <div class="row justify-content-end">
-                          <div class="col-3" style="text-align: right;">
-                            <pagination-controls 
-                            (pageChange)="setPage($event)"
-                            [responsive]="true"
-                            previousLabel=""
-                            nextLabel=""
-                            ></pagination-controls>
-                          </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="showOrderD">
+                    <div class="container" >
+                      <div class="pedido-title-row">
+                        <div class="go-back-btn-row" (click)="hideOrderDetail()">
+                          <fa-icon style="margin-right: 8px;" [icon]="faChevronLeft"></fa-icon>
+                          <span>Atras</span>
+                        </div>
+                        <h2 class="pedidosTitle">Pedido N° {{this.pedido?.id}}</h2>
+                      </div>
+                      <div class="row mainListRow">
+                        <div class="col-12">
+                          <table class="default"  id="customers">
+                            <tr>
+                              <th class="mainListText">Producto</th>
+                              <th class="mainListText">Cantidad</th>
+                              <th class="mainListText">Tamaño</th>
+                              <th class="mainListText">Total</th>
+                            </tr>
+                          
+                            <tr *ngFor="let pedidoDe of pedido?.productos">
+                              <td>{{pedidoDe?.producto?.nombre}}</td>
+                              <td>{{pedidoDe?.cantidad}}</td>
+                              <td>${{pedidoDe!.cantidad * pedidoDe.producto!.precio}}</td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div class="col-12 lineaSup">
+                          <h4 class="totalText">Total: ${{pedido?.total}}</h4>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="container" *ngIf="showOrderD">
-                    <div class="row" >
-                      <div class="col" style="padding-left: 0%;">
-                          <h2 class="pedidosTitle">Pedido: {{this.pedido?.id}}</h2>
-                      </div>
-                    </div>
-                    <div class="row mainListRow">
-                      <div class="col-12">
-                        <table class="default"  id="customers">
-                          <tr>
-                            <th class="mainListText">Producto</th>
-                            <th class="mainListText">Cantidad</th>
-                            <th class="mainListText">Tamaño</th>
-                            <th class="mainListText">Total</th>
-                          </tr>
-                        
-                          <tr *ngFor="let pedidoDe of pedido?.productos">
-                            <td>{{pedidoDe?.producto?.nombre}}</td>
-                            <td>{{pedidoDe?.cantidad}}</td>
-                            <td>${{pedidoDe!.cantidad * pedidoDe.producto!.precio}}</td>
-                          </tr>
-                        </table>
-                      </div>
-                      <div class="col-12 lineaSup">
-                        <h4 class="totalText">Total: ${{pedido?.total}}</h4>
-                      </div>
-                    </div>
-                    <div class="row mt-4">
-                      <div class="col-4" style="padding-left: 0%;">
-                        <button class="btn btn-outline-dark btn-block btnBack" (click)="hideOrderDetail()">Atras</button>
-                      </div>
-                    </div>
-                </div>
-                </div>
+                   </div>
+                  </ng-container>
+                </ng-container>
               </ng-template>
             </li>
             <li ngbNavItem="CerrarSesion">
-              <a ngbNavLink (click)="onLogout()">Cerrar Sesión</a>
+              <a class="nav-lk" ngbNavLink (click)="onLogout()">Cerrar Sesión</a>
             </li>
           </ul>
         </div>

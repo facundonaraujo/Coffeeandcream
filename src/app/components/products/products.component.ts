@@ -14,6 +14,8 @@ export class ProductsComponent implements OnInit {
   public products: Producto[] = [];
   public selectedProduct: Producto | any;
   public productosPaginador: PaginadorBusquedaTabla = new PaginadorBusquedaTabla();
+  loading: boolean = false;
+
   constructor(
     private productoService: ProductoService,
     private router: Router,
@@ -35,14 +37,17 @@ export class ProductsComponent implements OnInit {
   }
 
   obtenerProductos(){
+    this.loading = true;
     this.productoService.obtenerProductosPublic(this.productosPaginador)
       .subscribe(
         {
           next: (resp: any) => {
+            this.loading = false;
             this.products = resp.productos;
             this.productosPaginador.totalElements = resp.total;
           },
           error: (err: any) => {
+            this.loading = false;
             console.log('err :>> ', err);
           }
         }
@@ -60,12 +65,12 @@ export class ProductsComponent implements OnInit {
     if (this.productosPaginador.desde < 0) {
       this.productosPaginador.desde = 0;
     }
-    this.obtenerProductos();
     window.scroll({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
+    this.obtenerProductos();
   }
 
   productDetail(productId: number | any): void{

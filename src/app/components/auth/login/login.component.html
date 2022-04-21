@@ -30,7 +30,17 @@
                         </mat-form-field>
                       </div>
                       <div fxLayout="row" fxLayoutAlign="center">
-                        <button class="w3l-btn-login btn-block" (click)="login()" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+                        <button id="button" class="w3l-btn-login btn-block" (click)="login()" [disabled]="loginForm.invalid">
+                          <span *ngIf="!loading">Iniciar Sesión</span>
+                          <mat-progress-spinner
+                            [diameter]="22"
+                            *ngIf="loading"
+                            color="primary"
+                            mode="indeterminate"
+                            style="margin-left: auto; margin-right: auto;"
+                          >
+                          </mat-progress-spinner>
+                        </button>
                       </div>
                     </form>
                     <p class="w3l-account1">¿No tienes una cuenta? <a (click)="goTo('register')">Registrate</a></p>

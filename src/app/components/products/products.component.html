@@ -12,33 +12,42 @@
 				<h3 class="tittle text-center mb-lg-5 mb-3"><span class="sub-tittle">Nuestros</span>Productos</h3>
 			</div>
 		</div>
-		<div class="row justify-content-start">
-			<div class="col-4" *ngFor="let coffee of products | paginate: { itemsPerPage: 9, currentPage: (this.productosPaginador.pageNumber + 1), totalItems: this.productosPaginador.totalElements }">
-				<div class="product-card" (click)="productDetail(coffee.id)">
-					<div class="badge" *ngIf="coffee.isInOferta">
-						<p class="badge-title">SALE</p>
-					</div>
-					<div class="product-tumb">
-						<img [defaultImage]="'../../../assets/img/loading-image.gif'" [lazyLoad]="coffee.img"  alt="">
-					</div>
-					<div class="product-details">
-						<h3 style="letter-spacing: 1px; ">{{coffee.nombre}}</h3>
-						<div class="product-bottom-details">
-							<div class="product-price"><small *ngIf="coffee.isInOferta">${{coffee.precioAnterior}}</small>${{coffee.precio}}</div>
+		<ng-container *ngIf="!loading; else loadingContent">
+			<div class="row justify-content-start">
+				<div class="col-4" *ngFor="let coffee of products | paginate: { itemsPerPage: 9, currentPage: (this.productosPaginador.pageNumber + 1), totalItems: this.productosPaginador.totalElements }">
+					<div class="product-card" (click)="productDetail(coffee.id)">
+						<div class="badge" *ngIf="coffee.isInOferta">
+							<p class="badge-title">SALE</p>
+						</div>
+						<div class="product-tumb">
+							<img [defaultImage]="'../../../assets/img/loading-image.gif'" [lazyLoad]="coffee.img"  alt="">
+						</div>
+						<div class="product-details">
+							<h3 style="letter-spacing: 1px; ">{{coffee.nombre}}</h3>
+							<div class="product-bottom-details">
+								<div class="product-price"><small *ngIf="coffee.isInOferta">${{coffee.precioAnterior}}</small>${{coffee.precio}}</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row justify-content-end">
-			<div class="col-3" style="text-align: right;">
-				<pagination-controls 
-				(pageChange)="setPage($event)"
-				[responsive]="true"
-				previousLabel=""
-				nextLabel=""
-				></pagination-controls>
+			<div class="row justify-content-end">
+				<div class="col-3" style="text-align: right;">
+					<pagination-controls 
+					(pageChange)="setPage($event)"
+					[responsive]="true"
+					previousLabel=""
+					nextLabel=""
+					></pagination-controls>
+				</div>
 			</div>
-		</div>
+		</ng-container>
+		<ng-template #loadingContent>
+			<div class="row justify-content-start">
+				<div class="col-4" *ngFor="let i of [].constructor(9)">
+					<ngx-skeleton height="460px" borderRadius="20px" width="300px" margin="10px 15px 50px 15px" [animate]="true"></ngx-skeleton>
+				</div>
+			</div>
+		</ng-template>
 	</div>
 </section>

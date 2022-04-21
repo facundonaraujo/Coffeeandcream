@@ -48,6 +48,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSkeletonModule } from 'ngx-skeleton';
 
 const appRoutes: Routes = [
   {
@@ -164,6 +165,7 @@ const appRoutes: Routes = [
     NgxPaginationModule,
     LazyLoadImageModule,
     ToastrModule.forRoot(),
+    NgxSkeletonModule
   ],
   providers: [
     AuthService,

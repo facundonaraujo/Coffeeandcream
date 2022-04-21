@@ -663,3 +663,49 @@ a.btn.active {
 .mat-form-field.mat-focused .mat-form-field-label {
   color: #fa9d33 !important;
 }
+
+#button .mat-progress-spinner circle, #button .mat-spinner circle {
+    stroke: #fff !important;
+}
+
+.swal2-styled.swal2-default-outline:focus {
+  box-shadow: none !important;
+}
+
+.swal2-styled.swal2-confirm{
+  outline: none !important;
+  border-color: transparent !important;
+  background: #212529 !important;
+  color: #fff !important;
+  transition: 0.3s ease-in !important;
+}
+
+.swal2-styled.swal2-confirm:hover {
+  outline: none !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  background: #FA9D33 !important;
+}
+
+.swal2-styled.swal2-confirm:focus {
+  outline: none !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  background: #FA9D33 !important;
+  box-shadow: none !important;
+}
+
+.swal2-styled.swal2-confirm:active {
+  outline: none !important;
+  border-color: transparent !important;
+  background: #FA9D33 !important;
+  color: #fff !important;
+}
+
+.swal2-loader {
+  border-color: #FA9D33 transparent #FA9D33 transparent!important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+  color: #FA9D33 !important;
+}

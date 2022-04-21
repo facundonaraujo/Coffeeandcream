@@ -12,6 +12,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Producto } from 'src/app/models/producto.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -99,7 +100,7 @@ export class CheckoutComponent implements OnInit {
       this.estaLogueado = true;
       this.usuario = this.authService.getCurrentUser();
     } else {
-      this.estaLogueado = false;
+      this.router.navigate(['/home']);
     }
   }
 
@@ -146,60 +147,73 @@ export class CheckoutComponent implements OnInit {
   }
 
   public newOrder(){
-    this.loading = true;
-    let form = {...this.stepOneForm.getRawValue(), ...this.stepTwoForm1.getRawValue(), ...this.stepTwoForm2.getRawValue(), ...this.stepThreeForm.getRawValue()};
-    let usuario: Usuario = this.usuario ? {
-      ...this.usuario,
-      nombre: form.nombre,
-      email: form.email,
-      tel: form.tel,
-      direccion: form.direccion,
-      codigoPostal: form.codigoPostal,
-      provincia: form.provincia,
-    } : 
-    {
-      nombre: form.nombre,
-      password: form.email,
-      email: form.email,
-      role: Role.USER,
-      tel: form.tel,
-      direccion: form.direccion,
-      codigoPostal: form.codigoPostal,
-      provincia: form.provincia
-    };
-    const pedido: Pedido = {
-      cliente: usuario,
-      formaPago: form.formaPago,
-      metodoEntrega: form.metodoEntrega,
-      productos: this.carrito,
-      status: OrderStatus.NOT_CONFIRMED,
-      total: this.subtotal()
-    };
-    this.pedidosService.crearPedido(pedido).subscribe({
-      next: (resp) => {
-        this.loading = false;
-        Swal.fire({
-          icon: 'success',
-          title: 'Pedido procesado exitosamente',
-          showConfirmButton: true,
-          confirmButtonText: 'Ver pedido',
-          confirmButtonAriaLabel: 'Ver pedido'
-        }).then(
-          (resp: any) => {
-            this.router.navigate(['/edit-profile'])
-          }
-        )
-      },
-      error: (err) => {
-        this.loading = false;
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err?.error?.msg,
-        })
-      }
-    });
-    // this.goSection3();
+    if (!this.loading) {
+      this.loading = true;
+      let form = {...this.stepOneForm.getRawValue(), ...this.stepTwoForm1.getRawValue(), ...this.stepTwoForm2.getRawValue(), ...this.stepThreeForm.getRawValue()};
+      let usuario: Usuario = this.usuario ? {
+        ...this.usuario,
+        nombre: form.nombre,
+        email: form.email,
+        tel: form.tel,
+        direccion: form.direccion,
+        codigoPostal: form.codigoPostal,
+        provincia: form.provincia,
+      } : 
+      {
+        nombre: form.nombre,
+        password: form.email,
+        email: form.email,
+        role: Role.USER,
+        tel: form.tel,
+        direccion: form.direccion,
+        codigoPostal: form.codigoPostal,
+        provincia: form.provincia
+      };
+      const pedido: Pedido = {
+        cliente: usuario,
+        formaPago: form.formaPago,
+        metodoEntrega: form.metodoEntrega,
+        productos: this.carrito,
+        status: OrderStatus.NOT_CONFIRMED,
+        total: this.subtotal()
+      };
+      Swal.fire({
+        title: '¡Por favor espere!',
+        html: 'Estamos creando su pedido',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+            this.pedidosService.crearPedido(pedido).subscribe({
+              next: (pedido) => {
+                Swal.hideLoading();
+                this.loading = false;
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Pedido procesado exitosamente',
+                  showConfirmButton: true,
+                  confirmButtonText: 'Ver pedido',
+                  confirmButtonAriaLabel: 'Ver pedido'
+                }).then(
+                  (close: any) => {
+                    this.router.navigate(['/edit-profile'])
+                    this.cartService.vaciarCarrito();
+                  }
+                )
+              },
+              error: (err) => {
+                this.loading = false;
+                Swal.hideLoading();
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: err?.error?.msg,
+                });
+              }
+            });
+        }
+      });
+
+    }
   }
   
   public removerItemCarrito(producto: Producto){

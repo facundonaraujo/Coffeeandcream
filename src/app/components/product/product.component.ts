@@ -1,12 +1,14 @@
 import { Producto } from './../../models/producto.model';
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
-
-// IMPORT DE ICONOS
-import { faCheck, faShoppingBag, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { Carrito } from 'src/app/models/cart.model';
+
+// IMPORT DE ICONOS
+import { faCheck, faShoppingBag, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product',
@@ -29,6 +31,7 @@ export class ProductComponent implements OnInit {
     private productoService: ProductoService,
     private cartService: CartService,
     private router: Router,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -50,8 +53,25 @@ export class ProductComponent implements OnInit {
   }
 
   public agregarAlCarrito() {
-    this.cartService.agregarItemCarrito(this.product);
-    this.cartService.onAddElementToCart(true);
+    if (this.authService.estaLogueado()) {
+      this.cartService.agregarItemCarrito(this.product);
+      this.cartService.onAddElementToCart(true);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Inicia sesión para poder agregar productos al carrito.',
+        showConfirmButton: true,
+        confirmButtonText: 'Iniciar Sesión',
+        confirmButtonAriaLabel: 'Iniciar Sesión',
+        confirmButtonColor: '#FA9D33',
+      }).then(
+        (resp: any) => {
+          if (resp.isConfirmed)
+            this.router.navigate(['/login'])
+        }
+      );
+    }
   }
 
   public removerItemCarrito(){
